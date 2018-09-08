@@ -59,7 +59,7 @@ class Laptop(models.Model):
 
 
 class Image(models.Model):
-    file = models.FileField(upload_to='media/laptop_images/%Y/%m/%d/')
+    file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')
     gallery = models.ForeignKey(Laptop, related_name='images', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
