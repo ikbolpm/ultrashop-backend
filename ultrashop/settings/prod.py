@@ -1,4 +1,4 @@
-ALLOWED_HOSTS = ['18.208.169.24']
+ALLOWED_HOSTS = ['18.208.169.24','ultrashop.uz']
 
 DATABASES = {
     'default': {
@@ -12,6 +12,14 @@ DATABASES = {
     }
 }
 
-CORS_ORIGIN_WHITELIST = 'localhost:8080'
+STATIC_ROOT="static"
 
-BASE_URL = 'http://localhost:8000'
+CORS_ORIGIN_WHITELIST = (
+	'ultrashop.uz',
+	'localhost:8080',
+	'127.0.0.1:8080'
+)
+
+BASE_URL = 'http://ultrashop.uz:8000'
+
+DEBUG=1

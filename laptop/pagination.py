@@ -6,4 +6,4 @@ class LaptopLimitOffsetPagination(LimitOffsetPagination):
     max_limit = 10
 
 class LaptopPageNumberPagination(PageNumberPagination):
-    page_size = 12
+    page_size = 20

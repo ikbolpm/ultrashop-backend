@@ -12,7 +12,7 @@ class Processor(models.Model):
     cores = models.IntegerField(help_text='В шт. К примеру: 4')
     threads = models.IntegerField(help_text='В шт. К примеру: 8')
     cache = models.FloatField(help_text='В мегабайтах. К примеру: 6')
-    integrated_graphics = models.CharField(max_length=255, help_text='К примеру: Intel® HD Graphics 630')
+    integrated_graphics = models.CharField(max_length=255, help_text='К примеру: Intel® HD Graphics 630', null=True, blank=True)
 
     def __str__(self):
         return self.name

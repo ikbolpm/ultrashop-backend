@@ -8,6 +8,7 @@ class PurchaseAdmin(ModelAdmin):
     list_display = ['laptop', 'warehouse', 'cost', 'quantity', 'created', 'updated']
     list_display_links = ['laptop', ]
     list_editable = ['warehouse', 'cost', 'quantity']
+    list_filter = ['warehouse', 'laptop']
 
 
 admin.site.register(Purchase, PurchaseAdmin)

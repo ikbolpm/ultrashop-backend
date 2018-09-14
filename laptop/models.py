@@ -33,29 +33,19 @@ class Laptop(models.Model):
     graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, )
     perks = models.ManyToManyField(Perks, help_text='Выберите все нужные опции нажатием кнопки CTRL', blank=True)
-    quantity = models.IntegerField(help_text='Введите стартовое количество', default=1)
     price = models.IntegerField(help_text='Введите сумму в USD')
-    viewed = models.IntegerField()
+    viewed = models.IntegerField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['-created']
 
     def __str__(self):
         if self.model:
             return self.brand.name + ' ' + self.name + ' ' + self.model
         else:
             return self.brand.name + ' ' + self.name
-
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        super().save(force_insert, force_update, using, update_fields)
-        from inventory.models import Inventory
-        inventory, created = Inventory.objects.get_or_create(
-            laptop=self.pk,
-            defaults={'quantity': self.quantity, 'warehouse': 1}
-        )
-        inventory.save()
 
 
 class Image(models.Model):
