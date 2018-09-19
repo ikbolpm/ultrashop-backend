@@ -13,6 +13,9 @@ class Processor(models.Model):
     threads = models.IntegerField(help_text='В шт. К примеру: 8')
     cache = models.FloatField(help_text='В мегабайтах. К примеру: 6')
     integrated_graphics = models.CharField(max_length=255, help_text='К примеру: Intel® HD Graphics 630', null=True, blank=True)
+ 
+    class Meta:
+        ordering=['name']
 
     def __str__(self):
         return self.name

@@ -2,8 +2,8 @@ from rest_framework.pagination import LimitOffsetPagination, PageNumberPaginatio
 
 
 class LaptopLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 1
-    max_limit = 10
+    default_limit = 10
+    max_limit = 100
 
 class LaptopPageNumberPagination(PageNumberPagination):
-    page_size = 20
+    page_size = 10

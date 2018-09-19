@@ -14,7 +14,7 @@ from processorBrand.models import ProcessorBrand
 from ram.models import Ram
 from resolution.models import Resolution
 from .models import Laptop, Image
-from .pagination import LaptopPageNumberPagination
+from .pagination import LaptopPageNumberPagination, LaptopLimitOffsetPagination
 from .serializers import LaptopSerializer, ImageSerializer
 
 
@@ -153,8 +153,8 @@ class LaptopListView(generics.ListAPIView):
     queryset = Laptop.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filter_class = LaptopFilter
-    # pagination_class = LaptopLimitOffsetPagination
-    pagination_class = LaptopPageNumberPagination
+    pagination_class = LaptopLimitOffsetPagination
+    # pagination_class = LaptopPageNumberPagination
 
 
     ordering_fields = (
