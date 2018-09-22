@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model, admin as user_admin
+from django.utils.translation import ugettext as _
 
 User = get_user_model()
 
