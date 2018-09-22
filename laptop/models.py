@@ -47,7 +47,6 @@ class Laptop(models.Model):
         else:
             return self.brand.name + ' ' + self.name
 
-
 class Image(models.Model):
     file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')
     gallery = models.ForeignKey(Laptop, related_name='images', on_delete=models.CASCADE, blank=True, null=True)

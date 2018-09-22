@@ -1,13 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import ugettext as _
 
 User = get_user_model()
-
-class UserAdmin(admin.ModelAdmin):
-    search_fields = ['email']
-    list_display = ['email', 'is_staff', 'is_admin', 'last_login', 'created']
-
-    class Meta:
-        model = User
 
 admin.site.register(User, UserAdmin)
