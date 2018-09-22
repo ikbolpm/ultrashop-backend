@@ -12,7 +12,7 @@ class UserAdmin(admin.ModelAdmin):
         (_('Personal info'), {'fields': ('full_name',  )}),
         (_('Permissions'), {'fields': ('is_active', 'staff', 'admin', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
-        (_('Important dates'), {'fields': ('last_login', 'created')}),
+        (_('Important dates'), {'fields': ('last_login', )}),
     )
     class Meta:
         model = User
