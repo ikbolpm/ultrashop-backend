@@ -30,4 +30,7 @@ class Sales(models.Model):
             defaults={'quantity': 0}
         )
         inventory.quantity = inventory.quantity - self.quantity
-        inventory.save()
+        if inventory.quantity >= 0:
+            inventory.save()
+        else:
+            print("Вы не можете продать больше, чем имеете.")

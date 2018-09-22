@@ -27,13 +27,13 @@ class GalleryMultiuploadMixing(object):
 
 
 class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
-    list_display = ['name', 'brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size',
+    list_display = ['brand', 'name', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size',
                     'resolution', 'graphics_card', 'price', 'created', ]
     list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
                      'graphics_card', 'price']
     list_display_links = ['name', ]
     list_filter = ['brand', 'screen_size', 'resolution', 'graphics_card']
-    search_fields = ['graphics_card', 'resolution', 'processor']
+    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name']
     prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
