@@ -141,7 +141,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_WHITELIST = 'localhost:8080',
+CORS_ORIGIN_WHITELIST = [
+    'localhost:8080',
+    'localhost:5000',
+    ]
 
 MEDIA_URL = '/media/'
 
@@ -153,4 +156,4 @@ REST_FRAMEWORK = {
     # 'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication', ),
 }
 
-BASE_URL = 'http://localhost:8000'
+# BASE_URL = 'http://localhost:8000'

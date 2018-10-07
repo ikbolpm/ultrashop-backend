@@ -18,7 +18,7 @@ class GalleryMultiuploadMixing(object):
             image = Image.objects.create(file=uploaded, gallery=None)
         return {
             'url': image.file.url,
-            'absolute_url': settings.BASE_URL + image.file.url,
+            'absolute_url': image.file.url,
             'thumbnail_url': image.file.url,
             'id': image.id,
             'name': image.filename

@@ -20,12 +20,10 @@ STATIC_ROOT='static'
 CORS_ORIGIN_WHITELIST = (
 	'ultrashop.uz',
 	'www.ultrashop.uz',
-	'localhost:8080',
-	'127.0.0.1:8080'
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
 
-BASE_URL = 'http://ultrashop.uz:8000'
+# BASE_URL = 'http://ultrashop.uz:8000'
 
-DEBUG = True
+DEBUG = False

@@ -61,4 +61,4 @@ class Image(models.Model):
 
     @property
     def fileurl(self):
-        return settings.BASE_URL + self.file.url
+        return self.file.url
