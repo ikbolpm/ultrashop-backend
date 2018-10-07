@@ -149,8 +149,8 @@ class LaptopListView(generics.ListAPIView):
     queryset = Laptop.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filter_class = LaptopFilter
-    # pagination_class = LaptopLimitOffsetPagination
-    pagination_class = LaptopPageNumberPagination
+    pagination_class = LaptopLimitOffsetPagination
+    # pagination_class = LaptopPageNumberPagination
 
 
     ordering_fields = (
