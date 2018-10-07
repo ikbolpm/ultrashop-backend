@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
-    'multiupload',
+    'custom_multiupload.apps.CustomMultiUploadConfig',
     'customers',
     'warehouses',
     'purchases',
@@ -145,7 +145,7 @@ CORS_ORIGIN_WHITELIST = 'localhost:8080',
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),

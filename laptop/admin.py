@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.shortcuts import get_object_or_404
-from multiupload.admin import MultiUploadAdmin
+from custom_multiupload.admin import MultiUploadAdmin
+from django.conf import settings
 
-from ultrashop.settings import BASE_URL
 from .models import Laptop, Image
 
 
@@ -18,7 +18,7 @@ class GalleryMultiuploadMixing(object):
             image = Image.objects.create(file=uploaded, gallery=None)
         return {
             'url': image.file.url,
-            'absolute_url': BASE_URL + image.file.url,
+            'absolute_url': settings.BASE_URL + image.file.url,
             'thumbnail_url': image.file.url,
             'id': image.id,
             'name': image.filename
