@@ -9,5 +9,6 @@ class BrandSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
-            'slug'
+            'slug',
+            'logo'
         ]

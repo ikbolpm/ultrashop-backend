@@ -142,10 +142,6 @@ class LaptopFilter (FilterSet):
         perk = Perks.objects.filter(id__in=perks)
         return queryset.filter(perks__in=perk)
 
-    # def filter_by_size(self, queryset, name, value):
-    #     screen_size = value.strip().split(',')
-    #     screen_sizes = DisplaySize.objects.filter(id__in=screen_size)
-    #     return queryset.filter(screen_size__in=screen_sizes)
 
 
 class LaptopListView(generics.ListAPIView):
