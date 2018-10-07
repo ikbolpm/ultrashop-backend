@@ -142,10 +142,6 @@ class LaptopFilter (FilterSet):
         perk = Perks.objects.filter(id__in=perks)
         return queryset.filter(perks__in=perk)
 
-    # def filter_by_size(self, queryset, name, value):
-    #     screen_size = value.strip().split(',')
-    #     screen_sizes = DisplaySize.objects.filter(id__in=screen_size)
-    #     return queryset.filter(screen_size__in=screen_sizes)
 
 
 class LaptopListView(generics.ListAPIView):
@@ -153,8 +149,8 @@ class LaptopListView(generics.ListAPIView):
     queryset = Laptop.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filter_class = LaptopFilter
-    pagination_class = LaptopLimitOffsetPagination
-    # pagination_class = LaptopPageNumberPagination
+    # pagination_class = LaptopLimitOffsetPagination
+    pagination_class = LaptopPageNumberPagination
 
 
     ordering_fields = (
