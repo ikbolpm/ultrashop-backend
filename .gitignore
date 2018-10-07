@@ -2,3 +2,4 @@ venv
 .idea
 .vscode
 media/laptop_images
+/venv/

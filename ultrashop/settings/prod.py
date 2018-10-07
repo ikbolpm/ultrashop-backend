@@ -1,3 +1,4 @@
+from .base import *
 ALLOWED_HOSTS = ['18.208.169.24','ultrashop.uz']
 
 DATABASES = {
@@ -22,4 +23,4 @@ CORS_ORIGIN_WHITELIST = (
 
 BASE_URL = 'http://ultrashop.uz:8000'
 
-DEBUG=1
+DEBUG = False

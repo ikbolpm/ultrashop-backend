@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from audio.models import Audio
 from brand.models import Brand
@@ -10,7 +11,7 @@ from processor.models import Processor
 from ram.models import Ram
 from resolution.models import Resolution
 from storage.models import Storage
-from ultrashop.settings import BASE_URL
+
 
 
 class Laptop(models.Model):
@@ -60,4 +61,4 @@ class Image(models.Model):
 
     @property
     def fileurl(self):
-        return BASE_URL + self.file.url
+        return settings.BASE_URL + self.file.url
