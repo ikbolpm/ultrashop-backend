@@ -13,6 +13,8 @@ DATABASES = {
     }
 }
 
+WSGI_APPLICATION = 'ultrashop.wsgi_prod.application'
+
 STATIC_ROOT="static"
 
 CORS_ORIGIN_WHITELIST = (
