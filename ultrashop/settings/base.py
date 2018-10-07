@@ -94,8 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ultrashop',
-        'USER': 'postgres',
-        'PASSWORD': 'secret',
+        'USER': 'ultrashop',
+        'PASSWORD': '%ltra$op',
         'HOST': 'localhost',
         'PORT': '5432',
 
