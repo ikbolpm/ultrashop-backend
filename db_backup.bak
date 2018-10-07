@@ -1,0 +1,4623 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.14
+-- Dumped by pg_dump version 9.5.14
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: accounts_user; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.accounts_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    email character varying(255) NOT NULL,
+    full_name character varying(255),
+    active boolean NOT NULL,
+    staff boolean NOT NULL,
+    admin boolean NOT NULL,
+    created timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.accounts_user OWNER TO ultrashop;
+
+--
+-- Name: accounts_user_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.accounts_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.accounts_user_id_seq OWNER TO ultrashop;
+
+--
+-- Name: accounts_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.accounts_user_id_seq OWNED BY public.accounts_user.id;
+
+
+--
+-- Name: audio_audio; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.audio_audio (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    slug character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.audio_audio OWNER TO ultrashop;
+
+--
+-- Name: audio_audio_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.audio_audio_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.audio_audio_id_seq OWNER TO ultrashop;
+
+--
+-- Name: audio_audio_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.audio_audio_id_seq OWNED BY public.audio_audio.id;
+
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO ultrashop;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO ultrashop;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO ultrashop;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO ultrashop;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO ultrashop;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO ultrashop;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: brand_brand; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.brand_brand (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    slug character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.brand_brand OWNER TO ultrashop;
+
+--
+-- Name: brand_brand_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.brand_brand_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.brand_brand_id_seq OWNER TO ultrashop;
+
+--
+-- Name: brand_brand_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.brand_brand_id_seq OWNED BY public.brand_brand.id;
+
+
+--
+-- Name: customers_customer; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.customers_customer (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    phone character varying(15) NOT NULL,
+    email character varying(254),
+    created date NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    laptop_id integer
+);
+
+
+ALTER TABLE public.customers_customer OWNER TO ultrashop;
+
+--
+-- Name: customers_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.customers_customer_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.customers_customer_id_seq OWNER TO ultrashop;
+
+--
+-- Name: customers_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.customers_customer_id_seq OWNED BY public.customers_customer.id;
+
+
+--
+-- Name: displaySize_displaysize; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public."displaySize_displaysize" (
+    id integer NOT NULL,
+    size character varying(40) NOT NULL
+);
+
+
+ALTER TABLE public."displaySize_displaysize" OWNER TO ultrashop;
+
+--
+-- Name: displaySize_displaysize_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public."displaySize_displaysize_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."displaySize_displaysize_id_seq" OWNER TO ultrashop;
+
+--
+-- Name: displaySize_displaysize_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public."displaySize_displaysize_id_seq" OWNED BY public."displaySize_displaysize".id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO ultrashop;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO ultrashop;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO ultrashop;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO ultrashop;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO ultrashop;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO ultrashop;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO ultrashop;
+
+--
+-- Name: graphicsCardBrand_graphicscardbrand; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public."graphicsCardBrand_graphicscardbrand" (
+    id integer NOT NULL,
+    name character varying(250) NOT NULL,
+    slug character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public."graphicsCardBrand_graphicscardbrand" OWNER TO ultrashop;
+
+--
+-- Name: graphicsCardBrand_graphicscardbrand_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public."graphicsCardBrand_graphicscardbrand_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."graphicsCardBrand_graphicscardbrand_id_seq" OWNER TO ultrashop;
+
+--
+-- Name: graphicsCardBrand_graphicscardbrand_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public."graphicsCardBrand_graphicscardbrand_id_seq" OWNED BY public."graphicsCardBrand_graphicscardbrand".id;
+
+
+--
+-- Name: graphicsCard_graphicscard; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public."graphicsCard_graphicscard" (
+    id integer NOT NULL,
+    name character varying(250) NOT NULL,
+    slug character varying(250) NOT NULL,
+    memory_interface character varying(20) NOT NULL,
+    memory_interface_width integer NOT NULL,
+    brand_id integer NOT NULL
+);
+
+
+ALTER TABLE public."graphicsCard_graphicscard" OWNER TO ultrashop;
+
+--
+-- Name: graphicsCard_graphicscard_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public."graphicsCard_graphicscard_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."graphicsCard_graphicscard_id_seq" OWNER TO ultrashop;
+
+--
+-- Name: graphicsCard_graphicscard_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public."graphicsCard_graphicscard_id_seq" OWNED BY public."graphicsCard_graphicscard".id;
+
+
+--
+-- Name: inquiries_inquiry; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inquiries_inquiry (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    phone character varying(50) NOT NULL,
+    comments text,
+    source character varying(200) NOT NULL,
+    min_price character varying(50),
+    max_price character varying(50),
+    min_cores character varying(50),
+    max_cores character varying(50),
+    min_size character varying(4),
+    max_size character varying(4),
+    min_storage character varying(50),
+    max_storage character varying(50),
+    min_ram character varying(50),
+    max_ram character varying(50),
+    laptop_id integer
+);
+
+
+ALTER TABLE public.inquiries_inquiry OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inquiries_inquiry_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inquiries_inquiry_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inquiries_inquiry_id_seq OWNED BY public.inquiries_inquiry.id;
+
+
+--
+-- Name: inquiries_inquiry_processor; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inquiries_inquiry_processor (
+    id integer NOT NULL,
+    inquiry_id integer NOT NULL,
+    processorbrand_id integer NOT NULL
+);
+
+
+ALTER TABLE public.inquiries_inquiry_processor OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_processor_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inquiries_inquiry_processor_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inquiries_inquiry_processor_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_processor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inquiries_inquiry_processor_id_seq OWNED BY public.inquiries_inquiry_processor.id;
+
+
+--
+-- Name: inquiries_inquiry_ram; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inquiries_inquiry_ram (
+    id integer NOT NULL,
+    inquiry_id integer NOT NULL,
+    ram_id integer NOT NULL
+);
+
+
+ALTER TABLE public.inquiries_inquiry_ram OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_ram_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inquiries_inquiry_ram_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inquiries_inquiry_ram_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_ram_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inquiries_inquiry_ram_id_seq OWNED BY public.inquiries_inquiry_ram.id;
+
+
+--
+-- Name: inquiries_inquiry_resolution; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inquiries_inquiry_resolution (
+    id integer NOT NULL,
+    inquiry_id integer NOT NULL,
+    resolution_id integer NOT NULL
+);
+
+
+ALTER TABLE public.inquiries_inquiry_resolution OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_resolution_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inquiries_inquiry_resolution_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inquiries_inquiry_resolution_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_resolution_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inquiries_inquiry_resolution_id_seq OWNED BY public.inquiries_inquiry_resolution.id;
+
+
+--
+-- Name: inquiries_inquiry_size; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inquiries_inquiry_size (
+    id integer NOT NULL,
+    inquiry_id integer NOT NULL,
+    displaysize_id integer NOT NULL
+);
+
+
+ALTER TABLE public.inquiries_inquiry_size OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_size_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inquiries_inquiry_size_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inquiries_inquiry_size_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_size_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inquiries_inquiry_size_id_seq OWNED BY public.inquiries_inquiry_size.id;
+
+
+--
+-- Name: inquiries_inquiry_storage; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inquiries_inquiry_storage (
+    id integer NOT NULL,
+    inquiry_id integer NOT NULL,
+    storage_id integer NOT NULL
+);
+
+
+ALTER TABLE public.inquiries_inquiry_storage OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_storage_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inquiries_inquiry_storage_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inquiries_inquiry_storage_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_storage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inquiries_inquiry_storage_id_seq OWNED BY public.inquiries_inquiry_storage.id;
+
+
+--
+-- Name: inquiries_inquiry_type; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inquiries_inquiry_type (
+    id integer NOT NULL,
+    inquiry_id integer NOT NULL,
+    laptoptype_id integer NOT NULL
+);
+
+
+ALTER TABLE public.inquiries_inquiry_type OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_type_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inquiries_inquiry_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inquiries_inquiry_type_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inquiries_inquiry_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inquiries_inquiry_type_id_seq OWNED BY public.inquiries_inquiry_type.id;
+
+
+--
+-- Name: inventory_inventory; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.inventory_inventory (
+    id integer NOT NULL,
+    quantity integer NOT NULL,
+    created timestamp with time zone NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    laptop_id integer NOT NULL,
+    warehouse_id integer NOT NULL
+);
+
+
+ALTER TABLE public.inventory_inventory OWNER TO ultrashop;
+
+--
+-- Name: inventory_inventory_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.inventory_inventory_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inventory_inventory_id_seq OWNER TO ultrashop;
+
+--
+-- Name: inventory_inventory_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.inventory_inventory_id_seq OWNED BY public.inventory_inventory.id;
+
+
+--
+-- Name: laptopType_laptoptype; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public."laptopType_laptoptype" (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    slug character varying(200) NOT NULL,
+    name_singular character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public."laptopType_laptoptype" OWNER TO ultrashop;
+
+--
+-- Name: laptopType_laptoptype_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public."laptopType_laptoptype_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."laptopType_laptoptype_id_seq" OWNER TO ultrashop;
+
+--
+-- Name: laptopType_laptoptype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public."laptopType_laptoptype_id_seq" OWNED BY public."laptopType_laptoptype".id;
+
+
+--
+-- Name: laptop_image; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.laptop_image (
+    id integer NOT NULL,
+    file character varying(100) NOT NULL,
+    gallery_id integer
+);
+
+
+ALTER TABLE public.laptop_image OWNER TO ultrashop;
+
+--
+-- Name: laptop_image_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.laptop_image_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.laptop_image_id_seq OWNER TO ultrashop;
+
+--
+-- Name: laptop_image_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.laptop_image_id_seq OWNED BY public.laptop_image.id;
+
+
+--
+-- Name: laptop_laptop; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.laptop_laptop (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    slug character varying(255) NOT NULL,
+    model character varying(255),
+    ram integer NOT NULL,
+    main_storage integer NOT NULL,
+    secondary_storage integer,
+    graphics_card_memory integer,
+    price integer NOT NULL,
+    viewed integer,
+    created timestamp with time zone NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    audio_id integer NOT NULL,
+    brand_id integer NOT NULL,
+    graphics_card_id integer,
+    laptop_type_id integer NOT NULL,
+    main_storage_type_id integer NOT NULL,
+    processor_id integer NOT NULL,
+    ram_type_id integer NOT NULL,
+    resolution_id integer NOT NULL,
+    screen_size_id integer NOT NULL,
+    secondary_storage_type_id integer
+);
+
+
+ALTER TABLE public.laptop_laptop OWNER TO ultrashop;
+
+--
+-- Name: laptop_laptop_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.laptop_laptop_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.laptop_laptop_id_seq OWNER TO ultrashop;
+
+--
+-- Name: laptop_laptop_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.laptop_laptop_id_seq OWNED BY public.laptop_laptop.id;
+
+
+--
+-- Name: laptop_laptop_perks; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.laptop_laptop_perks (
+    id integer NOT NULL,
+    laptop_id integer NOT NULL,
+    perks_id integer NOT NULL
+);
+
+
+ALTER TABLE public.laptop_laptop_perks OWNER TO ultrashop;
+
+--
+-- Name: laptop_laptop_perks_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.laptop_laptop_perks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.laptop_laptop_perks_id_seq OWNER TO ultrashop;
+
+--
+-- Name: laptop_laptop_perks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.laptop_laptop_perks_id_seq OWNED BY public.laptop_laptop_perks.id;
+
+
+--
+-- Name: perks_perks; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.perks_perks (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    slug character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.perks_perks OWNER TO ultrashop;
+
+--
+-- Name: perks_perks_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.perks_perks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.perks_perks_id_seq OWNER TO ultrashop;
+
+--
+-- Name: perks_perks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.perks_perks_id_seq OWNED BY public.perks_perks.id;
+
+
+--
+-- Name: processorBrand_processorbrand; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public."processorBrand_processorbrand" (
+    id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    slug character varying(30) NOT NULL
+);
+
+
+ALTER TABLE public."processorBrand_processorbrand" OWNER TO ultrashop;
+
+--
+-- Name: processorBrand_processorbrand_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public."processorBrand_processorbrand_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."processorBrand_processorbrand_id_seq" OWNER TO ultrashop;
+
+--
+-- Name: processorBrand_processorbrand_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public."processorBrand_processorbrand_id_seq" OWNED BY public."processorBrand_processorbrand".id;
+
+
+--
+-- Name: processor_processor; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.processor_processor (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    slug character varying(255) NOT NULL,
+    min_frequency double precision NOT NULL,
+    max_frequency double precision NOT NULL,
+    cores integer NOT NULL,
+    threads integer NOT NULL,
+    cache double precision NOT NULL,
+    integrated_graphics character varying(255),
+    brand_id integer NOT NULL
+);
+
+
+ALTER TABLE public.processor_processor OWNER TO ultrashop;
+
+--
+-- Name: processor_processor_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.processor_processor_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.processor_processor_id_seq OWNER TO ultrashop;
+
+--
+-- Name: processor_processor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.processor_processor_id_seq OWNED BY public.processor_processor.id;
+
+
+--
+-- Name: purchases_purchase; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.purchases_purchase (
+    id integer NOT NULL,
+    quantity integer NOT NULL,
+    cost numeric(7,2) NOT NULL,
+    created timestamp with time zone NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    laptop_id integer NOT NULL,
+    warehouse_id integer NOT NULL
+);
+
+
+ALTER TABLE public.purchases_purchase OWNER TO ultrashop;
+
+--
+-- Name: purchases_purchase_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.purchases_purchase_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.purchases_purchase_id_seq OWNER TO ultrashop;
+
+--
+-- Name: purchases_purchase_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.purchases_purchase_id_seq OWNED BY public.purchases_purchase.id;
+
+
+--
+-- Name: ram_ram; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.ram_ram (
+    id integer NOT NULL,
+    generation character varying(20) NOT NULL,
+    slug character varying(20) NOT NULL
+);
+
+
+ALTER TABLE public.ram_ram OWNER TO ultrashop;
+
+--
+-- Name: ram_ram_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.ram_ram_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ram_ram_id_seq OWNER TO ultrashop;
+
+--
+-- Name: ram_ram_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.ram_ram_id_seq OWNED BY public.ram_ram.id;
+
+
+--
+-- Name: resolution_resolution; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.resolution_resolution (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    slug character varying(200) NOT NULL,
+    size character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.resolution_resolution OWNER TO ultrashop;
+
+--
+-- Name: resolution_resolution_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.resolution_resolution_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.resolution_resolution_id_seq OWNER TO ultrashop;
+
+--
+-- Name: resolution_resolution_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.resolution_resolution_id_seq OWNED BY public.resolution_resolution.id;
+
+
+--
+-- Name: sales_sales; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.sales_sales (
+    id integer NOT NULL,
+    price numeric(7,2) NOT NULL,
+    quantity integer NOT NULL,
+    created timestamp with time zone NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    customer_id integer NOT NULL,
+    laptop_id integer NOT NULL,
+    warehouse_id integer NOT NULL
+);
+
+
+ALTER TABLE public.sales_sales OWNER TO ultrashop;
+
+--
+-- Name: sales_sales_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.sales_sales_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sales_sales_id_seq OWNER TO ultrashop;
+
+--
+-- Name: sales_sales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.sales_sales_id_seq OWNED BY public.sales_sales.id;
+
+
+--
+-- Name: stock_movements_stockmovements; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.stock_movements_stockmovements (
+    id integer NOT NULL,
+    quantity integer NOT NULL,
+    created timestamp with time zone NOT NULL,
+    updated timestamp with time zone NOT NULL,
+    from_warehouse_id integer NOT NULL,
+    laptop_id integer NOT NULL,
+    moved_by_id integer NOT NULL,
+    to_warehouse_id integer NOT NULL
+);
+
+
+ALTER TABLE public.stock_movements_stockmovements OWNER TO ultrashop;
+
+--
+-- Name: stock_movements_stockmovements_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.stock_movements_stockmovements_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.stock_movements_stockmovements_id_seq OWNER TO ultrashop;
+
+--
+-- Name: stock_movements_stockmovements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.stock_movements_stockmovements_id_seq OWNED BY public.stock_movements_stockmovements.id;
+
+
+--
+-- Name: storage_storage; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.storage_storage (
+    id integer NOT NULL,
+    name character varying(200) NOT NULL,
+    slug character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.storage_storage OWNER TO ultrashop;
+
+--
+-- Name: storage_storage_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.storage_storage_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.storage_storage_id_seq OWNER TO ultrashop;
+
+--
+-- Name: storage_storage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.storage_storage_id_seq OWNED BY public.storage_storage.id;
+
+
+--
+-- Name: warehouses_warehouse; Type: TABLE; Schema: public; Owner: ultrashop
+--
+
+CREATE TABLE public.warehouses_warehouse (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    address character varying(255),
+    created timestamp with time zone NOT NULL,
+    updated timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.warehouses_warehouse OWNER TO ultrashop;
+
+--
+-- Name: warehouses_warehouse_id_seq; Type: SEQUENCE; Schema: public; Owner: ultrashop
+--
+
+CREATE SEQUENCE public.warehouses_warehouse_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.warehouses_warehouse_id_seq OWNER TO ultrashop;
+
+--
+-- Name: warehouses_warehouse_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ultrashop
+--
+
+ALTER SEQUENCE public.warehouses_warehouse_id_seq OWNED BY public.warehouses_warehouse.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.accounts_user ALTER COLUMN id SET DEFAULT nextval('public.accounts_user_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.audio_audio ALTER COLUMN id SET DEFAULT nextval('public.audio_audio_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.brand_brand ALTER COLUMN id SET DEFAULT nextval('public.brand_brand_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.customers_customer ALTER COLUMN id SET DEFAULT nextval('public.customers_customer_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."displaySize_displaysize" ALTER COLUMN id SET DEFAULT nextval('public."displaySize_displaysize_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."graphicsCardBrand_graphicscardbrand" ALTER COLUMN id SET DEFAULT nextval('public."graphicsCardBrand_graphicscardbrand_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."graphicsCard_graphicscard" ALTER COLUMN id SET DEFAULT nextval('public."graphicsCard_graphicscard_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry ALTER COLUMN id SET DEFAULT nextval('public.inquiries_inquiry_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_processor ALTER COLUMN id SET DEFAULT nextval('public.inquiries_inquiry_processor_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_ram ALTER COLUMN id SET DEFAULT nextval('public.inquiries_inquiry_ram_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_resolution ALTER COLUMN id SET DEFAULT nextval('public.inquiries_inquiry_resolution_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_size ALTER COLUMN id SET DEFAULT nextval('public.inquiries_inquiry_size_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_storage ALTER COLUMN id SET DEFAULT nextval('public.inquiries_inquiry_storage_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_type ALTER COLUMN id SET DEFAULT nextval('public.inquiries_inquiry_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inventory_inventory ALTER COLUMN id SET DEFAULT nextval('public.inventory_inventory_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."laptopType_laptoptype" ALTER COLUMN id SET DEFAULT nextval('public."laptopType_laptoptype_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_image ALTER COLUMN id SET DEFAULT nextval('public.laptop_image_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop ALTER COLUMN id SET DEFAULT nextval('public.laptop_laptop_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop_perks ALTER COLUMN id SET DEFAULT nextval('public.laptop_laptop_perks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.perks_perks ALTER COLUMN id SET DEFAULT nextval('public.perks_perks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."processorBrand_processorbrand" ALTER COLUMN id SET DEFAULT nextval('public."processorBrand_processorbrand_id_seq"'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.processor_processor ALTER COLUMN id SET DEFAULT nextval('public.processor_processor_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.purchases_purchase ALTER COLUMN id SET DEFAULT nextval('public.purchases_purchase_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.ram_ram ALTER COLUMN id SET DEFAULT nextval('public.ram_ram_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.resolution_resolution ALTER COLUMN id SET DEFAULT nextval('public.resolution_resolution_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.sales_sales ALTER COLUMN id SET DEFAULT nextval('public.sales_sales_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.stock_movements_stockmovements ALTER COLUMN id SET DEFAULT nextval('public.stock_movements_stockmovements_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.storage_storage ALTER COLUMN id SET DEFAULT nextval('public.storage_storage_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.warehouses_warehouse ALTER COLUMN id SET DEFAULT nextval('public.warehouses_warehouse_id_seq'::regclass);
+
+
+--
+-- Data for Name: accounts_user; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.accounts_user (id, password, last_login, email, full_name, active, staff, admin, created) FROM stdin;
+2	secret	2018-09-13 15:17:32+00	mmamadjanov@gmail.com	Muhammad Mamadjanov	t	t	f	2018-09-13 15:17:38.248523+00
+1	pbkdf2_sha256$120000$sHcIzpvqX2oG$niC7j1NC8Pf8WJqhCI5q9EtqIT/7PhtiWxnXBs8atlQ=	2018-09-15 17:06:10.751948+00	ikbolpm@gmail.com	Ikbol Kobulov	t	t	t	2018-09-08 13:06:05.010831+00
+\.
+
+
+--
+-- Name: accounts_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.accounts_user_id_seq', 2, true);
+
+
+--
+-- Data for Name: audio_audio; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.audio_audio (id, name, slug) FROM stdin;
+1	Asus SonicMaster	asus-sonicmaster
+2	Bang & Olufsen Play	bang-olufsen-play
+3	Стандартное	standartnoe
+4	Waves MaxxAudio	waves-maxxaudio
+5	Dolby Audio Premium	dolby-audio-premium
+6	Harman Audio	harman-audio
+7	JBL	jbl
+\.
+
+
+--
+-- Name: audio_audio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.audio_audio_id_seq', 7, true);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+1	Sales Person
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, true);
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+1	1	101
+2	1	104
+3	1	105
+4	1	108
+5	1	85
+6	1	86
+7	1	88
+\.
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 7, true);
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add content type	4	add_contenttype
+14	Can change content type	4	change_contenttype
+15	Can delete content type	4	delete_contenttype
+16	Can view content type	4	view_contenttype
+17	Can add session	5	add_session
+18	Can change session	5	change_session
+19	Can delete session	5	delete_session
+20	Can view session	5	view_session
+21	Can add user	6	add_user
+22	Can change user	6	change_user
+23	Can delete user	6	delete_user
+24	Can view user	6	view_user
+25	Can add Processor Brand	7	add_processorbrand
+26	Can change Processor Brand	7	change_processorbrand
+27	Can delete Processor Brand	7	delete_processorbrand
+28	Can view Processor Brand	7	view_processorbrand
+29	Can add processor	8	add_processor
+30	Can change processor	8	change_processor
+31	Can delete processor	8	delete_processor
+32	Can view processor	8	view_processor
+33	Can add RAM	9	add_ram
+34	Can change RAM	9	change_ram
+35	Can delete RAM	9	delete_ram
+36	Can view RAM	9	view_ram
+37	Can add Laptop Type	10	add_laptoptype
+38	Can change Laptop Type	10	change_laptoptype
+39	Can delete Laptop Type	10	delete_laptoptype
+40	Can view Laptop Type	10	view_laptoptype
+41	Can add Storage	11	add_storage
+42	Can change Storage	11	change_storage
+43	Can delete Storage	11	delete_storage
+44	Can view Storage	11	view_storage
+45	Can add Graphics Card	12	add_graphicscard
+46	Can change Graphics Card	12	change_graphicscard
+47	Can delete Graphics Card	12	delete_graphicscard
+48	Can view Graphics Card	12	view_graphicscard
+49	Can add Graphics Card Brand	13	add_graphicscardbrand
+50	Can change Graphics Card Brand	13	change_graphicscardbrand
+51	Can delete Graphics Card Brand	13	delete_graphicscardbrand
+52	Can view Graphics Card Brand	13	view_graphicscardbrand
+53	Can add Perks	14	add_perks
+54	Can change Perks	14	change_perks
+55	Can delete Perks	14	delete_perks
+56	Can view Perks	14	view_perks
+57	Can add Audio	15	add_audio
+58	Can change Audio	15	change_audio
+59	Can delete Audio	15	delete_audio
+60	Can view Audio	15	view_audio
+61	Can add brand	16	add_brand
+62	Can change brand	16	change_brand
+63	Can delete brand	16	delete_brand
+64	Can view brand	16	view_brand
+65	Can add laptop	17	add_laptop
+66	Can change laptop	17	change_laptop
+67	Can delete laptop	17	delete_laptop
+68	Can view laptop	17	view_laptop
+69	Can add image	18	add_image
+70	Can change image	18	change_image
+71	Can delete image	18	delete_image
+72	Can view image	18	view_image
+73	Can add resolution	19	add_resolution
+74	Can change resolution	19	change_resolution
+75	Can delete resolution	19	delete_resolution
+76	Can view resolution	19	view_resolution
+77	Can add display size	20	add_displaysize
+78	Can change display size	20	change_displaysize
+79	Can delete display size	20	delete_displaysize
+80	Can view display size	20	view_displaysize
+81	Can add inquiry	21	add_inquiry
+82	Can change inquiry	21	change_inquiry
+83	Can delete inquiry	21	delete_inquiry
+84	Can view inquiry	21	view_inquiry
+85	Can add customer	22	add_customer
+86	Can change customer	22	change_customer
+87	Can delete customer	22	delete_customer
+88	Can view customer	22	view_customer
+89	Can add warehouse	23	add_warehouse
+90	Can change warehouse	23	change_warehouse
+91	Can delete warehouse	23	delete_warehouse
+92	Can view warehouse	23	view_warehouse
+93	Can add purchase	24	add_purchase
+94	Can change purchase	24	change_purchase
+95	Can delete purchase	24	delete_purchase
+96	Can view purchase	24	view_purchase
+97	Can add inventory	25	add_inventory
+98	Can change inventory	25	change_inventory
+99	Can delete inventory	25	delete_inventory
+100	Can view inventory	25	view_inventory
+101	Can add Sale	26	add_sales
+102	Can change Sale	26	change_sales
+103	Can delete Sale	26	delete_sales
+104	Can view Sale	26	view_sales
+105	Can add ('Stock Movement',)	27	add_stockmovements
+106	Can change ('Stock Movement',)	27	change_stockmovements
+107	Can delete ('Stock Movement',)	27	delete_stockmovements
+108	Can view ('Stock Movement',)	27	view_stockmovements
+\.
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 108, true);
+
+
+--
+-- Data for Name: brand_brand; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.brand_brand (id, name, slug) FROM stdin;
+1	Acer	acer
+2	Asus	asus
+3	HP	hp
+4	Lenovo	lenovo
+5	Dell	dell
+6	MSI	msi
+7	Samsung	samsung
+\.
+
+
+--
+-- Name: brand_brand_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.brand_brand_id_seq', 7, true);
+
+
+--
+-- Data for Name: customers_customer; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.customers_customer (id, name, phone, email, created, updated, laptop_id) FROM stdin;
+1	Muhammad Mamadjanov	+998909556057	mmamadjanov@gmail.com	2018-09-15	2018-09-15 18:37:39.721568+00	39
+\.
+
+
+--
+-- Name: customers_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.customers_customer_id_seq', 1, true);
+
+
+--
+-- Data for Name: displaySize_displaysize; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public."displaySize_displaysize" (id, size) FROM stdin;
+1	10.1
+2	11.6
+3	12.5
+4	13.3
+5	14.0
+6	15.6
+7	17.3
+8	23.8
+\.
+
+
+--
+-- Name: displaySize_displaysize_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public."displaySize_displaysize_id_seq"', 8, true);
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2018-09-08 13:07:13.201904+00	1	00.png	1	[{"added": {}}]	18	1
+2	2018-09-08 13:09:46.546371+00	1	00.png	3		18	1
+3	2018-09-08 13:26:41.215193+00	1	Главный Склад	1	[{"added": {}}]	23	1
+4	2018-09-08 13:26:56.057546+00	2	Б32	1	[{"added": {}}]	23	1
+5	2018-09-08 13:27:05.620415+00	3	А29	1	[{"added": {}}]	23	1
+6	2018-09-08 13:27:23.09905+00	1	DDR3	1	[{"added": {}}]	9	1
+7	2018-09-08 13:27:31.838964+00	2	DDR4	1	[{"added": {}}]	9	1
+8	2018-09-08 13:32:16.820344+00	1	Acer	1	[{"added": {}}]	16	1
+9	2018-09-08 13:32:59.877616+00	1	Intel® Core™	1	[{"added": {}}]	7	1
+10	2018-09-08 13:33:21.092776+00	1	i7-7700HQ	1	[{"added": {}}]	8	1
+11	2018-09-08 13:33:29.101358+00	1	SSD	1	[{"added": {}}]	11	1
+12	2018-09-08 13:33:55.914681+00	1	10.1	1	[{"added": {}}]	20	1
+13	2018-09-08 13:34:06.395461+00	1	HD	1	[{"added": {}}]	19	1
+14	2018-09-08 13:34:17.8135+00	1	Ультрабуки	1	[{"added": {}}]	10	1
+15	2018-09-08 13:34:26.486403+00	1	nVidia	1	[{"added": {}}]	13	1
+16	2018-09-08 13:34:53.491322+00	1	GeForce GTX 1050	1	[{"added": {}}]	12	1
+17	2018-09-08 13:35:00.570033+00	1	Asus SonicMaster	1	[{"added": {}}]	15	1
+18	2018-09-08 13:35:14.187507+00	1	Отпечатка Пальцев	1	[{"added": {}}]	14	1
+19	2018-09-08 13:35:23.086602+00	2	Сенсорный экран	1	[{"added": {}}]	14	1
+20	2018-09-11 16:39:08.388994+00	2	Asus	1	[{"added": {}}]	16	1
+21	2018-09-11 16:41:31.364617+00	2	Intel® Celeron®	1	[{"added": {}}]	7	1
+22	2018-09-11 16:42:09.429851+00	2	N4000	1	[{"added": {}}]	8	1
+23	2018-09-11 16:45:18.082597+00	3	Мощная Батарея	1	[{"added": {}}]	14	1
+24	2018-09-11 16:45:45.153625+00	4	Матовый Экран	1	[{"added": {}}]	14	1
+25	2018-09-11 16:45:57.64314+00	2	11.6	1	[{"added": {}}]	20	1
+26	2018-09-11 16:46:05.349297+00	3	12.5	1	[{"added": {}}]	20	1
+27	2018-09-11 16:46:10.842014+00	4	13.3	1	[{"added": {}}]	20	1
+28	2018-09-11 16:46:16.737959+00	5	14.0	1	[{"added": {}}]	20	1
+29	2018-09-11 16:46:22.361782+00	6	15.6	1	[{"added": {}}]	20	1
+30	2018-09-11 16:46:27.557886+00	7	17.3	1	[{"added": {}}]	20	1
+31	2018-09-11 16:46:51.904663+00	2	HD+	1	[{"added": {}}]	19	1
+32	2018-09-11 16:47:06.782788+00	3	Full HD	1	[{"added": {}}]	19	1
+33	2018-09-11 17:11:28.120765+00	8	Asus X507MA EJ136	1	[{"added": {}}]	17	1
+34	2018-09-13 11:23:56.757272+00	3	Intel Atom®	1	[{"added": {}}]	7	1
+35	2018-09-13 11:30:58.212395+00	3	x5-Z8300	1	[{"added": {}}]	8	1
+36	2018-09-13 11:32:12.878426+00	3	HP	1	[{"added": {}}]	16	1
+37	2018-09-13 11:35:57.950771+00	2	eMMC	1	[{"added": {}}]	11	1
+38	2018-09-13 11:36:24.989744+00	4	Tablet HD	1	[{"added": {}}]	19	1
+39	2018-09-13 11:36:34.17524+00	2	Трансформеры	1	[{"added": {}}]	10	1
+40	2018-09-13 11:36:45.059802+00	2	Bang & Olufsen Play	1	[{"added": {}}]	15	1
+41	2018-09-13 11:37:20.633746+00	5	2 в 1	1	[{"added": {}}]	14	1
+42	2018-09-13 11:51:56.697777+00	9	HP Pavilion x2 10-n123dx	1	[{"added": {}}]	17	1
+43	2018-09-13 11:55:33.644242+00	4	m3-6Y30	1	[{"added": {}}]	8	1
+44	2018-09-13 11:55:48.095165+00	3	M2.SSD	1	[{"added": {}}]	11	1
+45	2018-09-13 11:56:22.622245+00	5	QHD / WQHD /2K	1	[{"added": {}}]	19	1
+46	2018-09-13 11:56:53.682343+00	6	IPS Экран	1	[{"added": {}}]	14	1
+47	2018-09-13 11:57:07.541804+00	10	Asus ZenBook UX305CA-DHM4T	1	[{"added": {}}]	17	1
+48	2018-09-13 11:57:44.759545+00	10	Asus ZenBook UX305CA-DHM4T	2	[{"changed": {"fields": ["perks"]}}]	17	1
+49	2018-09-13 11:59:10.17146+00	10	Asus ZenBook UX305CA-DHM4T	2	[{"changed": {"fields": ["perks"]}}]	17	1
+50	2018-09-13 14:47:24.053293+00	6	QHD+ / 3K	1	[{"added": {}}]	19	1
+51	2018-09-13 14:47:28.28567+00	10	Asus ZenBook UX305CA-DHM4T	2	[{"changed": {"fields": ["resolution"]}}]	17	1
+52	2018-09-13 14:50:37.18447+00	4	Lenovo	1	[{"added": {}}]	16	1
+53	2018-09-13 14:52:08.068879+00	5	N3350	1	[{"added": {}}]	8	1
+54	2018-09-13 14:52:31.964661+00	4	HDD (5400 об/мин)	1	[{"added": {}}]	11	1
+55	2018-09-13 14:52:39.284657+00	5	HDD (7200 об/мин)	1	[{"added": {}}]	11	1
+56	2018-09-13 14:53:20.464347+00	3	Нетбуки	1	[{"added": {}}]	10	1
+57	2018-09-13 14:53:33.805746+00	3	Стандартное	1	[{"added": {}}]	15	1
+58	2018-09-13 14:54:09.344664+00	11	Lenovo Ideapad 120S 11IAP	1	[{"added": {}}]	17	1
+59	2018-09-13 14:57:20.316265+00	11	Lenovo Ideapad 120S 11IAP	2	[]	17	1
+60	2018-09-13 15:00:44.901776+00	5	Dell	1	[{"added": {}}]	16	1
+61	2018-09-13 15:01:34.503848+00	4	Intel® Pentium®	1	[{"added": {}}]	7	1
+62	2018-09-13 15:02:35.707036+00	6	N3710	1	[{"added": {}}]	8	1
+63	2018-09-13 15:03:04.586604+00	6	N3710	2	[{"changed": {"fields": ["integrated_graphics"]}}]	8	1
+64	2018-09-13 15:03:50.785514+00	4	Waves MaxxAudio	1	[{"added": {}}]	15	1
+65	2018-09-13 15:04:32.401279+00	12	Dell Inspiron 11 i3168	1	[{"added": {}}]	17	1
+66	2018-09-13 15:04:50.290483+00	12	Dell Inspiron 11 i3168	2	[{"changed": {"fields": ["price"]}}]	17	1
+67	2018-09-13 15:07:12.807146+00	6	MSI	1	[{"added": {}}]	16	1
+68	2018-09-13 15:08:17.390733+00	7	i7-7500U	1	[{"added": {}}]	8	1
+69	2018-09-13 15:09:10.62756+00	4	Универсальные	1	[{"added": {}}]	10	1
+70	2018-09-13 15:09:29.551206+00	2	GeForce GTX 1050	1	[{"added": {}}]	12	1
+71	2018-09-13 15:10:47.006949+00	7	Подсветка Клавиатуры	1	[{"added": {}}]	14	1
+72	2018-09-13 15:11:01.566721+00	13	MSI PL60 7RD-013US	1	[{"added": {}}]	17	1
+73	2018-09-13 15:11:48.134005+00	13	MSI PL60 7RD-013US	2	[{"changed": {"fields": ["price"]}}]	17	1
+74	2018-09-13 15:17:38.250132+00	2	mmamadjanov@gmail.com	1	[{"added": {}}]	6	1
+75	2018-09-13 15:21:28.481421+00	1	ZenBook	1	[{"added": {}}]	25	1
+76	2018-09-13 15:22:46.893008+00	2	X507MA	1	[{"added": {}}]	25	1
+77	2018-09-13 15:22:58.852622+00	3	X507MA	1	[{"added": {}}]	25	1
+78	2018-09-13 15:23:12.431395+00	4	X507MA	1	[{"added": {}}]	25	1
+79	2018-09-13 15:23:35.572216+00	5	PL60	1	[{"added": {}}]	25	1
+80	2018-09-13 15:23:47.091694+00	6	Pavilion x2	1	[{"added": {}}]	25	1
+81	2018-09-13 15:23:59.605402+00	7	Inspiron 11	1	[{"added": {}}]	25	1
+82	2018-09-13 15:24:17.87088+00	8	Inspiron 11	1	[{"added": {}}]	25	1
+83	2018-09-13 15:24:55.334978+00	9	Ideapad 120S	1	[{"added": {}}]	25	1
+84	2018-09-13 15:25:03.998564+00	10	Ideapad 120S	1	[{"added": {}}]	25	1
+85	2018-09-13 15:25:13.447834+00	11	Ideapad 120S	1	[{"added": {}}]	25	1
+86	2018-09-13 15:25:25.514533+00	8	Inspiron 11	3		25	1
+87	2018-09-13 15:26:27.309832+00	11	Ideapad 120S	3		25	1
+88	2018-09-13 15:26:27.311983+00	10	Ideapad 120S	3		25	1
+89	2018-09-13 15:26:27.313518+00	9	Ideapad 120S	3		25	1
+90	2018-09-13 15:26:27.315005+00	7	Inspiron 11	3		25	1
+91	2018-09-13 15:26:27.316535+00	6	Pavilion x2	3		25	1
+92	2018-09-13 15:26:27.318194+00	5	PL60	3		25	1
+93	2018-09-13 15:26:27.319712+00	4	X507MA	3		25	1
+94	2018-09-13 15:26:27.321256+00	3	X507MA	3		25	1
+95	2018-09-13 15:26:27.322574+00	2	X507MA	3		25	1
+96	2018-09-13 15:26:27.323969+00	1	ZenBook	3		25	1
+97	2018-09-13 15:28:40.9158+00	1	ZenBook	1	[{"added": {}}]	24	1
+98	2018-09-13 15:30:19.894739+00	2	X507MA	1	[{"added": {}}]	24	1
+99	2018-09-13 15:31:34.997837+00	3	X507MA	1	[{"added": {}}]	24	1
+100	2018-09-13 15:32:09.751857+00	4	X507MA	1	[{"added": {}}]	24	1
+101	2018-09-13 15:33:15.751938+00	8	N3060	1	[{"added": {}}]	8	1
+102	2018-09-13 15:33:18.031956+00	5	PL60	1	[{"added": {}}]	24	1
+103	2018-09-13 15:34:05.329755+00	14	Acer TravelMate B117	1	[{"added": {}}]	17	1
+104	2018-09-13 15:34:36.658084+00	6	Pavilion x2	1	[{"added": {}}]	24	1
+105	2018-09-13 15:35:17.220674+00	7	Inspiron 11	1	[{"added": {}}]	24	1
+106	2018-09-13 15:36:12.958447+00	8	Ideapad 120S	1	[{"added": {}}]	24	1
+107	2018-09-13 15:36:13.12217+00	9	Ideapad 120S	1	[{"added": {}}]	24	1
+108	2018-09-13 15:36:24.06276+00	10	Ideapad 120S	1	[{"added": {}}]	24	1
+109	2018-09-13 15:36:25.362701+00	14	Acer TravelMate B117	2	[]	17	1
+110	2018-09-13 15:36:37.823198+00	11	Ideapad 120S	1	[{"added": {}}]	24	1
+111	2018-09-13 15:37:14.649789+00	9	Ideapad 120S	3		24	1
+112	2018-09-13 15:38:17.736948+00	12	TravelMate	1	[{"added": {}}]	24	1
+113	2018-09-13 15:38:52.713662+00	13	TravelMate	1	[{"added": {}}]	24	1
+114	2018-09-13 15:39:19.816789+00	14	TravelMate	1	[{"added": {}}]	24	1
+115	2018-09-13 15:56:44.078245+00	7	Samsung	1	[{"added": {}}]	16	1
+116	2018-09-13 15:58:41.569532+00	5	AMD	1	[{"added": {}}]	7	1
+117	2018-09-13 16:00:07.243531+00	9	A6 1450	1	[{"added": {}}]	8	1
+118	2018-09-13 16:01:06.537964+00	15	Samsung ATIV Book 9 Lite NP915S3G	1	[{"added": {}}]	17	1
+119	2018-09-13 16:02:16.573098+00	15	ATIV Book 9 Lite	1	[{"added": {}}]	24	1
+120	2018-09-13 16:05:51.266918+00	9	HP Pavilion x2 10-n123dx	2	[{"changed": {"fields": ["price"]}}]	17	1
+121	2018-09-13 16:05:51.270967+00	13	MSI PL60 7RD-013US	2	[{"changed": {"fields": ["price"]}}]	17	1
+122	2018-09-13 16:05:51.274601+00	14	Acer TravelMate B117	2	[{"changed": {"fields": ["price"]}}]	17	1
+123	2018-09-13 16:05:51.277912+00	8	Asus X507MA EJ136	2	[{"changed": {"fields": ["price"]}}]	17	1
+124	2018-09-13 16:05:51.281195+00	10	Asus ZenBook UX305CA-DHM4T	2	[{"changed": {"fields": ["price"]}}]	17	1
+125	2018-09-13 16:06:26.354578+00	10	m3-7Y30	1	[{"added": {}}]	8	1
+126	2018-09-13 16:07:07.779796+00	5	Планшеты	1	[{"added": {}}]	10	1
+127	2018-09-13 16:08:10.710548+00	16	HP Pro x2 612 G2	1	[{"added": {}}]	17	1
+128	2018-09-13 16:08:28.739845+00	8	Чехол в Подарок	1	[{"added": {}}]	14	1
+129	2018-09-13 16:08:37.360094+00	16	HP Pro x2 612 G2	2	[{"changed": {"fields": ["perks"]}}]	17	1
+130	2018-09-13 16:09:42.637905+00	16	Pro x2	1	[{"added": {}}]	24	1
+131	2018-09-13 16:09:43.33647+00	17	Pro x2	1	[{"added": {}}]	24	1
+132	2018-09-13 16:10:02.037546+00	16	Pro x2	3		24	1
+133	2018-09-13 16:14:10.352234+00	17	Asus ZenBook UX330CA-RHM1-CB	1	[{"added": {}}]	17	1
+134	2018-09-13 16:18:13.780594+00	18	ZenBook	1	[{"added": {}}]	24	1
+135	2018-09-13 16:25:42.983639+00	11	i3-7100U	1	[{"added": {}}]	8	1
+136	2018-09-13 16:28:15.359943+00	9	Поворот Экрана 360°	1	[{"added": {}}]	14	1
+137	2018-09-13 16:28:32.140042+00	18	Dell Inspiron 13 5000 5378	1	[{"added": {}}]	17	1
+138	2018-09-13 16:32:01.561753+00	18	Dell Inspiron 13 5000 5378	2	[{"changed": {"fields": ["price"]}}]	17	1
+139	2018-09-13 16:35:51.073872+00	12	i7-8750H	1	[{"added": {}}]	8	1
+140	2018-09-13 16:36:39.360471+00	6	Игровые	1	[{"added": {}}]	10	1
+141	2018-09-13 16:37:16.457593+00	3	GeForce GTX 1060	1	[{"added": {}}]	12	1
+142	2018-09-13 16:37:35.714729+00	10	Супер Дисплей (120 Гц)	1	[{"added": {}}]	14	1
+143	2018-09-13 16:38:09.754114+00	19	MSI GP73 Leopard 8RE-409XKR	1	[{"added": {}}]	17	1
+144	2018-09-13 16:43:43.597897+00	19	MSI GP73 Leopard 8RE-409XKR	2	[{"changed": {"fields": ["price"]}}]	17	1
+145	2018-09-13 16:46:36.533158+00	13	i3-8130U	1	[{"added": {}}]	8	1
+146	2018-09-13 16:47:07.446118+00	19	Inspiron 13 5000	1	[{"added": {}}]	24	1
+147	2018-09-13 16:47:34.524451+00	20	Acer Swift3 SF314	1	[{"added": {}}]	17	1
+148	2018-09-13 16:49:20.925656+00	20	GP73 Leopard	1	[{"added": {}}]	24	1
+149	2018-09-13 16:54:34.897617+00	14	i5-7200U	1	[{"added": {}}]	8	1
+150	2018-09-13 16:55:04.424766+00	21	Swift3	1	[{"added": {}}]	24	1
+151	2018-09-13 16:56:07.613269+00	4	GeForce 920MX	1	[{"added": {}}]	12	1
+152	2018-09-13 16:56:36.276435+00	21	Samsung Notebook 5 NP530E5M-X01US	1	[{"added": {}}]	17	1
+153	2018-09-13 17:01:59.458097+00	15	m5-6Y54	1	[{"added": {}}]	8	1
+154	2018-09-13 17:03:37.488913+00	22	HP EliteBook Folio G1 Touch	1	[{"added": {}}]	17	1
+155	2018-09-13 17:07:41.007977+00	22	Notebook 5	1	[{"added": {}}]	24	1
+156	2018-09-13 17:10:44.94989+00	11	DVD-RW	1	[{"added": {}}]	14	1
+157	2018-09-13 17:12:58.11992+00	23	EliteBook Folio	1	[{"added": {}}]	24	1
+158	2018-09-13 17:13:51.584612+00	23	Asus X441S	1	[{"added": {}}]	17	1
+159	2018-09-13 17:14:08.672394+00	22	HP EliteBook Folio G1 Touch	2	[{"changed": {"fields": ["price"]}}]	17	1
+160	2018-09-13 17:15:41.03279+00	24	X441S	1	[{"added": {}}]	24	1
+161	2018-09-13 17:17:03.18611+00	25	X441S	1	[{"added": {}}]	24	1
+162	2018-09-13 17:27:04.78286+00	21	Samsung Notebook 5 NP530E5M-X01US	2	[{"changed": {"fields": ["price"]}}]	17	1
+163	2018-09-13 17:27:16.338909+00	23	Asus X441S	2	[{"changed": {"fields": ["price"]}}]	17	1
+164	2018-09-13 17:27:45.434925+00	20	Acer Swift3 SF314	2	[{"changed": {"fields": ["price"]}}]	17	1
+165	2018-09-13 17:28:32.736833+00	17	Asus ZenBook UX330CA-RHM1-CB	2	[{"changed": {"fields": ["price"]}}]	17	1
+166	2018-09-13 17:30:42.471266+00	16	i7-8550U	1	[{"added": {}}]	8	1
+167	2018-09-13 17:31:43.142263+00	7	UHD / 4K	1	[{"added": {}}]	19	1
+168	2018-09-13 17:32:34.671201+00	5	GeForce MX150	1	[{"added": {}}]	12	1
+169	2018-09-13 17:34:15.173753+00	24	HP ENVY 13 ad173cl	1	[{"added": {}}]	17	1
+170	2018-09-13 17:36:20.958737+00	26	ENVY 13	1	[{"added": {}}]	24	1
+171	2018-09-13 17:36:42.203826+00	24	HP ENVY 13 ad173cl	2	[{"changed": {"fields": ["price"]}}]	17	1
+172	2018-09-13 18:40:00.916682+00	25	Asus VivoBook F540NA-DM203	1	[{"added": {}}]	17	1
+173	2018-09-13 18:42:18.826539+00	27	VivoBook	1	[{"added": {}}]	24	1
+174	2018-09-13 18:43:50.313997+00	17	Silver N5000	1	[{"added": {}}]	8	1
+175	2018-09-13 18:44:33.356831+00	26	Lenovo IdeaPad 330 15IGM	1	[{"added": {}}]	17	1
+176	2018-09-13 18:48:01.95797+00	26	Lenovo IdeaPad 330 15IGM	2	[{"changed": {"fields": ["price"]}}]	17	1
+259	2018-09-15 19:46:26.70395+00	9	GeForce 940MX	1	[{"added": {}}]	12	1
+177	2018-09-13 18:48:01.962016+00	25	Asus VivoBook F540NA-DM203	2	[{"changed": {"fields": ["price"]}}]	17	1
+178	2018-09-13 18:48:03.078031+00	18	i7-7600U	1	[{"added": {}}]	8	1
+179	2018-09-13 18:49:01.867614+00	28	IdeaPad 330	1	[{"added": {}}]	24	1
+180	2018-09-13 18:49:02.872674+00	27	Dell Latitude 12 E7280	1	[{"added": {}}]	17	1
+181	2018-09-13 18:50:00.761404+00	27	Dell Latitude 12 E7280	2	[{"changed": {"fields": ["price"]}}]	17	1
+182	2018-09-13 18:51:20.700139+00	29	Latitude 12	1	[{"added": {}}]	24	1
+183	2018-09-13 18:51:22.22298+00	6	GeForce GTX 1070	1	[{"added": {}}]	12	1
+184	2018-09-13 18:51:56.881492+00	28	MSI GE73 Raider RGB 8RF-458XKR	1	[{"added": {}}]	17	1
+185	2018-09-13 18:52:28.078286+00	28	MSI GE73 Raider RGB 8RF-458XKR	2	[{"changed": {"fields": ["price"]}}]	17	1
+186	2018-09-13 18:53:47.266909+00	30	GE73 Raider	1	[{"added": {}}]	24	1
+187	2018-09-13 19:03:42.813665+00	19	i5-8250U	1	[{"added": {}}]	8	1
+188	2018-09-13 19:05:40.023718+00	29	Acer Swift3 SF314-i5	1	[{"added": {}}]	17	1
+189	2018-09-13 19:06:58.802007+00	20	Acer Swift3 SF314-i3	2	[{"changed": {"fields": ["model"]}}]	17	1
+190	2018-09-13 19:07:07.090573+00	29	Acer Swift3 SF314-i5	2	[{"changed": {"fields": ["price"]}}]	17	1
+191	2018-09-13 19:08:32.02994+00	31	Swift3	1	[{"added": {}}]	24	1
+192	2018-09-13 19:09:28.108466+00	32	Swift3	1	[{"added": {}}]	24	1
+193	2018-09-15 17:05:20.99067+00	12	Металлический Корпус	1	[{"added": {}}]	14	1
+194	2018-09-15 17:05:41.368688+00	30	HP ProBook 440 G4	1	[{"added": {}}]	17	1
+195	2018-09-15 17:09:42.818346+00	20	N4200	1	[{"added": {}}]	8	1
+196	2018-09-15 17:10:52.635291+00	31	Asus X541NA DM140	1	[{"added": {}}]	17	1
+197	2018-09-15 17:12:49.14566+00	33	ProBook 440	1	[{"added": {}}]	24	1
+198	2018-09-15 17:13:19.618238+00	34	ProBook 440	1	[{"added": {}}]	24	1
+199	2018-09-15 17:14:28.905735+00	30	HP ProBook 440 G4	2	[{"changed": {"fields": ["price"]}}]	17	1
+200	2018-09-15 17:15:35.845235+00	31	Asus X541NA DM140	2	[{"changed": {"fields": ["price"]}}]	17	1
+201	2018-09-15 17:17:32.12167+00	21	Gold Processor 4415U	1	[{"added": {}}]	8	1
+202	2018-09-15 17:19:05.463363+00	7	GeForce MX110	1	[{"added": {}}]	12	1
+203	2018-09-15 17:19:33.618757+00	32	Lenovo IdeaPad 330 15IKB	1	[{"added": {}}]	17	1
+204	2018-09-15 17:20:12.249168+00	35	X541NA	1	[{"added": {}}]	24	1
+205	2018-09-15 17:20:30.271736+00	36	X541NA	1	[{"added": {}}]	24	1
+206	2018-09-15 17:29:22.737523+00	32	Lenovo IdeaPad 330 15IKB	2	[{"changed": {"fields": ["price"]}}]	17	1
+207	2018-09-15 17:30:28.570673+00	37	IdeaPad 330	1	[{"added": {}}]	24	1
+208	2018-09-15 17:30:34.239433+00	22	i5-5200U	1	[{"added": {}}]	8	1
+209	2018-09-15 17:32:43.188754+00	33	Dell XPS 13 9343-1818SLV	1	[{"added": {}}]	17	1
+210	2018-09-15 17:36:29.534831+00	34	Acer Swift3 SF314-54G	1	[{"added": {}}]	17	1
+211	2018-09-15 17:36:37.293267+00	33	Dell XPS 13 9343-1818SLV	2	[{"changed": {"fields": ["price"]}}]	17	1
+212	2018-09-15 17:37:40.601831+00	38	XPS 13	1	[{"added": {}}]	24	1
+213	2018-09-15 17:37:41.452477+00	39	XPS 13	1	[{"added": {}}]	24	1
+214	2018-09-15 17:37:58.746615+00	38	XPS 13	3		24	1
+215	2018-09-15 17:40:09.892456+00	34	Acer Swift3 SF314-54G	2	[{"changed": {"fields": ["price"]}}]	17	1
+216	2018-09-15 17:42:24.062637+00	40	Swift3	1	[{"added": {}}]	24	1
+217	2018-09-15 17:42:49.001865+00	35	HP ProBook 430 G5	1	[{"added": {}}]	17	1
+218	2018-09-15 17:43:33.598974+00	35	HP ProBook 430 G5	2	[{"changed": {"fields": ["price"]}}]	17	1
+219	2018-09-15 17:44:13.991652+00	41	ProBook 430	1	[{"added": {}}]	24	1
+220	2018-09-15 17:45:05.8154+00	42	ProBook 430	1	[{"added": {}}]	24	1
+221	2018-09-15 17:46:06.029997+00	43	ProBook 430	1	[{"added": {}}]	24	1
+222	2018-09-15 17:46:21.51424+00	36	Asus X507MA EJ135	1	[{"added": {}}]	17	1
+223	2018-09-15 17:46:26.101875+00	43	ProBook 430	3		24	1
+224	2018-09-15 17:47:10.51501+00	36	Asus X507MA EJ135	2	[{"changed": {"fields": ["price"]}}]	17	1
+225	2018-09-15 17:47:52.091662+00	44	X507MA	1	[{"added": {}}]	24	1
+226	2018-09-15 18:15:35.993429+00	23	m7-6Y75	1	[{"added": {}}]	8	1
+227	2018-09-15 18:17:09.605524+00	37	Lenovo Yoga 900S-12ISK 80ML	1	[{"added": {}}]	17	1
+228	2018-09-15 18:23:34.965406+00	1	GeForce GTX 1050	3		12	1
+229	2018-09-15 18:24:21.086383+00	38	Dell Alienware 15 AW15R3-7001SLV	1	[{"added": {}}]	17	1
+230	2018-09-15 18:24:58.68582+00	37	Lenovo Yoga 900S-12ISK 80ML	2	[{"changed": {"fields": ["price"]}}]	17	1
+231	2018-09-15 18:25:16.190248+00	38	Dell Alienware 15 AW15R3-7001SLV	2	[{"changed": {"fields": ["main_storage", "main_storage_type", "secondary_storage", "secondary_storage_type", "graphics_card", "graphics_card_memory"]}}]	17	1
+232	2018-09-15 18:25:46.577969+00	45	Yoga 900S-12ISK	1	[{"added": {}}]	24	1
+233	2018-09-15 18:26:29.143939+00	45	Yoga 900S-12ISK	2	[{"changed": {"fields": ["cost"]}}]	24	1
+234	2018-09-15 18:27:15.540599+00	38	Dell Alienware 15 AW15R3-7001SLV	2	[{"changed": {"fields": ["price"]}}]	17	1
+235	2018-09-15 18:28:53.14543+00	46	Alienware 15	1	[{"added": {}}]	24	1
+236	2018-09-15 18:30:02.211615+00	39	Acer Swift3 SF314-51-57CP	1	[{"added": {}}]	17	1
+237	2018-09-15 18:37:39.724871+00	1	Muhammad Mamadjanov	1	[{"added": {}}]	22	1
+238	2018-09-15 18:37:52.148494+00	1	Swift3	1	[{"added": {}}]	26	1
+239	2018-09-15 18:39:15.898623+00	1	Swift3	3		26	1
+240	2018-09-15 18:42:04.314707+00	54	Swift3	3		25	1
+241	2018-09-15 18:44:41.675347+00	47	Swift3	1	[{"added": {}}]	24	1
+242	2018-09-15 18:45:01.117512+00	39	Acer Swift3 SF314-51-57CP	2	[{"changed": {"fields": ["price"]}}]	17	1
+243	2018-09-15 18:49:54.239764+00	40	HP PaPavilion x360 14m-ba011dx	1	[{"added": {}}]	17	1
+244	2018-09-15 18:53:22.126829+00	40	HP Pavilion x360 14m-ba011dx	2	[{"changed": {"fields": ["name"]}}]	17	1
+245	2018-09-15 19:00:03.760702+00	48	Pavilion x360	1	[{"added": {}}]	24	1
+246	2018-09-15 19:04:32.740763+00	24	A6-9220	1	[{"added": {}}]	8	1
+247	2018-09-15 19:05:59.905743+00	41	Asus VivoBook X505BA-EJ106	1	[{"added": {}}]	17	1
+248	2018-09-15 19:08:32.87318+00	41	Asus VivoBook X505BA-EJ106	2	[{"changed": {"fields": ["price"]}}]	17	1
+249	2018-09-15 19:10:35.811225+00	49	VivoBook	1	[{"added": {}}]	24	1
+250	2018-09-15 19:11:19.547055+00	50	VivoBook	1	[{"added": {}}]	24	1
+251	2018-09-15 19:24:58.554961+00	25	i7-5500U	1	[{"added": {}}]	8	1
+252	2018-09-15 19:25:12.146067+00	6	SSHD	1	[{"added": {}}]	11	1
+253	2018-09-15 19:27:07.547951+00	8	GeForce 920M	1	[{"added": {}}]	12	1
+254	2018-09-15 19:27:42.599096+00	42	Lenovo U31-70 80M5003EGE	1	[{"added": {}}]	17	1
+255	2018-09-15 19:31:38.397232+00	5	Dolby Audio Premium	1	[{"added": {}}]	15	1
+256	2018-09-15 19:32:10.537155+00	43	Acer Swift 5 SF514-51-54T8	1	[{"added": {}}]	17	1
+257	2018-09-15 19:36:39.283121+00	44	HP 15 da0067TU	1	[{"added": {}}]	17	1
+258	2018-09-15 19:40:05.130522+00	45	Asus VivoBook 15 X542UA	1	[{"added": {}}]	17	1
+260	2018-09-15 19:46:52.430074+00	46	Lenovo ThinkPad E470	1	[{"added": {}}]	17	1
+261	2018-09-15 19:49:00.717398+00	9	A6-1450	2	[{"changed": {"fields": ["name"]}}]	8	1
+262	2018-09-15 19:52:14.144794+00	46	Lenovo ThinkPad E470	2	[{"changed": {"fields": ["price"]}}]	17	1
+263	2018-09-15 19:52:14.149104+00	45	Asus VivoBook 15 X542UA	2	[{"changed": {"fields": ["price"]}}]	17	1
+264	2018-09-15 19:52:14.152406+00	44	HP 15 da0067TU	2	[{"changed": {"fields": ["price"]}}]	17	1
+265	2018-09-15 19:52:14.155685+00	43	Acer Swift 5 SF514-51-54T8	2	[{"changed": {"fields": ["price"]}}]	17	1
+266	2018-09-15 19:52:14.159162+00	42	Lenovo U31-70 80M5003EGE	2	[{"changed": {"fields": ["price"]}}]	17	1
+267	2018-09-15 19:53:19.273376+00	51	U31-70	1	[{"added": {}}]	24	1
+268	2018-09-15 19:54:21.577154+00	26	A4-9120	1	[{"added": {}}]	8	1
+269	2018-09-15 19:54:42.485868+00	52	Swift 5	1	[{"added": {}}]	24	1
+270	2018-09-15 19:54:42.688213+00	53	Swift 5	1	[{"added": {}}]	24	1
+271	2018-09-15 19:56:16.601041+00	47	Acer Aspire 3 A315-21-4098	1	[{"added": {}}]	17	1
+272	2018-09-15 19:56:26.47948+00	54	15	1	[{"added": {}}]	24	1
+273	2018-09-15 19:57:38.945251+00	55	VivoBook 15	1	[{"added": {}}]	24	1
+274	2018-09-15 20:01:06.396856+00	56	ThinkPad E470	1	[{"added": {}}]	24	1
+275	2018-09-15 20:01:55.220454+00	27	i5-6200U	1	[{"added": {}}]	8	1
+276	2018-09-15 20:02:22.055189+00	47	Acer Aspire 3 A315-21-4098	2	[{"changed": {"fields": ["price"]}}]	17	1
+277	2018-09-15 20:03:16.000665+00	57	Aspire 3	1	[{"added": {}}]	24	1
+278	2018-09-15 20:03:54.910282+00	48	HP Envy x360 15-w117cl	1	[{"added": {}}]	17	1
+279	2018-09-15 20:04:47.68705+00	48	HP Envy x360 15-w117cl	2	[{"changed": {"fields": ["price"]}}]	17	1
+280	2018-09-15 20:05:23.712546+00	58	Envy x360	1	[{"added": {}}]	24	1
+281	2018-09-15 20:09:56.400864+00	28	i7-6500U	1	[{"added": {}}]	8	1
+282	2018-09-15 20:12:27.564865+00	49	Asus Q524UQ BBI7T14	1	[{"added": {}}]	17	1
+283	2018-09-15 20:13:15.947551+00	49	Asus Q524UQ BBI7T14	2	[{"changed": {"fields": ["price"]}}]	17	1
+284	2018-09-15 20:15:54.608325+00	59	Q524UQ	1	[{"added": {}}]	24	1
+285	2018-09-16 16:52:28.115293+00	6	Harman Audio	1	[{"added": {}}]	15	1
+286	2018-09-16 16:54:02.929691+00	50	Lenovo Ideapad FLEX 4 1480	1	[{"added": {}}]	17	1
+287	2018-09-16 16:55:56.255624+00	2	AMD	1	[{"added": {}}]	13	1
+288	2018-09-16 16:57:06.675046+00	10	RADEON R5 M430	1	[{"added": {}}]	12	1
+289	2018-09-16 16:57:09.674316+00	50	Lenovo Ideapad FLEX 4 1480	2	[{"changed": {"fields": ["graphics_card"]}}]	17	1
+290	2018-09-16 16:57:34.66461+00	50	Lenovo Ideapad FLEX 4 1480	2	[{"changed": {"fields": ["graphics_card_memory"]}}]	17	1
+291	2018-09-16 17:01:02.525396+00	51	Acer Aspire E5 575G	1	[{"added": {}}]	17	1
+292	2018-09-16 17:03:56.593433+00	52	HP Pavilion Power 15 cb050od	1	[{"added": {}}]	17	1
+293	2018-09-16 17:06:47.03298+00	53	Asus FX53VD RH71	1	[{"added": {}}]	17	1
+294	2018-09-16 17:08:32.295853+00	52	HP Pavilion Power 15 cb050od	2	[{"changed": {"fields": ["price"]}}]	17	1
+295	2018-09-16 17:08:32.299893+00	51	Acer Aspire E5 575G	2	[{"changed": {"fields": ["price"]}}]	17	1
+296	2018-09-16 17:08:32.303117+00	50	Lenovo Ideapad FLEX 4 1480	2	[{"changed": {"fields": ["price"]}}]	17	1
+297	2018-09-16 17:09:43.698391+00	29	i5-7Y54	1	[{"added": {}}]	8	1
+298	2018-09-16 17:09:53.590739+00	53	Asus FX53VD RH71	2	[{"changed": {"fields": ["price"]}}]	17	1
+299	2018-09-16 17:10:32.329639+00	54	Lenovo Yoga 710 11IKB	1	[{"added": {}}]	17	1
+300	2018-09-16 17:13:31.599134+00	30	i5-7300HQ	1	[{"added": {}}]	8	1
+301	2018-09-16 17:14:09.934796+00	60	Ideapad FLEX 4	1	[{"added": {}}]	24	1
+302	2018-09-16 17:14:16.531581+00	55	Acer Nitro 5 AN515-51-56UO	1	[{"added": {}}]	17	1
+303	2018-09-16 17:15:04.066075+00	61	Pavilion Power 15	1	[{"added": {}}]	24	1
+304	2018-09-16 17:17:15.95314+00	62	FX53VD	1	[{"added": {}}]	24	1
+305	2018-09-16 17:17:25.007117+00	11	GeForce 930MX	1	[{"added": {}}]	12	1
+306	2018-09-16 17:17:46.469566+00	56	HP ProBook 470 G4	1	[{"added": {}}]	17	1
+307	2018-09-16 17:20:20.45685+00	63	Yoga 710	1	[{"added": {}}]	24	1
+308	2018-09-16 17:21:07.592313+00	57	Asus FX502VM AS73	1	[{"added": {}}]	17	1
+309	2018-09-16 17:21:43.583016+00	13	Сумка в Подарок	1	[{"added": {}}]	14	1
+310	2018-09-16 17:21:45.940701+00	56	HP ProBook 470 G4	2	[{"changed": {"fields": ["perks"]}}]	17	1
+311	2018-09-16 17:23:07.114172+00	7	JBL	1	[{"added": {}}]	15	1
+312	2018-09-16 17:23:15.912661+00	64	Nitro 5	1	[{"added": {}}]	24	1
+313	2018-09-16 17:23:23.016017+00	58	Lenovo Yoga 700 14ISK	1	[{"added": {}}]	17	1
+314	2018-09-16 17:24:04.910259+00	65	ProBook 470	1	[{"added": {}}]	24	1
+315	2018-09-16 17:27:09.213992+00	66	FX502VM	1	[{"added": {}}]	24	1
+316	2018-09-16 17:28:00.179818+00	12	GeForce GTX 1050 Ti	1	[{"added": {}}]	12	1
+317	2018-09-16 17:28:32.147912+00	59	Acer Nitro 5 AN515-52 Ti	1	[{"added": {}}]	17	1
+318	2018-09-16 17:28:42.655618+00	67	Yoga 700	1	[{"added": {}}]	24	1
+319	2018-09-16 17:29:07.273965+00	68	Nitro 5	1	[{"added": {}}]	24	1
+320	2018-09-16 17:29:40.849152+00	69	Nitro 5	1	[{"added": {}}]	24	1
+321	2018-09-16 17:30:00.027078+00	68	Nitro 5	2	[{"changed": {"fields": ["cost"]}}]	24	1
+322	2018-09-16 17:30:19.865647+00	68	Nitro 5	2	[{"changed": {"fields": ["cost"]}}]	24	1
+323	2018-09-16 17:32:37.122192+00	31	A12-9720P	1	[{"added": {}}]	8	1
+324	2018-09-16 17:34:36.640007+00	59	Acer Nitro 5 AN515-52 Ti	2	[{"changed": {"fields": ["price"]}}]	17	1
+325	2018-09-16 17:34:36.644147+00	58	Lenovo Yoga 700 14ISK	2	[{"changed": {"fields": ["price"]}}]	17	1
+326	2018-09-16 17:34:36.647286+00	57	Asus FX502VM AS73	2	[{"changed": {"fields": ["price"]}}]	17	1
+327	2018-09-16 17:34:36.65056+00	56	HP ProBook 470 G4	2	[{"changed": {"fields": ["price"]}}]	17	1
+328	2018-09-16 17:34:36.654059+00	54	Lenovo Yoga 710 11IKB	2	[{"changed": {"fields": ["price"]}}]	17	1
+329	2018-09-16 17:34:59.852277+00	60	HP 17 ak010ds	1	[{"added": {}}]	17	1
+330	2018-09-16 17:38:11.87277+00	60	HP 17 ak010ds	2	[{"changed": {"fields": ["price"]}}]	17	1
+331	2018-09-16 17:38:51.734822+00	14	Поддержка VR	1	[{"added": {}}]	14	1
+332	2018-09-16 17:39:18.420174+00	61	Asus ROG Strix GL502VM-BI7N10	1	[{"added": {}}]	17	1
+333	2018-09-16 17:39:25.465514+00	70	17	1	[{"added": {}}]	24	1
+334	2018-09-16 17:43:12.298+00	15	Узкая Рамка	1	[{"added": {}}]	14	1
+335	2018-09-16 17:43:17.096414+00	71	ROG Strix	1	[{"added": {}}]	24	1
+336	2018-09-16 17:43:31.644055+00	71	ROG Strix	2	[{"changed": {"fields": ["warehouse"]}}]	24	1
+337	2018-09-16 17:43:35.734109+00	62	Lenovo Yoga 710 15IKB	1	[{"added": {}}]	17	1
+338	2018-09-16 17:44:47.676931+00	62	Lenovo Yoga 710 15IKB	2	[{"changed": {"fields": ["price"]}}]	17	1
+339	2018-09-16 17:44:47.680857+00	61	Asus ROG Strix GL502VM-BI7N10	2	[{"changed": {"fields": ["price"]}}]	17	1
+340	2018-09-16 17:46:16.665087+00	62	Lenovo Yoga 710 15IKB	2	[{"changed": {"fields": ["price"]}}]	17	1
+341	2018-09-16 17:47:50.566088+00	63	Acer Aspire 7 A717-72G-76V1	1	[{"added": {}}]	17	1
+342	2018-09-16 17:48:03.06719+00	63	Acer Aspire 7 A717-72G-76V1	2	[{"changed": {"fields": ["laptop_type"]}}]	17	1
+343	2018-09-16 17:48:21.74327+00	72	Yoga 710	1	[{"added": {}}]	24	1
+344	2018-09-16 17:50:12.763639+00	73	Aspire 7	1	[{"added": {}}]	24	1
+345	2018-09-16 17:50:47.752727+00	13	Radeon 530	1	[{"added": {}}]	12	1
+346	2018-09-16 17:51:18.512129+00	64	HP 17 bs025cl	1	[{"added": {}}]	17	1
+347	2018-09-16 17:51:36.55414+00	63	Acer Aspire 7 A717-72G-76V1	2	[{"changed": {"fields": ["price"]}}]	17	1
+348	2018-09-16 17:52:46.041407+00	64	HP 17 bs025cl	2	[{"changed": {"fields": ["price"]}}]	17	1
+349	2018-09-16 17:53:21.355604+00	74	17	1	[{"added": {}}]	24	1
+350	2018-09-16 17:54:04.32631+00	32	i7-6700HQ	1	[{"added": {}}]	8	1
+351	2018-09-16 17:54:37.209846+00	4	HDD	2	[{"changed": {"fields": ["name"]}}]	11	1
+352	2018-09-16 17:55:26.311807+00	65	Asus ROG GL702VM-BHI7N09	1	[{"added": {}}]	17	1
+353	2018-09-16 17:57:39.232337+00	65	Asus ROG GL702VM-BHI7N09	2	[{"changed": {"fields": ["price"]}}]	17	1
+354	2018-09-16 17:58:20.146753+00	75	ROG	1	[{"added": {}}]	24	1
+355	2018-09-16 18:01:27.27268+00	66	HP Envy 17 u275cl	1	[{"added": {}}]	17	1
+356	2018-09-16 18:03:11.630971+00	66	HP Envy 17 u275cl	2	[{"changed": {"fields": ["price"]}}]	17	1
+357	2018-09-16 18:04:22.763014+00	67	HP Envy 17 u273cl	1	[{"added": {}}]	17	1
+358	2018-09-16 18:05:07.706175+00	76	Envy 17	1	[{"added": {}}]	24	1
+359	2018-09-16 18:05:30.189689+00	7	Моноблоки	1	[{"added": {}}]	10	1
+360	2018-09-16 18:05:51.180224+00	77	Envy 17	1	[{"added": {}}]	24	1
+361	2018-09-16 18:06:13.712692+00	67	HP Envy 17 u273cl	2	[{"changed": {"fields": ["price"]}}]	17	1
+362	2018-09-16 18:06:14.268182+00	67	HP Envy 17 u273cl	2	[{"changed": {"fields": ["price"]}}]	17	1
+363	2018-09-16 18:06:45.974219+00	33	i7-7700T	1	[{"added": {}}]	8	1
+364	2018-09-16 18:07:12.768276+00	8	23.8	1	[{"added": {}}]	20	1
+365	2018-09-16 18:08:59.420055+00	16	Фирменная Клавиатура	1	[{"added": {}}]	14	1
+366	2018-09-16 18:09:07.864871+00	17	Фирменная Мышка	1	[{"added": {}}]	14	1
+367	2018-09-16 18:10:03.377604+00	68	Acer ProOne 440 G3	1	[{"added": {}}]	17	1
+368	2018-09-16 18:10:37.954793+00	68	Acer ProOne 440 G3	2	[{"changed": {"fields": ["price"]}}]	17	1
+369	2018-09-16 18:11:47.327407+00	68	HP ProOne 440 G3	2	[{"changed": {"fields": ["brand"]}}]	17	1
+370	2018-09-16 18:12:10.173552+00	78	ProOne 440	1	[{"added": {}}]	24	1
+371	2018-09-16 18:14:51.351441+00	69	Acer Aspire 7 A717-72G-70OG	1	[{"added": {}}]	17	1
+372	2018-09-16 18:15:20.605818+00	69	Acer Aspire 7 A717-72G-70OG	2	[{"changed": {"fields": ["price"]}}]	17	1
+373	2018-09-16 18:17:01.497836+00	79	Aspire 7	1	[{"added": {}}]	24	1
+374	2018-09-16 18:17:04.973079+00	79	Aspire 7	2	[]	24	1
+375	2018-09-22 09:34:18.955597+00	1	Sales Person	1	[{"added": {}}]	3	1
+\.
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 375, true);
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	contenttypes	contenttype
+5	sessions	session
+6	accounts	user
+7	processorBrand	processorbrand
+8	processor	processor
+9	ram	ram
+10	laptopType	laptoptype
+11	storage	storage
+12	graphicsCard	graphicscard
+13	graphicsCardBrand	graphicscardbrand
+14	perks	perks
+15	audio	audio
+16	brand	brand
+17	laptop	laptop
+18	laptop	image
+19	resolution	resolution
+20	displaySize	displaysize
+21	inquiries	inquiry
+22	customers	customer
+23	warehouses	warehouse
+24	purchases	purchase
+25	inventory	inventory
+26	sales	sales
+27	stock_movements	stockmovements
+\.
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 27, true);
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	accounts	0001_initial	2018-09-08 12:32:58.021593+00
+2	contenttypes	0001_initial	2018-09-08 12:32:58.034383+00
+3	admin	0001_initial	2018-09-08 12:32:58.061255+00
+4	admin	0002_logentry_remove_auto_add	2018-09-08 12:32:58.066907+00
+5	admin	0003_logentry_add_action_flag_choices	2018-09-08 12:32:58.072512+00
+6	audio	0001_initial	2018-09-08 12:32:58.086167+00
+7	contenttypes	0002_remove_content_type_name	2018-09-08 12:32:58.103033+00
+8	auth	0001_initial	2018-09-08 12:32:58.154334+00
+9	auth	0002_alter_permission_name_max_length	2018-09-08 12:32:58.164155+00
+10	auth	0003_alter_user_email_max_length	2018-09-08 12:32:58.171157+00
+11	auth	0004_alter_user_username_opts	2018-09-08 12:32:58.178238+00
+12	auth	0005_alter_user_last_login_null	2018-09-08 12:32:58.185697+00
+13	auth	0006_require_contenttypes_0002	2018-09-08 12:32:58.187603+00
+14	auth	0007_alter_validators_add_error_messages	2018-09-08 12:32:58.194642+00
+15	auth	0008_alter_user_username_max_length	2018-09-08 12:32:58.201741+00
+16	auth	0009_alter_user_last_name_max_length	2018-09-08 12:32:58.208814+00
+17	brand	0001_initial	2018-09-08 12:32:58.221888+00
+18	storage	0001_initial	2018-09-08 12:32:58.234732+00
+19	resolution	0001_initial	2018-09-08 12:32:58.250578+00
+20	ram	0001_initial	2018-09-08 12:32:58.263585+00
+21	processorBrand	0001_initial	2018-09-08 12:32:58.276416+00
+22	processor	0001_initial	2018-09-08 12:32:58.298167+00
+23	perks	0001_initial	2018-09-08 12:32:58.311328+00
+24	laptopType	0001_initial	2018-09-08 12:32:58.32843+00
+25	graphicsCardBrand	0001_initial	2018-09-08 12:32:58.341626+00
+26	graphicsCard	0001_initial	2018-09-08 12:32:58.3646+00
+27	displaySize	0001_initial	2018-09-08 12:32:58.37296+00
+28	laptop	0001_initial	2018-09-08 12:32:58.468996+00
+29	customers	0001_initial	2018-09-08 12:32:58.49535+00
+30	laptop	0002_auto_20180908_1638	2018-09-08 12:32:58.511778+00
+31	inquiries	0001_initial	2018-09-08 12:32:58.62111+00
+32	warehouses	0001_initial	2018-09-08 12:32:58.633061+00
+33	inventory	0001_initial	2018-09-08 12:32:58.669793+00
+34	purchases	0001_initial	2018-09-08 12:32:58.708341+00
+35	sales	0001_initial	2018-09-08 12:32:58.749255+00
+36	sessions	0001_initial	2018-09-08 12:32:58.767406+00
+37	stock_movements	0001_initial	2018-09-08 12:32:58.818808+00
+38	laptop	0003_auto_20180911_2211	2018-09-11 17:11:18.490847+00
+39	processor	0002_auto_20180913_1628	2018-09-13 11:29:02.769019+00
+\.
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 39, true);
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+ycg4kons2dpfyoadpwr245yudosschw6	NTU0N2FhMTQ0ZTAyYzVkMThjM2NmMDQzNTgwMzg1NWYyYWZmN2E4ZTp7Il9hdXRoX3VzZXJfaGFzaCI6ImU2ZjUwNGYyYTY0ZmE5YzEzOTg1MGNiMTE3NGU2NGZiYTc5Mjc2YTMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2018-09-22 13:06:14.021111+00
+3x2gyw453q27u4f4fc63jnfuil1aex2f	NTU0N2FhMTQ0ZTAyYzVkMThjM2NmMDQzNTgwMzg1NWYyYWZmN2E4ZTp7Il9hdXRoX3VzZXJfaGFzaCI6ImU2ZjUwNGYyYTY0ZmE5YzEzOTg1MGNiMTE3NGU2NGZiYTc5Mjc2YTMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2018-09-25 16:37:27.391099+00
+obuv7ch436f6rkmak4cylpt5p261wc3r	OTJjZWQ5MGNkNzViMzMzYzg4YmQwYmVjMTMyZjhlMGE4OTcxNjgwNDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZTZmNTA0ZjJhNjRmYTljMTM5ODUwY2IxMTc0ZTY0ZmJhNzkyNzZhMyIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2018-09-27 14:44:21.315074+00
+o27bcvlm23vb84b1knhvssa6j9ip6guq	OTFkNWU1ZTg5YmJlZGFiMTE3MjM1NGVmMTBkZTFlZjNkY2QwZmVhMTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiZTZmNTA0ZjJhNjRmYTljMTM5ODUwY2IxMTc0ZTY0ZmJhNzkyNzZhMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2018-09-29 17:06:10.754277+00
+\.
+
+
+--
+-- Data for Name: graphicsCardBrand_graphicscardbrand; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public."graphicsCardBrand_graphicscardbrand" (id, name, slug) FROM stdin;
+1	nVidia	nvidia
+2	AMD	amd
+\.
+
+
+--
+-- Name: graphicsCardBrand_graphicscardbrand_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public."graphicsCardBrand_graphicscardbrand_id_seq"', 2, true);
+
+
+--
+-- Data for Name: graphicsCard_graphicscard; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public."graphicsCard_graphicscard" (id, name, slug, memory_interface, memory_interface_width, brand_id) FROM stdin;
+2	GeForce GTX 1050	geforce-gtx-1050	GDDR5	128	1
+3	GeForce GTX 1060	geforce-gtx-1060	GDDR5	192	1
+4	GeForce 920MX	geforce-920mx	GDDR5	64	1
+5	GeForce MX150	geforce-mx150	GDDR5	64	1
+6	GeForce GTX 1070	geforce-gtx-1070	GDDR5	256	1
+7	GeForce MX110	geforce-mx110	GDDR5	64	1
+8	GeForce 920M	geforce-920m	GDDR5	64	1
+9	GeForce 940MX	geforce-940mx	GDDR5	64	1
+10	RADEON R5 M430	radeon-r5-m430	GDDR5	64	2
+11	GeForce 930MX	geforce-930mx	GDDR5	64	1
+12	GeForce GTX 1050 Ti	geforce-gtx-1050-ti	GDDR5	128	1
+13	Radeon 530	radeon-530	GDDR5	64	2
+\.
+
+
+--
+-- Name: graphicsCard_graphicscard_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public."graphicsCard_graphicscard_id_seq"', 13, true);
+
+
+--
+-- Data for Name: inquiries_inquiry; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inquiries_inquiry (id, name, phone, comments, source, min_price, max_price, min_cores, max_cores, min_size, max_size, min_storage, max_storage, min_ram, max_ram, laptop_id) FROM stdin;
+\.
+
+
+--
+-- Name: inquiries_inquiry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inquiries_inquiry_id_seq', 1, false);
+
+
+--
+-- Data for Name: inquiries_inquiry_processor; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inquiries_inquiry_processor (id, inquiry_id, processorbrand_id) FROM stdin;
+\.
+
+
+--
+-- Name: inquiries_inquiry_processor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inquiries_inquiry_processor_id_seq', 1, false);
+
+
+--
+-- Data for Name: inquiries_inquiry_ram; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inquiries_inquiry_ram (id, inquiry_id, ram_id) FROM stdin;
+\.
+
+
+--
+-- Name: inquiries_inquiry_ram_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inquiries_inquiry_ram_id_seq', 1, false);
+
+
+--
+-- Data for Name: inquiries_inquiry_resolution; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inquiries_inquiry_resolution (id, inquiry_id, resolution_id) FROM stdin;
+\.
+
+
+--
+-- Name: inquiries_inquiry_resolution_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inquiries_inquiry_resolution_id_seq', 1, false);
+
+
+--
+-- Data for Name: inquiries_inquiry_size; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inquiries_inquiry_size (id, inquiry_id, displaysize_id) FROM stdin;
+\.
+
+
+--
+-- Name: inquiries_inquiry_size_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inquiries_inquiry_size_id_seq', 1, false);
+
+
+--
+-- Data for Name: inquiries_inquiry_storage; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inquiries_inquiry_storage (id, inquiry_id, storage_id) FROM stdin;
+\.
+
+
+--
+-- Name: inquiries_inquiry_storage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inquiries_inquiry_storage_id_seq', 1, false);
+
+
+--
+-- Data for Name: inquiries_inquiry_type; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inquiries_inquiry_type (id, inquiry_id, laptoptype_id) FROM stdin;
+\.
+
+
+--
+-- Name: inquiries_inquiry_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inquiries_inquiry_type_id_seq', 1, false);
+
+
+--
+-- Data for Name: inventory_inventory; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.inventory_inventory (id, quantity, created, updated, laptop_id, warehouse_id) FROM stdin;
+12	1	2018-09-13 15:28:40.913311+00	2018-09-13 15:28:40.913962+00	10	2
+13	21	2018-09-13 15:30:19.89326+00	2018-09-13 15:30:19.893891+00	8	1
+14	3	2018-09-13 15:31:34.996331+00	2018-09-13 15:31:34.996983+00	8	2
+15	2	2018-09-13 15:32:09.750373+00	2018-09-13 15:32:09.750997+00	8	3
+16	1	2018-09-13 15:33:18.030485+00	2018-09-13 15:33:18.031105+00	13	2
+17	1	2018-09-13 15:34:36.65662+00	2018-09-13 15:34:36.657247+00	9	2
+18	1	2018-09-13 15:35:17.219198+00	2018-09-13 15:35:17.219845+00	12	2
+19	4	2018-09-13 15:36:12.956931+00	2018-09-13 15:36:13.121321+00	11	1
+20	2	2018-09-13 15:36:24.061332+00	2018-09-13 15:36:24.061946+00	11	2
+21	1	2018-09-13 15:36:37.821756+00	2018-09-13 15:36:37.822372+00	11	3
+22	46	2018-09-13 15:38:17.734317+00	2018-09-13 15:38:17.734962+00	14	1
+23	2	2018-09-13 15:38:52.710927+00	2018-09-13 15:38:52.711643+00	14	2
+24	1	2018-09-13 15:39:19.815221+00	2018-09-13 15:39:19.815925+00	14	3
+25	1	2018-09-13 16:02:16.57055+00	2018-09-13 16:02:16.5712+00	15	3
+65	1	2018-09-15 20:05:23.711062+00	2018-09-15 20:05:23.71171+00	48	3
+26	2	2018-09-13 16:09:42.636438+00	2018-09-13 16:09:43.335501+00	16	2
+27	1	2018-09-13 16:18:13.779065+00	2018-09-13 16:18:13.779745+00	17	3
+28	1	2018-09-13 16:47:07.444585+00	2018-09-13 16:47:07.445215+00	18	2
+29	1	2018-09-13 16:49:20.92416+00	2018-09-13 16:49:20.924778+00	19	2
+30	1	2018-09-13 16:55:04.423276+00	2018-09-13 16:55:04.423933+00	20	2
+31	1	2018-09-13 17:07:41.006473+00	2018-09-13 17:07:41.007114+00	21	2
+32	1	2018-09-13 17:12:58.118418+00	2018-09-13 17:12:58.119051+00	22	2
+33	10	2018-09-13 17:15:41.031282+00	2018-09-13 17:15:41.031943+00	23	1
+34	1	2018-09-13 17:17:03.184658+00	2018-09-13 17:17:03.185292+00	23	3
+35	1	2018-09-13 17:36:20.956312+00	2018-09-13 17:36:20.956951+00	24	3
+36	1	2018-09-13 18:42:18.825044+00	2018-09-13 18:42:18.825683+00	25	2
+37	2	2018-09-13 18:49:01.866013+00	2018-09-13 18:49:01.866676+00	26	2
+38	1	2018-09-13 18:51:20.698649+00	2018-09-13 18:51:20.69927+00	27	3
+39	1	2018-09-13 18:53:47.265501+00	2018-09-13 18:53:47.266099+00	28	2
+40	1	2018-09-13 19:08:32.027461+00	2018-09-13 19:08:32.028133+00	29	2
+41	1	2018-09-13 19:09:28.106891+00	2018-09-13 19:09:28.107539+00	29	3
+42	3	2018-09-15 17:12:49.142539+00	2018-09-15 17:12:49.143762+00	30	2
+43	2	2018-09-15 17:13:19.616693+00	2018-09-15 17:13:19.617319+00	30	3
+44	1	2018-09-15 17:20:12.247697+00	2018-09-15 17:20:12.248331+00	31	2
+45	1	2018-09-15 17:20:30.269059+00	2018-09-15 17:20:30.269756+00	31	3
+46	0	2018-09-15 17:30:28.569129+00	2018-09-15 17:30:28.569807+00	32	1
+47	2	2018-09-15 17:37:40.599458+00	2018-09-15 17:37:41.451625+00	33	2
+48	1	2018-09-15 17:42:24.061091+00	2018-09-15 17:42:24.06179+00	34	3
+49	2	2018-09-15 17:44:13.990187+00	2018-09-15 17:44:13.990809+00	35	1
+66	1	2018-09-15 20:15:54.606862+00	2018-09-15 20:15:54.607486+00	49	3
+50	4	2018-09-15 17:45:05.813884+00	2018-09-15 17:46:06.029115+00	35	2
+51	0	2018-09-15 17:47:52.0893+00	2018-09-15 17:47:52.090776+00	36	1
+52	2	2018-09-15 18:25:46.57539+00	2018-09-15 18:26:29.142401+00	37	2
+53	1	2018-09-15 18:28:53.143959+00	2018-09-15 18:28:53.144597+00	38	2
+67	1	2018-09-16 17:14:09.933235+00	2018-09-16 17:14:09.933932+00	50	3
+55	0	2018-09-15 18:44:41.67385+00	2018-09-15 18:44:41.674497+00	39	1
+56	1	2018-09-15 19:00:03.759179+00	2018-09-15 19:00:03.759862+00	40	2
+57	3	2018-09-15 19:10:35.809673+00	2018-09-15 19:10:35.810411+00	41	2
+58	1	2018-09-15 19:11:19.545565+00	2018-09-15 19:11:19.54621+00	41	3
+59	1	2018-09-15 19:53:19.271892+00	2018-09-15 19:53:19.272522+00	42	3
+60	2	2018-09-15 19:54:42.483363+00	2018-09-15 19:54:42.686425+00	43	2
+61	1	2018-09-15 19:56:26.47801+00	2018-09-15 19:56:26.478637+00	44	2
+62	1	2018-09-15 19:57:38.942731+00	2018-09-15 19:57:38.943369+00	45	2
+63	1	2018-09-15 20:01:06.39539+00	2018-09-15 20:01:06.396023+00	46	2
+64	1	2018-09-15 20:03:15.99916+00	2018-09-15 20:03:15.99981+00	47	2
+68	1	2018-09-16 17:15:04.064583+00	2018-09-16 17:15:04.065206+00	52	2
+69	1	2018-09-16 17:17:15.951641+00	2018-09-16 17:17:15.952288+00	53	3
+70	1	2018-09-16 17:20:20.455404+00	2018-09-16 17:20:20.456021+00	54	2
+71	1	2018-09-16 17:23:15.911191+00	2018-09-16 17:23:15.911826+00	55	3
+72	1	2018-09-16 17:24:04.908788+00	2018-09-16 17:24:04.909392+00	56	2
+73	1	2018-09-16 17:27:09.21246+00	2018-09-16 17:27:09.213092+00	57	2
+74	1	2018-09-16 17:28:42.654158+00	2018-09-16 17:28:42.654781+00	58	2
+76	1	2018-09-16 17:29:40.847616+00	2018-09-16 17:29:40.848248+00	59	3
+75	3	2018-09-16 17:29:07.272362+00	2018-09-16 17:30:19.86411+00	59	2
+77	1	2018-09-16 17:39:25.464034+00	2018-09-16 17:39:25.464666+00	60	2
+78	1	2018-09-16 17:43:17.094968+00	2018-09-16 17:43:17.095621+00	61	1
+79	1	2018-09-16 17:43:31.640929+00	2018-09-16 17:43:31.642486+00	61	3
+80	1	2018-09-16 17:48:21.740842+00	2018-09-16 17:48:21.741461+00	62	2
+81	1	2018-09-16 17:50:12.762211+00	2018-09-16 17:50:12.762823+00	63	2
+82	1	2018-09-16 17:53:21.3541+00	2018-09-16 17:53:21.354738+00	64	3
+83	1	2018-09-16 17:58:20.145247+00	2018-09-16 17:58:20.145912+00	65	2
+84	1	2018-09-16 18:05:07.704678+00	2018-09-16 18:05:07.705302+00	66	3
+85	1	2018-09-16 18:05:51.178785+00	2018-09-16 18:05:51.179384+00	67	2
+86	2	2018-09-16 18:12:10.172061+00	2018-09-16 18:12:10.172689+00	68	2
+87	2	2018-09-16 18:17:01.496331+00	2018-09-16 18:17:04.972218+00	69	3
+\.
+
+
+--
+-- Name: inventory_inventory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.inventory_inventory_id_seq', 87, true);
+
+
+--
+-- Data for Name: laptopType_laptoptype; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public."laptopType_laptoptype" (id, name, slug, name_singular) FROM stdin;
+1	Ультрабуки	ultrabuki	Ультрабук
+2	Трансформеры	transformery	Трансформер
+3	Нетбуки	netbuki	Нетбук
+4	Универсальные	universalnye	Универсальный
+5	Планшеты	planshety	Планшет
+6	Игровые	igrovye	Игровой
+7	Моноблоки	monobloki	Моноблок
+\.
+
+
+--
+-- Name: laptopType_laptoptype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public."laptopType_laptoptype_id_seq"', 7, true);
+
+
+--
+-- Data for Name: laptop_image; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.laptop_image (id, file, gallery_id) FROM stdin;
+2	laptop_images/2018-09-11/6121038_2.jpg	8
+3	laptop_images/2018-09-11/6121038_3.jpg	8
+4	laptop_images/2018-09-13/img_id2328381274320427197.png	9
+5	laptop_images/2018-09-13/img_id9205086972067770448.png	9
+6	laptop_images/2018-09-13/img_id9031940255398397160.png	9
+7	laptop_images/2018-09-13/img_id7111555906655068544.png	9
+8	laptop_images/2018-09-13/img_id2829750864430896811.png	9
+9	laptop_images/2018-09-13/img_id8565655332766545193.png	9
+10	laptop_images/2018-09-13/img_id8565655332766545193_JyzytS9.png	10
+11	laptop_images/2018-09-13/img_id2328381274320427197_Gs1GSEb.png	10
+12	laptop_images/2018-09-13/img_id7111555906655068544_W2Wzajd.png	10
+13	laptop_images/2018-09-13/img_id9205086972067770448_6fOtu8s.png	10
+14	laptop_images/2018-09-13/img_id9031940255398397160_cYonlKO.png	10
+15	laptop_images/2018-09-13/img_id2829750864430896811_IB9LUrR.png	10
+16	laptop_images/2018-09-13/l_10174627_004.jpg	11
+17	laptop_images/2018-09-13/lenovo-ideapad-120s-14iap-81a5_1.jpg	11
+18	laptop_images/2018-09-13/lenovo-laptop-ideapad-120s-11-feature-1.png	11
+19	laptop_images/2018-09-13/lenovo-laptop-ideapad-120s-14-hero.png	11
+20	laptop_images/2018-09-13/6121038_2.jpg	12
+21	laptop_images/2018-09-13/6121038_3.jpg	12
+22	laptop_images/2018-09-13/l_10174627_004_tQ40Pzq.jpg	12
+23	laptop_images/2018-09-13/lenovo-ideapad-120s-14iap-81a5_1_XOAPhh0.jpg	12
+24	laptop_images/2018-09-13/6121038_2_w6UzIlW.jpg	13
+25	laptop_images/2018-09-13/image.png	13
+27	laptop_images/2018-09-13/lenovo-laptop-ideapad-120s-11-feature-1_6Yq0Woo.png	13
+28	laptop_images/2018-09-13/img_id270247946489575005.png	14
+29	laptop_images/2018-09-13/img_id4987542046712452900.png	14
+30	laptop_images/2018-09-13/img_id6291101926241712278.png	14
+31	laptop_images/2018-09-13/img_id9217868392947733179.png	14
+32	laptop_images/2018-09-13/img_id5796226767195760988.png	14
+33	laptop_images/2018-09-13/img_id7768901501297092083.png	14
+34	laptop_images/2018-09-13/img_id1471621487418953662.png	14
+35	laptop_images/2018-09-13/81jckHg7LLL._SX425_.jpg	15
+36	laptop_images/2018-09-13/productimage.jpg	15
+37	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT.jpg	15
+38	laptop_images/2018-09-13/productimage_Bufp1en.jpg	16
+39	laptop_images/2018-09-13/81jckHg7LLL._SX425__hVky2xR.jpg	16
+40	laptop_images/2018-09-13/1la51ut-aba-7.jpg	16
+41	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_oUNAiOi.jpg	16
+42	laptop_images/2018-09-13/img_id270247946489575005_K14NEkO.png	16
+43	laptop_images/2018-09-13/1la51ut-aba-7_eNxq2Ww.jpg	17
+44	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_bgFqzfA.jpg	17
+45	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_wNxn3ip.jpg	18
+46	laptop_images/2018-09-13/productimage_BcpjQae.jpg	18
+47	laptop_images/2018-09-13/d7b9e2e2-a06e-4560-84de-46668855948c_1.5c5b6e8b2a066ea61b375f2_TDZnxcr.jpeg	18
+48	laptop_images/2018-09-13/1la51ut-aba-7_Pd5UR0N.jpg	18
+49	laptop_images/2018-09-13/productimage_izTAcJw.jpg	19
+50	laptop_images/2018-09-13/1la51ut-aba-7_ZEsceFL.jpg	19
+51	laptop_images/2018-09-13/img_id270247946489575005_vHS3AY6.png	19
+52	laptop_images/2018-09-13/img_id4987542046712452900_qvewqQu.png	19
+53	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_Tjvqeca.jpg	19
+54	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_rlRwD4g.jpg	20
+55	laptop_images/2018-09-13/81jckHg7LLL._SX425__pemVmCA.jpg	20
+56	laptop_images/2018-09-13/download.jpg	20
+57	laptop_images/2018-09-13/1la51ut-aba-7_Ub3cYkD.jpg	20
+58	laptop_images/2018-09-13/81jckHg7LLL._SX425__8smZWYh.jpg	21
+59	laptop_images/2018-09-13/download_ySNflrX.jpg	21
+60	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_p6WksI1.jpg	22
+61	laptop_images/2018-09-13/81jckHg7LLL._SX425__Ue7c7J2.jpg	22
+62	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_DSnahS7.jpg	23
+63	laptop_images/2018-09-13/productimage_9qhVNjh.jpg	23
+64	laptop_images/2018-09-13/81jckHg7LLL._SX425__rJKLurf.jpg	23
+65	laptop_images/2018-09-13/download_Iv8TZe2.jpg	23
+66	laptop_images/2018-09-13/81jckHg7LLL._SX425__DvZudn5.jpg	24
+67	laptop_images/2018-09-13/download_OT8b9d2.jpg	24
+68	laptop_images/2018-09-13/productimage_epXQBrx.jpg	24
+69	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_jz5KZyW.jpg	24
+70	laptop_images/2018-09-13/productimage_tQJYkrM.jpg	25
+71	laptop_images/2018-09-13/download_vo6Gkqp.jpg	25
+72	laptop_images/2018-09-13/81jckHg7LLL._SX425__7uertEJ.jpg	25
+73	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_TtKuXcC.jpg	25
+74	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_N9XWR5B.jpg	26
+75	laptop_images/2018-09-13/1la51ut-aba-7_eC4KzXQ.jpg	26
+76	laptop_images/2018-09-13/81jckHg7LLL._SX425__mMRAKgU.jpg	26
+77	laptop_images/2018-09-13/download_BeO7TgC.jpg	26
+78	laptop_images/2018-09-13/productimage_PemmP1k.jpg	26
+79	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_NUYSJ1D.jpg	27
+80	laptop_images/2018-09-13/1la51ut-aba-7_SXt6V6t.jpg	27
+81	laptop_images/2018-09-13/81jckHg7LLL._SX425__wL61m1K.jpg	27
+82	laptop_images/2018-09-13/img_id4987542046712452900_Jh04oCT.png	27
+83	laptop_images/2018-09-13/81jckHg7LLL._SX425__yn7PM4W.jpg	28
+84	laptop_images/2018-09-13/1la51ut-aba-7_AkEeTgO.jpg	28
+85	laptop_images/2018-09-13/img_id4987542046712452900_18sihfu.png	28
+86	laptop_images/2018-09-13/img_id9217868392947733179_d5BSobT.png	28
+87	laptop_images/2018-09-13/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_wgs8RbU.jpg	28
+88	laptop_images/2018-09-14/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT.jpg	29
+89	laptop_images/2018-09-14/download.jpg	29
+90	laptop_images/2018-09-14/81jckHg7LLL._SX425_.jpg	29
+91	laptop_images/2018-09-14/1la51ut-aba-7.jpg	29
+92	laptop_images/2018-09-14/productimage.jpg	29
+93	laptop_images/2018-09-15/img_id9217868392947733179.png	30
+94	laptop_images/2018-09-15/img_id7768901501297092083.png	30
+95	laptop_images/2018-09-15/img_id6291101926241712278.png	30
+96	laptop_images/2018-09-15/img_id4987542046712452900.png	30
+97	laptop_images/2018-09-15/img_id270247946489575005.png	30
+98	laptop_images/2018-09-15/productimage.jpg	31
+99	laptop_images/2018-09-15/81jckHg7LLL._SX425_.jpg	32
+100	laptop_images/2018-09-15/1la51ut-aba-7.jpg	32
+101	laptop_images/2018-09-15/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT.jpg	32
+102	laptop_images/2018-09-15/download.jpg	32
+103	laptop_images/2018-09-15/productimage_VM1AQ6k.jpg	32
+104	laptop_images/2018-09-15/img_id7768901501297092083_yfK3sau.png	32
+105	laptop_images/2018-09-15/img_id7768901501297092083_gCBzHbH.png	33
+106	laptop_images/2018-09-15/1la51ut-aba-7_YAWIcMe.jpg	33
+107	laptop_images/2018-09-15/81jckHg7LLL._SX425__Cd03CIb.jpg	33
+108	laptop_images/2018-09-15/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_AYZXPHd.jpg	34
+109	laptop_images/2018-09-15/d7b9e2e2-a06e-4560-84de-46668855948c_1.5c5b6e8b2a066ea61b375f2_urGmLm5.jpeg	34
+110	laptop_images/2018-09-15/1la51ut-aba-7_Syc4dIV.jpg	34
+111	laptop_images/2018-09-15/HP_PROBOOK_430_1_1024x1024-1024x497.jpg	35
+112	laptop_images/2018-09-15/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_IOBjSG5.jpg	35
+113	laptop_images/2018-09-15/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_IvgWCQ5.jpg	36
+114	laptop_images/2018-09-15/HP_PROBOOK_430_1_1024x1024-1024x497_r9PWkfA.jpg	36
+115	laptop_images/2018-09-15/HP_PROBOOK_430_1_1024x1024-1024x497_qmPkmv7.jpg	37
+116	laptop_images/2018-09-15/img_id6291101926241712278_zFpckxU.png	37
+117	laptop_images/2018-09-15/Samsung-ATIV-Book-9-Lite-NP915S3G-K02PT_ZjfORdc.jpg	37
+118	laptop_images/2018-09-15/img_id7768901501297092083_DwTBKNx.png	37
+119	laptop_images/2018-09-15/download_sNbH1sG.jpg	38
+120	laptop_images/2018-09-15/1la51ut-aba-7_Uj3J39z.jpg	38
+121	laptop_images/2018-09-15/productimage_qNm4hIq.jpg	38
+122	laptop_images/2018-09-15/HP_PROBOOK_430_1_1024x1024-1024x497_cIhXT5k.jpg	39
+123	laptop_images/2018-09-15/productimage_dhncRjc.jpg	39
+124	laptop_images/2018-09-15/81jckHg7LLL._SX425__ZEPFRVD.jpg	39
+125	laptop_images/2018-09-15/productimage_I2Aop7k.jpg	40
+126	laptop_images/2018-09-15/HP_PROBOOK_430_1_1024x1024-1024x497_wSNMBD6.jpg	40
+127	laptop_images/2018-09-16/Laptop_Image6.jpg	41
+128	laptop_images/2018-09-16/Laptop_Image1.jpg	41
+129	laptop_images/2018-09-16/Laptop_Image2.jpg	42
+130	laptop_images/2018-09-16/Laptop_Image6_hOPKYck.jpg	42
+131	laptop_images/2018-09-16/Laptop_Image1_eU89O2y.jpg	42
+132	laptop_images/2018-09-16/Laptop_Image2_Ymkn4zP.jpg	43
+133	laptop_images/2018-09-16/Laptop_Image6_9WFQxyZ.jpg	43
+134	laptop_images/2018-09-16/Laptop_Image1_gtdeWtH.jpg	43
+135	laptop_images/2018-09-16/Laptop_Image1_haDKWw3.jpg	44
+136	laptop_images/2018-09-16/Laptop_Image6_LA6mleC.jpg	45
+137	laptop_images/2018-09-16/Laptop_Image1_PH2dKoT.jpg	45
+138	laptop_images/2018-09-16/Laptop_Image5.png	46
+139	laptop_images/2018-09-16/Laptop_Image1_3bQetee.jpg	46
+140	laptop_images/2018-09-16/Laptop_Image2_ArLZNjR.jpg	46
+141	laptop_images/2018-09-16/Laptop_Image6_6qNM0Nv.jpg	46
+142	laptop_images/2018-09-16/Laptop_Image5_0j01U4t.png	47
+143	laptop_images/2018-09-16/Laptop_Image2_8MmaugZ.jpg	47
+144	laptop_images/2018-09-16/Laptop_Image1_cFUOFH9.jpg	47
+145	laptop_images/2018-09-16/Laptop_Image7.jpg	48
+146	laptop_images/2018-09-16/Laptop_Image7_2lcwxDe.jpg	48
+147	laptop_images/2018-09-16/Laptop_Image1_91spmY3.jpg	48
+148	laptop_images/2018-09-16/Laptop_Image2_5SvaIiE.jpg	48
+149	laptop_images/2018-09-16/Laptop_Image2_5yqTLxq.jpg	49
+150	laptop_images/2018-09-16/Laptop_Image1_35aBuz0.jpg	49
+151	laptop_images/2018-09-16/Laptop_Image6_PRYxueN.jpg	49
+152	laptop_images/2018-09-16/Laptop_Image7_eaWqNRz.jpg	49
+153	laptop_images/2018-09-16/Laptop_Image7_Ja2NDkM.jpg	50
+154	laptop_images/2018-09-16/Laptop_Image6_4sATBiq.jpg	50
+155	laptop_images/2018-09-16/Laptop_Image2_aq8WF7N.jpg	50
+156	laptop_images/2018-09-16/Laptop_Image1_KKysDDq.jpg	50
+157	laptop_images/2018-09-16/Laptop_Image5_oKlcFnb.png	51
+158	laptop_images/2018-09-16/Laptop_Image7_gXG5Woq.jpg	52
+159	laptop_images/2018-09-16/Laptop_Image1.jpeg	52
+160	laptop_images/2018-09-16/Laptop_Image6_8ahXC4q.jpg	52
+161	laptop_images/2018-09-16/Laptop_Image6_exuWHTo.jpg	53
+162	laptop_images/2018-09-16/Laptop_Image1_LbEjIsv.jpg	53
+163	laptop_images/2018-09-16/Laptop_Image7_P7CPmck.jpg	53
+164	laptop_images/2018-09-16/Laptop_Image3.png	54
+165	laptop_images/2018-09-16/Laptop_Image1_E9JB6Bd.jpg	54
+166	laptop_images/2018-09-16/Laptop_Image6_IhKmVoY.jpg	54
+167	laptop_images/2018-09-16/Laptop_Image7_NzjQqHM.jpg	54
+168	laptop_images/2018-09-16/Laptop_Image1_rVEkDOs.jpg	55
+169	laptop_images/2018-09-16/Laptop_Image2_t2wuMNl.jpg	55
+170	laptop_images/2018-09-16/Laptop_Image1_s6KcskV.jpg	56
+171	laptop_images/2018-09-16/Laptop_Image6_doTKE9Y.jpg	56
+172	laptop_images/2018-09-16/Laptop_Image2_qEZ5UCF.jpg	56
+173	laptop_images/2018-09-16/Laptop_Image6_kskV23o.jpg	57
+174	laptop_images/2018-09-16/Laptop_Image7_FSD5DPC.jpg	57
+175	laptop_images/2018-09-16/Laptop_Image2_6lFV8Se.jpg	57
+176	laptop_images/2018-09-16/Laptop_Image1_l08rGxF.jpg	57
+177	laptop_images/2018-09-16/Laptop_Image6_uVasWp8.jpg	58
+178	laptop_images/2018-09-16/Laptop_Image7_1UNG6WV.jpg	58
+179	laptop_images/2018-09-16/Laptop_Image2_lJI7UdS.jpg	58
+180	laptop_images/2018-09-16/Laptop_Image3_A7uJetf.png	58
+181	laptop_images/2018-09-16/Laptop_Image1_xhuTg0m.jpg	58
+182	laptop_images/2018-09-16/Laptop_Image2_qTKSaxP.jpg	59
+183	laptop_images/2018-09-16/Laptop_Image7_mG6vWMo.jpg	59
+184	laptop_images/2018-09-16/Laptop_Image6_ZiSM1a2.jpg	59
+185	laptop_images/2018-09-16/Laptop_Image7_a7RyV25.jpg	60
+186	laptop_images/2018-09-16/Laptop_Image5_ThvNizc.png	61
+187	laptop_images/2018-09-16/Laptop_Image7_mhK71IH.jpg	61
+188	laptop_images/2018-09-16/Laptop_Image3_i3R5TRs.png	61
+189	laptop_images/2018-09-16/Laptop_Image3_eGlT73H.png	62
+190	laptop_images/2018-09-16/Laptop_Image7_EEZIaR0.jpg	62
+191	laptop_images/2018-09-16/Laptop_Image5_WjWkoJE.png	62
+192	laptop_images/2018-09-16/Laptop_Image2_ttfquAz.jpg	63
+193	laptop_images/2018-09-16/Laptop_Image7_c0lZNlb.jpg	63
+194	laptop_images/2018-09-16/Laptop_Image2_nGN1zjZ.jpg	64
+195	laptop_images/2018-09-16/Laptop_Image7_0HYQerm.jpg	64
+196	laptop_images/2018-09-16/Laptop_Image6_xg7hChY.jpg	64
+197	laptop_images/2018-09-16/Laptop_Image1_uIgjlqO.jpg	65
+198	laptop_images/2018-09-16/Laptop_Image2_cqhkoom.jpg	65
+199	laptop_images/2018-09-16/Laptop_Image6_fKgwyge.jpg	65
+200	laptop_images/2018-09-16/Laptop_Image7_TRoCUKS.jpg	65
+201	laptop_images/2018-09-16/Laptop_Image1_aMT7iNN.jpg	66
+202	laptop_images/2018-09-16/Laptop_Image2_4eJfFIh.jpg	66
+203	laptop_images/2018-09-16/Laptop_Image2_ZmoV7q4.jpg	67
+204	laptop_images/2018-09-16/Laptop_Image7_6JdGeHL.jpg	67
+205	laptop_images/2018-09-16/Laptop_Image1_4kyIxEL.jpg	67
+206	laptop_images/2018-09-16/Laptop_Image7_lDHBPXR.jpg	68
+207	laptop_images/2018-09-16/Laptop_Image6_zGUyAW9.jpg	68
+208	laptop_images/2018-09-16/Laptop_Image1_vuiSPWd.jpg	68
+209	laptop_images/2018-09-16/Laptop_Image2_ISeGCTh.jpg	68
+211	laptop_images/2018-09-16/Laptop_Image5_VQuhQOg.png	69
+212	laptop_images/2018-09-16/Laptop_Image1.png	69
+213	laptop_images/2018-09-16/Laptop_Image3_0SdIelY.png	69
+214	laptop_images/2018-09-16/Laptop_Image4_TAqk57D.png	69
+\.
+
+
+--
+-- Name: laptop_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.laptop_image_id_seq', 214, true);
+
+
+--
+-- Data for Name: laptop_laptop; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.laptop_laptop (id, name, slug, model, ram, main_storage, secondary_storage, graphics_card_memory, price, viewed, created, updated, audio_id, brand_id, graphics_card_id, laptop_type_id, main_storage_type_id, processor_id, ram_type_id, resolution_id, screen_size_id, secondary_storage_type_id) FROM stdin;
+20	Swift3	swift3	SF314-i3	4	128	\N	\N	585	0	2018-09-13 16:47:34.519958+00	2018-09-13 19:06:58.797922+00	3	1	\N	1	1	13	1	3	5	\N
+29	Swift3	swift3	SF314-i5	4	128	\N	\N	665	0	2018-09-13 19:05:40.017719+00	2018-09-13 19:07:07.088306+00	3	1	\N	1	1	19	1	3	5	\N
+11	Ideapad 120S	ideapad-120s	11IAP	4	500	\N	\N	300	0	2018-09-13 14:54:09.340454+00	2018-09-13 14:57:20.313542+00	3	4	\N	3	4	5	2	1	2	\N
+12	Inspiron 11	inspiron-11	i3168	4	500	\N	\N	440	0	2018-09-13 15:04:32.39688+00	2018-09-13 15:04:50.287755+00	4	5	\N	2	4	6	1	1	2	\N
+15	ATIV Book 9 Lite	ativ-book-9-lite	NP915S3G	4	128	\N	\N	550	0	2018-09-13 16:01:06.53237+00	2018-09-13 16:01:06.532397+00	3	7	\N	1	1	9	1	3	4	\N
+9	Pavilion x2	pavilion-x2	10-n123dx	2	64	\N	\N	475	0	2018-09-13 11:51:56.693071+00	2018-09-13 16:05:51.26366+00	2	3	\N	2	2	3	1	4	1	\N
+13	PL60	pl60	7RD-013US	8	1000	\N	2	970	0	2018-09-13 15:11:01.5624+00	2018-09-13 16:05:51.269133+00	3	6	2	4	5	7	1	3	6	\N
+14	TravelMate	travelmate	B117	4	128	\N	\N	260	0	2018-09-13 15:34:05.325595+00	2018-09-13 16:05:51.27284+00	3	1	\N	3	1	8	1	1	2	\N
+8	X507MA	x507ma	EJ136	4	128	\N	\N	360	\N	2018-09-11 17:11:28.113241+00	2018-09-13 16:05:51.27613+00	1	2	\N	1	1	2	2	3	6	\N
+10	ZenBook	zenbook	UX305CA-DHM4T	8	256	\N	\N	800	0	2018-09-13 11:57:07.537535+00	2018-09-13 16:05:51.27943+00	2	2	\N	1	3	4	1	6	4	\N
+16	Pro x2	pro-x2	612 G2	4	128	\N	\N	700	0	2018-09-13 16:08:10.705923+00	2018-09-13 16:08:37.355707+00	3	3	\N	5	1	10	1	3	3	\N
+18	Inspiron 13 5000	inspiron-13-5000	5378	4	1000	\N	\N	600	0	2018-09-13 16:28:32.135707+00	2018-09-13 16:32:01.559609+00	4	5	\N	2	4	11	1	3	4	\N
+19	GP73 Leopard	gp73-leopard	8RE-409XKR	8	128	1000	6	1450	0	2018-09-13 16:38:09.750034+00	2018-09-13 16:43:43.595714+00	3	6	3	6	1	12	2	3	7	4
+22	EliteBook Folio	elitebook-folio	G1 Touch	8	512	\N	\N	995	0	2018-09-13 17:03:37.484448+00	2018-09-13 17:14:08.670292+00	2	3	\N	1	1	15	1	3	3	\N
+21	Notebook 5	notebook-5	NP530E5M-X01US	8	1000	\N	2	670	0	2018-09-13 16:56:36.272319+00	2018-09-13 17:27:04.779539+00	3	7	4	4	4	14	2	1	6	\N
+23	X441S	x441s	\N	4	500	\N	\N	285	0	2018-09-13 17:13:51.580637+00	2018-09-13 17:27:16.336708+00	3	2	\N	4	4	8	1	1	5	\N
+17	ZenBook	zenbook	UX330CA-RHM1-CB	8	256	\N	\N	800	0	2018-09-13 16:14:10.347885+00	2018-09-13 17:28:32.734617+00	3	2	\N	1	3	10	1	3	4	\N
+24	ENVY 13	envy-13	ad173cl	16	512	\N	2	1530	0	2018-09-13 17:34:15.168213+00	2018-09-13 17:36:42.201707+00	2	3	5	1	1	16	1	7	4	\N
+26	IdeaPad 330	ideapad-330	15IGM	4	1000	\N	\N	340	0	2018-09-13 18:44:33.352735+00	2018-09-13 18:48:01.955786+00	3	4	\N	4	4	17	1	1	6	\N
+25	VivoBook	vivobook	F540NA-DM203	4	256	\N	\N	385	0	2018-09-13 18:40:00.912438+00	2018-09-13 18:48:01.960222+00	3	2	\N	4	1	5	2	3	6	\N
+27	Latitude 12	latitude-12	E7280	16	256	\N	\N	880	0	2018-09-13 18:49:02.868602+00	2018-09-13 18:50:00.759187+00	3	5	\N	1	3	18	2	1	3	\N
+28	GE73 Raider	ge73-raider	RGB 8RF-458XKR	8	256	\N	8	2040	0	2018-09-13 18:51:56.876905+00	2018-09-13 18:52:28.076087+00	3	6	6	6	1	12	2	3	7	\N
+30	ProBook 440	probook-440	G4	4	500	\N	\N	575	0	2018-09-15 17:05:41.352206+00	2018-09-15 17:14:28.903517+00	3	3	\N	1	5	11	2	1	5	\N
+31	X541NA	x541na	DM140	4	128	\N	\N	425	0	2018-09-15 17:10:52.628717+00	2018-09-15 17:15:35.843169+00	3	2	\N	1	1	20	1	3	6	\N
+32	IdeaPad 330	ideapad-330	15IKB	4	1000	\N	2	385	0	2018-09-15 17:19:33.612976+00	2018-09-15 17:29:22.73517+00	3	4	7	1	4	21	1	1	6	\N
+33	XPS 13	xps-13	9343-1818SLV	4	128	\N	\N	725	0	2018-09-15 17:32:43.183646+00	2018-09-15 17:36:37.291181+00	4	5	\N	1	1	22	1	3	4	\N
+34	Swift3	swift3	SF314-54G	4	128	\N	2	745	0	2018-09-15 17:36:29.530496+00	2018-09-15 17:40:09.890354+00	3	1	5	1	1	19	1	3	5	\N
+35	ProBook 430	probook-430	G5	4	500	\N	\N	685	0	2018-09-15 17:42:48.997677+00	2018-09-15 17:43:33.59662+00	3	3	\N	1	5	19	2	1	4	\N
+36	X507MA	x507ma	EJ135	4	128	\N	\N	430	0	2018-09-15 17:46:21.509924+00	2018-09-15 17:47:10.512743+00	1	2	\N	1	1	17	2	3	6	\N
+37	Yoga 900S-12ISK	yoga-900s-12isk	80ML	8	256	\N	\N	1010	0	2018-09-15 18:17:09.601252+00	2018-09-15 18:24:58.683527+00	3	4	\N	2	1	23	1	5	3	\N
+38	Alienware 15	alienware-15	AW15R3-7001SLV	16	1000	\N	6	1865	0	2018-09-15 18:24:21.079351+00	2018-09-15 18:27:15.538339+00	3	5	3	6	5	1	2	3	6	\N
+39	Swift3	swift3	SF314-51-57CP	8	256	\N	\N	770	0	2018-09-15 18:30:02.207201+00	2018-09-15 18:45:01.115363+00	3	1	\N	1	3	14	2	3	5	\N
+40	Pavilion x360	papavilion-x360	14m-ba011dx	8	128	\N	\N	770	0	2018-09-15 18:49:54.23533+00	2018-09-15 18:53:22.124051+00	2	3	\N	2	3	14	2	3	5	\N
+41	VivoBook	vivobook	X505BA-EJ106	4	128	\N	\N	470	0	2018-09-15 19:05:59.901355+00	2018-09-15 19:08:32.87087+00	1	2	\N	1	1	24	2	3	6	\N
+46	ThinkPad E470	thinkpad-e470	\N	8	500	\N	2	955	0	2018-09-15 19:46:52.425599+00	2018-09-15 19:52:14.142651+00	3	4	9	4	5	7	2	3	5	\N
+45	VivoBook 15	vivobook-15	X542UA	8	256	\N	\N	715	0	2018-09-15 19:40:05.125857+00	2018-09-15 19:52:14.147183+00	3	2	\N	1	1	7	2	3	6	\N
+44	15	15	da0067TU	4	128	\N	\N	375	0	2018-09-15 19:36:39.278859+00	2018-09-15 19:52:14.15072+00	3	3	\N	4	1	2	2	3	6	\N
+43	Swift 5	swift-5	SF514-51-54T8	8	256	\N	\N	785	0	2018-09-15 19:32:10.532864+00	2018-09-15 19:52:14.153941+00	5	1	\N	1	1	14	1	3	5	\N
+42	U31-70	u31-70	80M5003EGE	8	1000	\N	2	750	0	2018-09-15 19:27:42.593532+00	2018-09-15 19:52:14.15734+00	3	4	8	1	6	25	1	3	4	\N
+47	Aspire 3	aspire-3	A315-21-4098	8	1000	\N	\N	450	0	2018-09-15 19:56:16.596776+00	2018-09-15 20:02:22.052743+00	3	1	\N	4	4	26	2	1	6	\N
+48	Envy x360	envy-x360	15-w117cl	12	1000	\N	\N	795	0	2018-09-15 20:03:54.905559+00	2018-09-15 20:04:47.684879+00	2	3	\N	2	4	27	1	3	6	\N
+49	Q524UQ	q524uq	BBI7T14	12	2000	\N	2	960	0	2018-09-15 20:12:27.560813+00	2018-09-15 20:13:15.945367+00	3	2	9	2	4	28	2	3	6	\N
+52	Pavilion Power 15	pavilion-power-15	cb050od	8	1000	\N	4	1025	0	2018-09-16 17:03:56.589221+00	2018-09-16 17:08:32.29368+00	2	3	2	6	5	1	2	3	6	\N
+51	Aspire E5	aspire-e5	575G	8	256	\N	2	790	0	2018-09-16 17:01:02.520417+00	2018-09-16 17:08:32.298153+00	3	1	9	4	1	28	2	3	6	\N
+50	Ideapad FLEX 4	ideapad-flex-4	1480	8	1000	\N	2	885	0	2018-09-16 16:54:02.925261+00	2018-09-16 17:08:32.301395+00	6	4	10	2	4	7	2	3	5	\N
+53	FX53VD	fx53vd	RH71	8	1000	\N	2	920	0	2018-09-16 17:06:47.028865+00	2018-09-16 17:09:53.58852+00	3	2	2	6	5	1	2	3	6	\N
+55	Nitro 5	nitro-5	AN515-51-56UO	8	256	\N	4	895	0	2018-09-16 17:14:16.527351+00	2018-09-16 17:14:16.527373+00	3	1	2	6	1	30	2	3	6	\N
+54	Yoga 710	yoga-710	11IKB	8	128	\N	\N	715	0	2018-09-16 17:10:32.325405+00	2018-09-16 17:34:36.652243+00	3	4	\N	2	1	29	1	3	2	\N
+59	Nitro 5	nitro-5	AN515-52 Ti	4	128	\N	4	1050	0	2018-09-16 17:28:32.143636+00	2018-09-16 17:34:36.637642+00	3	1	12	6	3	12	2	3	6	\N
+58	Yoga 700	yoga-700	14ISK	8	256	\N	\N	810	0	2018-09-16 17:23:23.011796+00	2018-09-16 17:34:36.642209+00	7	4	\N	2	1	27	1	3	4	\N
+57	FX502VM	fx502vm	AS73	16	128	1000	3	1325	0	2018-09-16 17:21:07.588279+00	2018-09-16 17:34:36.645582+00	3	2	3	6	1	1	2	3	6	4
+56	ProBook 470	probook-470	G4	8	1000	\N	2	765	0	2018-09-16 17:17:46.465507+00	2018-09-16 17:34:36.64879+00	3	3	11	4	4	14	2	2	7	\N
+60	17	17	ak010ds	12	1000	\N	\N	710	0	2018-09-16 17:34:59.848168+00	2018-09-16 17:38:11.870484+00	3	3	\N	4	4	31	2	2	7	\N
+61	ROG Strix	rog-strix	GL502VM-BI7N10	12	1000	\N	3	1380	0	2018-09-16 17:39:18.415863+00	2018-09-16 17:44:47.679026+00	3	2	3	6	4	1	2	3	6	\N
+62	Yoga 710	yoga-710	15IKB	8	256	\N	\N	830	0	2018-09-16 17:43:35.729759+00	2018-09-16 17:46:16.662748+00	7	4	\N	2	1	14	1	3	6	\N
+63	Aspire 7	aspire-7	A717-72G-76V1	16	256	1000	6	1525	0	2018-09-16 17:47:50.56178+00	2018-09-16 17:51:36.551953+00	3	1	3	6	1	12	2	3	7	4
+64	17	17	bs025cl	16	1000	\N	4	895	0	2018-09-16 17:51:18.507889+00	2018-09-16 17:52:46.039331+00	3	3	13	4	4	7	2	3	7	\N
+65	ROG	rog	GL702VM-BHI7N09	12	128	1000	6	1520	0	2018-09-16 17:55:26.307466+00	2018-09-16 17:57:39.230221+00	2	2	3	6	1	32	2	3	7	5
+66	Envy 17	envy-17	u275cl	16	1000	\N	4	1240	0	2018-09-16 18:01:27.268514+00	2018-09-16 18:03:11.628729+00	2	3	5	4	5	16	2	3	7	\N
+67	Envy 17	envy-17	u273cl	16	1000	\N	4	1265	0	2018-09-16 18:04:22.758631+00	2018-09-16 18:06:14.262157+00	2	3	5	4	5	16	2	3	7	\N
+68	ProOne 440	proone-440	G3	8	1000	\N	2	1175	0	2018-09-16 18:10:03.373115+00	2018-09-16 18:11:47.324437+00	2	3	4	7	5	33	2	3	8	\N
+69	Aspire 7	aspire-7	A717-72G-70OG	16	256	\N	6	1475	0	2018-09-16 18:14:51.346864+00	2018-09-16 18:15:20.603664+00	3	1	3	6	1	12	2	3	7	\N
+\.
+
+
+--
+-- Name: laptop_laptop_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.laptop_laptop_id_seq', 69, true);
+
+
+--
+-- Data for Name: laptop_laptop_perks; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.laptop_laptop_perks (id, laptop_id, perks_id) FROM stdin;
+1	8	1
+2	8	3
+3	8	4
+4	9	2
+5	9	5
+6	10	6
+7	10	2
+8	10	3
+9	11	3
+10	11	4
+11	12	2
+12	12	3
+13	12	5
+14	13	4
+15	13	7
+16	14	3
+17	14	4
+18	15	2
+19	16	2
+20	16	3
+21	16	5
+22	16	6
+23	16	8
+24	17	3
+25	17	7
+26	18	9
+27	18	2
+28	18	5
+29	19	10
+30	19	7
+31	20	1
+32	20	7
+33	21	2
+34	22	2
+35	22	3
+36	22	6
+37	22	7
+38	23	11
+39	24	2
+40	24	7
+41	25	4
+42	26	4
+43	27	7
+44	28	10
+45	28	4
+46	28	6
+47	28	7
+48	29	1
+49	29	3
+50	29	7
+51	30	1
+52	30	4
+53	30	12
+54	31	11
+55	31	4
+56	32	11
+57	32	4
+58	33	6
+59	33	7
+60	34	1
+61	34	7
+62	35	3
+63	35	4
+64	36	1
+65	36	3
+66	36	4
+67	37	2
+68	37	3
+69	37	5
+70	37	7
+71	38	4
+72	38	7
+73	39	3
+74	39	6
+75	39	7
+76	40	9
+77	40	2
+78	40	5
+79	40	6
+80	40	7
+81	41	3
+82	41	4
+83	42	3
+84	42	4
+85	43	1
+86	43	3
+87	43	6
+88	43	7
+89	44	4
+90	45	11
+91	45	4
+92	46	1
+93	46	4
+94	46	6
+95	47	3
+96	48	9
+97	48	5
+98	48	7
+99	49	2
+100	49	5
+101	50	2
+102	50	5
+103	50	7
+104	51	11
+105	51	3
+106	51	7
+107	52	6
+108	52	7
+109	53	4
+110	53	7
+111	54	9
+112	54	5
+113	54	6
+114	55	3
+115	55	6
+116	55	7
+117	56	4
+118	57	4
+119	56	13
+120	58	3
+121	58	5
+122	58	7
+123	59	6
+124	59	7
+125	60	11
+126	60	7
+127	61	4
+128	61	14
+129	61	7
+130	62	2
+131	62	3
+132	62	5
+133	62	6
+134	62	15
+135	63	1
+136	63	6
+137	63	7
+138	64	11
+139	64	6
+140	64	7
+141	65	14
+142	65	6
+143	65	7
+144	66	11
+145	66	6
+146	66	7
+147	67	2
+148	67	11
+149	67	6
+150	67	7
+151	68	16
+152	68	17
+153	68	11
+154	68	6
+155	69	1
+156	69	6
+157	69	7
+\.
+
+
+--
+-- Name: laptop_laptop_perks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.laptop_laptop_perks_id_seq', 157, true);
+
+
+--
+-- Data for Name: perks_perks; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.perks_perks (id, name, slug) FROM stdin;
+1	Отпечатка Пальцев	otpechatka-palcev
+2	Сенсорный экран	sensornyj-ekran
+3	Мощная Батарея	moshnaya-batareya
+4	Матовый Экран	matovyj-ekran
+5	2 в 1	2-v-1
+6	IPS Экран	ips-ekran
+7	Подсветка Клавиатуры	podsvetka-klaviatury
+8	Чехол в Подарок	chehol-v-podarok
+9	Поворот Экрана 360°	povorot-ekrana-360
+10	Супер Дисплей (120 Гц)	super-displej-120-gc
+11	DVD-RW	dvd-rw
+12	Металлический Корпус	metallicheskij-korpus
+13	Сумка в Подарок	sumka-v-podarok
+14	Поддержка VR	podderzhka-vr
+15	Узкая Рамка	uzkaya-ramka
+16	Фирменная Клавиатура	firmennaya-klaviatura
+17	Фирменная Мышка	firmennaya-myshka
+\.
+
+
+--
+-- Name: perks_perks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.perks_perks_id_seq', 17, true);
+
+
+--
+-- Data for Name: processorBrand_processorbrand; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public."processorBrand_processorbrand" (id, name, slug) FROM stdin;
+1	Intel® Core™	intel-core
+2	Intel® Celeron®	intel-celeron
+3	Intel Atom®	intel-atom
+4	Intel® Pentium®	intel-pentium
+5	AMD	amd
+\.
+
+
+--
+-- Name: processorBrand_processorbrand_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public."processorBrand_processorbrand_id_seq"', 5, true);
+
+
+--
+-- Data for Name: processor_processor; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.processor_processor (id, name, slug, min_frequency, max_frequency, cores, threads, cache, integrated_graphics, brand_id) FROM stdin;
+1	i7-7700HQ	i7-7700hq	2.79999999999999982	3.79999999999999982	4	8	6	Intel® HD Graphics 630	1
+2	N4000	n4000	1.10000000000000009	2.60000000000000009	2	2	4	Intel® UHD Graphics 600	2
+3	x5-Z8300	x5-z8300	1.43999999999999995	1.84000000000000008	4	4	2	\N	3
+4	m3-6Y30	m3-6y30	0.900000000000000022	2.20000000000000018	2	4	4	Intel® HD Graphics 515	1
+5	N3350	n3350	1.10000000000000009	2.39999999999999991	2	2	2	Intel® HD Graphics 500	2
+6	N3710	n3710	1.60000000000000009	2.56000000000000005	4	4	2	\N	4
+7	i7-7500U	i7-7500u	2.70000000000000018	3.5	2	4	4	Intel® HD Graphics 620	1
+8	N3060	n3060	1.60000000000000009	2.47999999999999998	2	2	2	\N	2
+10	m3-7Y30	m3-7y30	1	2.60000000000000009	2	4	4	Intel® HD Graphics 615	1
+11	i3-7100U	i3-7100u	2.39999999999999991	2.39999999999999991	2	4	3	Intel® HD Graphics 620	1
+12	i7-8750H	i7-8750h	2.20000000000000018	4.09999999999999964	6	12	9	Intel® UHD Graphics 630	1
+13	i3-8130U	i3-8130u	2.20000000000000018	3.39999999999999991	2	4	4	Intel® UHD Graphics 620	1
+14	i5-7200U	i5-7200u	2.5	3.10000000000000009	3	2	4	Intel® HD Graphics 620	1
+15	m5-6Y54	m5-6y54	1.10000000000000009	2.70000000000000018	2	4	4	Intel® HD Graphics 515	1
+16	i7-8550U	i7-8550u	1.80000000000000004	4	4	8	8	Intel® UHD Graphics 620	1
+17	Silver N5000	silver-n5000	1.10000000000000009	2.70000000000000018	4	4	4	Intel® UHD Graphics 605	4
+18	i7-7600U	i7-7600u	2.79999999999999982	3.89999999999999991	2	4	4	Intel® HD Graphics 620	1
+19	i5-8250U	i5-8250u	1.60000000000000009	3.39999999999999991	4	8	6	Intel® UHD Graphics 620	1
+20	N4200	n4200	1.10000000000000009	2.5	4	4	2	Intel® HD Graphics 505	4
+21	Gold Processor 4415U	gold-processor-4415u	2.29999999999999982	2.29999999999999982	2	4	2	Intel® HD Graphics 610	4
+22	i5-5200U	i5-5200u	2.20000000000000018	2.70000000000000018	2	4	3	Intel® HD Graphics 5500	1
+23	m7-6Y75	m7-6y75	1.19999999999999996	3.10000000000000009	2	4	4	Intel® HD Graphics 515	1
+24	A6-9220	a6-9220	2.5	2.89999999999999991	2	2	1	AMD Radeon™ R5 Graphics	5
+25	i7-5500U	i7-5500u	2.39999999999999991	3	2	4	4	Intel® HD Graphics 5500	1
+9	A6-1450	a6-1450	1	1.39999999999999991	4	4	2	AMD Radeon HD 8250	5
+26	A4-9120	a4-9120	2.20000000000000018	2.5	2	2	1	AMD Radeon™ R3 Graphics	5
+27	i5-6200U	i5-6200u	2.29999999999999982	2.79999999999999982	2	4	3	Intel® HD Graphics 520	1
+28	i7-6500U	i7-6500u	2.5	3.10000000000000009	2	4	4	Intel® HD Graphics 520	1
+29	i5-7Y54	i5-7y54	1.19999999999999996	3.20000000000000018	2	4	4	Intel® HD Graphics 615	1
+30	i5-7300HQ	i5-7300hq	2.5	3.5	4	4	6	Intel® HD Graphics 630	1
+31	A12-9720P	a12-9720p	2.70000000000000018	3.60000000000000009	4	4	2	AMD Radeon R7	5
+32	i7-6700HQ	i7-6700hq	2.60000000000000009	3.5	4	8	6	Intel® HD Graphics 530	1
+33	i7-7700T	i7-7700t	2.89999999999999991	3.79999999999999982	4	8	8	Intel® HD Graphics 630	1
+\.
+
+
+--
+-- Name: processor_processor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.processor_processor_id_seq', 33, true);
+
+
+--
+-- Data for Name: purchases_purchase; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.purchases_purchase (id, quantity, cost, created, updated, laptop_id, warehouse_id) FROM stdin;
+1	1	595.00	2018-09-13 15:28:40.907417+00	2018-09-13 15:28:40.907441+00	10	2
+2	21	275.00	2018-09-13 15:30:19.890947+00	2018-09-13 15:30:19.890979+00	8	1
+3	3	275.00	2018-09-13 15:31:34.993358+00	2018-09-13 15:31:34.993381+00	8	2
+4	2	275.00	2018-09-13 15:32:09.748136+00	2018-09-13 15:32:09.748161+00	8	3
+5	1	735.00	2018-09-13 15:33:18.027562+00	2018-09-13 15:33:18.02761+00	13	2
+6	1	340.00	2018-09-13 15:34:36.654359+00	2018-09-13 15:34:36.654383+00	9	2
+7	1	288.00	2018-09-13 15:35:17.217005+00	2018-09-13 15:35:17.217028+00	12	2
+8	2	224.00	2018-09-13 15:36:12.954379+00	2018-09-13 15:36:12.954401+00	11	1
+10	2	224.00	2018-09-13 15:36:24.059145+00	2018-09-13 15:36:24.059164+00	11	2
+11	1	224.00	2018-09-13 15:36:37.819555+00	2018-09-13 15:36:37.819601+00	11	3
+12	46	212.00	2018-09-13 15:38:17.730955+00	2018-09-13 15:38:17.730979+00	14	1
+13	2	212.00	2018-09-13 15:38:52.707719+00	2018-09-13 15:38:52.70774+00	14	2
+14	1	212.00	2018-09-13 15:39:19.812997+00	2018-09-13 15:39:19.813017+00	14	3
+15	1	500.00	2018-09-13 16:02:16.567259+00	2018-09-13 16:02:16.567281+00	15	3
+17	1	530.00	2018-09-13 16:09:43.332583+00	2018-09-13 16:09:43.332603+00	16	2
+18	1	600.00	2018-09-13 16:18:13.776511+00	2018-09-13 16:18:13.776533+00	17	3
+19	1	461.00	2018-09-13 16:47:07.442212+00	2018-09-13 16:47:07.442232+00	18	2
+20	1	1144.00	2018-09-13 16:49:20.921221+00	2018-09-13 16:49:20.921242+00	19	2
+21	1	436.00	2018-09-13 16:55:04.421002+00	2018-09-13 16:55:04.421026+00	20	2
+22	1	500.00	2018-09-13 17:07:41.004216+00	2018-09-13 17:07:41.004237+00	21	2
+23	1	753.00	2018-09-13 17:12:58.116119+00	2018-09-13 17:12:58.116142+00	22	2
+24	10	220.00	2018-09-13 17:15:41.029048+00	2018-09-13 17:15:41.029067+00	23	1
+25	1	220.00	2018-09-13 17:17:03.182349+00	2018-09-13 17:17:03.182368+00	23	3
+26	1	1177.00	2018-09-13 17:36:20.953194+00	2018-09-13 17:36:20.953219+00	24	3
+27	1	312.50	2018-09-13 18:42:18.822744+00	2018-09-13 18:42:18.822765+00	25	2
+28	2	282.60	2018-09-13 18:49:01.863568+00	2018-09-13 18:49:01.863633+00	26	2
+29	1	665.38	2018-09-13 18:51:20.696438+00	2018-09-13 18:51:20.696459+00	27	3
+30	1	1635.00	2018-09-13 18:53:47.261953+00	2018-09-13 18:53:47.261972+00	28	2
+31	1	504.00	2018-09-13 19:08:32.024425+00	2018-09-13 19:08:32.024445+00	29	2
+32	1	504.00	2018-09-13 19:09:28.103768+00	2018-09-13 19:09:28.103787+00	29	3
+33	3	475.00	2018-09-15 17:12:49.13771+00	2018-09-15 17:12:49.13773+00	30	2
+34	2	475.00	2018-09-15 17:13:19.613376+00	2018-09-15 17:13:19.613395+00	30	3
+35	1	335.00	2018-09-15 17:20:12.243433+00	2018-09-15 17:20:12.243455+00	31	2
+36	1	335.00	2018-09-15 17:20:30.265705+00	2018-09-15 17:20:30.265726+00	31	3
+37	0	305.00	2018-09-15 17:30:28.566828+00	2018-09-15 17:30:28.566849+00	32	1
+39	1	518.93	2018-09-15 17:37:41.449624+00	2018-09-15 17:37:41.449648+00	33	2
+40	1	597.00	2018-09-15 17:42:24.058794+00	2018-09-15 17:42:24.058813+00	34	3
+41	2	575.00	2018-09-15 17:44:13.987921+00	2018-09-15 17:44:13.987947+00	35	1
+42	2	575.00	2018-09-15 17:45:05.811587+00	2018-09-15 17:45:05.811611+00	35	2
+44	0	325.00	2018-09-15 17:47:52.086944+00	2018-09-15 17:47:52.086974+00	36	1
+45	1	745.00	2018-09-15 18:25:46.571904+00	2018-09-15 18:26:29.137743+00	37	2
+46	1	1435.00	2018-09-15 18:28:53.141696+00	2018-09-15 18:28:53.141729+00	38	2
+47	0	577.00	2018-09-15 18:44:41.671518+00	2018-09-15 18:44:41.67154+00	39	1
+48	1	577.00	2018-09-15 19:00:03.75683+00	2018-09-15 19:00:03.756854+00	40	2
+49	3	359.00	2018-09-15 19:10:35.80536+00	2018-09-15 19:10:35.80538+00	41	2
+50	1	359.00	2018-09-15 19:11:19.543217+00	2018-09-15 19:11:19.543238+00	41	3
+51	1	680.00	2018-09-15 19:53:19.268766+00	2018-09-15 19:53:19.268789+00	42	3
+52	1	589.00	2018-09-15 19:54:42.480063+00	2018-09-15 19:54:42.480083+00	43	2
+53	1	589.00	2018-09-15 19:54:42.683445+00	2018-09-15 19:54:42.683466+00	43	2
+54	1	288.00	2018-09-15 19:56:26.475695+00	2018-09-15 19:56:26.475719+00	44	2
+55	1	556.00	2018-09-15 19:57:38.93948+00	2018-09-15 19:57:38.939502+00	45	2
+56	1	748.00	2018-09-15 20:01:06.393141+00	2018-09-15 20:01:06.393163+00	46	2
+57	1	327.00	2018-09-15 20:03:15.996847+00	2018-09-15 20:03:15.996871+00	47	2
+58	1	612.00	2018-09-15 20:05:23.708606+00	2018-09-15 20:05:23.708632+00	48	3
+59	1	716.00	2018-09-15 20:15:54.604614+00	2018-09-15 20:15:54.604635+00	49	3
+60	1	681.00	2018-09-16 17:14:09.930972+00	2018-09-16 17:14:09.930992+00	50	3
+61	1	765.00	2018-09-16 17:15:04.062375+00	2018-09-16 17:15:04.062396+00	52	2
+62	1	707.00	2018-09-16 17:17:15.949347+00	2018-09-16 17:17:15.949368+00	53	3
+63	1	527.00	2018-09-16 17:20:20.453151+00	2018-09-16 17:20:20.453186+00	54	2
+64	1	712.00	2018-09-16 17:23:15.90887+00	2018-09-16 17:23:15.908893+00	55	3
+65	1	650.00	2018-09-16 17:24:04.906438+00	2018-09-16 17:24:04.906457+00	56	2
+66	1	1335.00	2018-09-16 17:27:09.210099+00	2018-09-16 17:27:09.210123+00	57	2
+67	1	615.00	2018-09-16 17:28:42.651898+00	2018-09-16 17:28:42.65192+00	58	2
+69	1	904.00	2018-09-16 17:29:40.845437+00	2018-09-16 17:29:40.845457+00	59	3
+68	1	904.00	2018-09-16 17:29:07.270083+00	2018-09-16 17:30:19.85971+00	59	2
+70	1	515.00	2018-09-16 17:39:25.461774+00	2018-09-16 17:39:25.461794+00	60	2
+71	1	1019.00	2018-09-16 17:43:17.092751+00	2018-09-16 17:43:31.63631+00	61	3
+72	1	630.00	2018-09-16 17:48:21.737757+00	2018-09-16 17:48:21.737782+00	62	2
+73	1	1153.00	2018-09-16 17:50:12.75999+00	2018-09-16 17:50:12.760017+00	63	2
+74	1	673.00	2018-09-16 17:53:21.351802+00	2018-09-16 17:53:21.351828+00	64	3
+75	1	1169.00	2018-09-16 17:58:20.142978+00	2018-09-16 17:58:20.143004+00	65	2
+76	1	915.00	2018-09-16 18:05:07.702464+00	2018-09-16 18:05:07.702488+00	66	3
+77	1	915.00	2018-09-16 18:05:51.176429+00	2018-09-16 18:05:51.176448+00	67	2
+78	2	940.00	2018-09-16 18:12:10.169715+00	2018-09-16 18:12:10.169744+00	68	2
+79	1	1115.00	2018-09-16 18:17:01.494051+00	2018-09-16 18:17:04.969956+00	69	3
+\.
+
+
+--
+-- Name: purchases_purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.purchases_purchase_id_seq', 79, true);
+
+
+--
+-- Data for Name: ram_ram; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.ram_ram (id, generation, slug) FROM stdin;
+1	DDR3	ddr3
+2	DDR4	ddr4
+\.
+
+
+--
+-- Name: ram_ram_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.ram_ram_id_seq', 2, true);
+
+
+--
+-- Data for Name: resolution_resolution; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.resolution_resolution (id, name, slug, size) FROM stdin;
+1	HD	hd	1366 x 768
+2	HD+	hd	1600 x 900
+3	Full HD	full-hd	1920 x 1080
+4	Tablet HD	tablet-hd	1280 x 800
+5	QHD / WQHD /2K	qhd-wqhd-2k	2560 x 1440
+6	QHD+ / 3K	qhd-3k	3200 x 1800
+7	UHD / 4K	uhd-4k	3840 x 2160
+\.
+
+
+--
+-- Name: resolution_resolution_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.resolution_resolution_id_seq', 7, true);
+
+
+--
+-- Data for Name: sales_sales; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.sales_sales (id, price, quantity, created, updated, customer_id, laptop_id, warehouse_id) FROM stdin;
+\.
+
+
+--
+-- Name: sales_sales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.sales_sales_id_seq', 1, true);
+
+
+--
+-- Data for Name: stock_movements_stockmovements; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.stock_movements_stockmovements (id, quantity, created, updated, from_warehouse_id, laptop_id, moved_by_id, to_warehouse_id) FROM stdin;
+\.
+
+
+--
+-- Name: stock_movements_stockmovements_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.stock_movements_stockmovements_id_seq', 1, false);
+
+
+--
+-- Data for Name: storage_storage; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.storage_storage (id, name, slug) FROM stdin;
+1	SSD	ssd
+2	eMMC	emmc
+3	M2.SSD	m2ssd
+5	HDD (7200 об/мин)	hdd-7200-obmin
+6	SSHD	sshd
+4	HDD	hdd-5400-obmin
+\.
+
+
+--
+-- Name: storage_storage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.storage_storage_id_seq', 6, true);
+
+
+--
+-- Data for Name: warehouses_warehouse; Type: TABLE DATA; Schema: public; Owner: ultrashop
+--
+
+COPY public.warehouses_warehouse (id, name, address, created, updated) FROM stdin;
+1	Главный Склад	Кичик Бешягач	2018-09-08 13:26:41.213296+00	2018-09-08 13:26:41.213313+00
+2	Б32	Малика	2018-09-08 13:26:56.055883+00	2018-09-08 13:26:56.055902+00
+3	А29	Малика	2018-09-08 13:27:05.61964+00	2018-09-08 13:27:05.619658+00
+\.
+
+
+--
+-- Name: warehouses_warehouse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ultrashop
+--
+
+SELECT pg_catalog.setval('public.warehouses_warehouse_id_seq', 3, true);
+
+
+--
+-- Name: accounts_user_email_key; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.accounts_user
+    ADD CONSTRAINT accounts_user_email_key UNIQUE (email);
+
+
+--
+-- Name: accounts_user_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.accounts_user
+    ADD CONSTRAINT accounts_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: audio_audio_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.audio_audio
+    ADD CONSTRAINT audio_audio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: brand_brand_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.brand_brand
+    ADD CONSTRAINT brand_brand_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: customers_customer_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.customers_customer
+    ADD CONSTRAINT customers_customer_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: displaySize_displaysize_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."displaySize_displaysize"
+    ADD CONSTRAINT "displaySize_displaysize_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: graphicsCardBrand_graphicscardbrand_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."graphicsCardBrand_graphicscardbrand"
+    ADD CONSTRAINT "graphicsCardBrand_graphicscardbrand_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: graphicsCard_graphicscard_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."graphicsCard_graphicscard"
+    ADD CONSTRAINT "graphicsCard_graphicscard_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: inquiries_inquiry_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry
+    ADD CONSTRAINT inquiries_inquiry_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inquiries_inquiry_proces_inquiry_id_processorbran_abfd78e1_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_processor
+    ADD CONSTRAINT inquiries_inquiry_proces_inquiry_id_processorbran_abfd78e1_uniq UNIQUE (inquiry_id, processorbrand_id);
+
+
+--
+-- Name: inquiries_inquiry_processor_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_processor
+    ADD CONSTRAINT inquiries_inquiry_processor_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inquiries_inquiry_ram_inquiry_id_ram_id_8594c002_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_ram
+    ADD CONSTRAINT inquiries_inquiry_ram_inquiry_id_ram_id_8594c002_uniq UNIQUE (inquiry_id, ram_id);
+
+
+--
+-- Name: inquiries_inquiry_ram_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_ram
+    ADD CONSTRAINT inquiries_inquiry_ram_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inquiries_inquiry_resolu_inquiry_id_resolution_id_83dde536_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_resolution
+    ADD CONSTRAINT inquiries_inquiry_resolu_inquiry_id_resolution_id_83dde536_uniq UNIQUE (inquiry_id, resolution_id);
+
+
+--
+-- Name: inquiries_inquiry_resolution_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_resolution
+    ADD CONSTRAINT inquiries_inquiry_resolution_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inquiries_inquiry_size_inquiry_id_displaysize_id_592e68aa_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_size
+    ADD CONSTRAINT inquiries_inquiry_size_inquiry_id_displaysize_id_592e68aa_uniq UNIQUE (inquiry_id, displaysize_id);
+
+
+--
+-- Name: inquiries_inquiry_size_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_size
+    ADD CONSTRAINT inquiries_inquiry_size_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inquiries_inquiry_storage_inquiry_id_storage_id_0664ad36_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_storage
+    ADD CONSTRAINT inquiries_inquiry_storage_inquiry_id_storage_id_0664ad36_uniq UNIQUE (inquiry_id, storage_id);
+
+
+--
+-- Name: inquiries_inquiry_storage_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_storage
+    ADD CONSTRAINT inquiries_inquiry_storage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inquiries_inquiry_type_inquiry_id_laptoptype_id_f7a47469_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_type
+    ADD CONSTRAINT inquiries_inquiry_type_inquiry_id_laptoptype_id_f7a47469_uniq UNIQUE (inquiry_id, laptoptype_id);
+
+
+--
+-- Name: inquiries_inquiry_type_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_type
+    ADD CONSTRAINT inquiries_inquiry_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inventory_inventory_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inventory_inventory
+    ADD CONSTRAINT inventory_inventory_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: laptopType_laptoptype_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."laptopType_laptoptype"
+    ADD CONSTRAINT "laptopType_laptoptype_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: laptop_image_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_image
+    ADD CONSTRAINT laptop_image_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: laptop_laptop_perks_laptop_id_perks_id_bb43e40a_uniq; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop_perks
+    ADD CONSTRAINT laptop_laptop_perks_laptop_id_perks_id_bb43e40a_uniq UNIQUE (laptop_id, perks_id);
+
+
+--
+-- Name: laptop_laptop_perks_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop_perks
+    ADD CONSTRAINT laptop_laptop_perks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: laptop_laptop_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: perks_perks_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.perks_perks
+    ADD CONSTRAINT perks_perks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: processorBrand_processorbrand_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."processorBrand_processorbrand"
+    ADD CONSTRAINT "processorBrand_processorbrand_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: processor_processor_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.processor_processor
+    ADD CONSTRAINT processor_processor_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: purchases_purchase_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.purchases_purchase
+    ADD CONSTRAINT purchases_purchase_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ram_ram_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.ram_ram
+    ADD CONSTRAINT ram_ram_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: resolution_resolution_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.resolution_resolution
+    ADD CONSTRAINT resolution_resolution_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sales_sales_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.sales_sales
+    ADD CONSTRAINT sales_sales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: stock_movements_stockmovements_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.stock_movements_stockmovements
+    ADD CONSTRAINT stock_movements_stockmovements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: storage_storage_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.storage_storage
+    ADD CONSTRAINT storage_storage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: warehouses_warehouse_pkey; Type: CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.warehouses_warehouse
+    ADD CONSTRAINT warehouses_warehouse_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: accounts_user_email_b2644a56_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX accounts_user_email_b2644a56_like ON public.accounts_user USING btree (email varchar_pattern_ops);
+
+
+--
+-- Name: audio_audio_slug_04994c9d; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX audio_audio_slug_04994c9d ON public.audio_audio USING btree (slug);
+
+
+--
+-- Name: audio_audio_slug_04994c9d_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX audio_audio_slug_04994c9d_like ON public.audio_audio USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: brand_brand_slug_dbd50317; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX brand_brand_slug_dbd50317 ON public.brand_brand USING btree (slug);
+
+
+--
+-- Name: brand_brand_slug_dbd50317_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX brand_brand_slug_dbd50317_like ON public.brand_brand USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: customers_customer_laptop_id_faf1d735; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX customers_customer_laptop_id_faf1d735 ON public.customers_customer USING btree (laptop_id);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: graphicsCardBrand_graphicscardbrand_slug_174181d0; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "graphicsCardBrand_graphicscardbrand_slug_174181d0" ON public."graphicsCardBrand_graphicscardbrand" USING btree (slug);
+
+
+--
+-- Name: graphicsCardBrand_graphicscardbrand_slug_174181d0_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "graphicsCardBrand_graphicscardbrand_slug_174181d0_like" ON public."graphicsCardBrand_graphicscardbrand" USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: graphicsCard_graphicscard_brand_id_d4b79d2b; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "graphicsCard_graphicscard_brand_id_d4b79d2b" ON public."graphicsCard_graphicscard" USING btree (brand_id);
+
+
+--
+-- Name: graphicsCard_graphicscard_slug_16011762; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "graphicsCard_graphicscard_slug_16011762" ON public."graphicsCard_graphicscard" USING btree (slug);
+
+
+--
+-- Name: graphicsCard_graphicscard_slug_16011762_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "graphicsCard_graphicscard_slug_16011762_like" ON public."graphicsCard_graphicscard" USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: inquiries_inquiry_laptop_id_523762fb; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_laptop_id_523762fb ON public.inquiries_inquiry USING btree (laptop_id);
+
+
+--
+-- Name: inquiries_inquiry_processor_inquiry_id_260e1f74; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_processor_inquiry_id_260e1f74 ON public.inquiries_inquiry_processor USING btree (inquiry_id);
+
+
+--
+-- Name: inquiries_inquiry_processor_processorbrand_id_f5cf97f3; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_processor_processorbrand_id_f5cf97f3 ON public.inquiries_inquiry_processor USING btree (processorbrand_id);
+
+
+--
+-- Name: inquiries_inquiry_ram_inquiry_id_9ea84c0d; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_ram_inquiry_id_9ea84c0d ON public.inquiries_inquiry_ram USING btree (inquiry_id);
+
+
+--
+-- Name: inquiries_inquiry_ram_ram_id_d1ff187e; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_ram_ram_id_d1ff187e ON public.inquiries_inquiry_ram USING btree (ram_id);
+
+
+--
+-- Name: inquiries_inquiry_resolution_inquiry_id_2281164b; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_resolution_inquiry_id_2281164b ON public.inquiries_inquiry_resolution USING btree (inquiry_id);
+
+
+--
+-- Name: inquiries_inquiry_resolution_resolution_id_accad831; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_resolution_resolution_id_accad831 ON public.inquiries_inquiry_resolution USING btree (resolution_id);
+
+
+--
+-- Name: inquiries_inquiry_size_displaysize_id_2e47f9c3; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_size_displaysize_id_2e47f9c3 ON public.inquiries_inquiry_size USING btree (displaysize_id);
+
+
+--
+-- Name: inquiries_inquiry_size_inquiry_id_c51d6b81; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_size_inquiry_id_c51d6b81 ON public.inquiries_inquiry_size USING btree (inquiry_id);
+
+
+--
+-- Name: inquiries_inquiry_storage_inquiry_id_41435906; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_storage_inquiry_id_41435906 ON public.inquiries_inquiry_storage USING btree (inquiry_id);
+
+
+--
+-- Name: inquiries_inquiry_storage_storage_id_6030af50; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_storage_storage_id_6030af50 ON public.inquiries_inquiry_storage USING btree (storage_id);
+
+
+--
+-- Name: inquiries_inquiry_type_inquiry_id_a85fead1; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_type_inquiry_id_a85fead1 ON public.inquiries_inquiry_type USING btree (inquiry_id);
+
+
+--
+-- Name: inquiries_inquiry_type_laptoptype_id_19dcf4c4; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inquiries_inquiry_type_laptoptype_id_19dcf4c4 ON public.inquiries_inquiry_type USING btree (laptoptype_id);
+
+
+--
+-- Name: inventory_inventory_laptop_id_c20e4900; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inventory_inventory_laptop_id_c20e4900 ON public.inventory_inventory USING btree (laptop_id);
+
+
+--
+-- Name: inventory_inventory_warehouse_id_fadd9d8c; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX inventory_inventory_warehouse_id_fadd9d8c ON public.inventory_inventory USING btree (warehouse_id);
+
+
+--
+-- Name: laptopType_laptoptype_slug_2f5187fd; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "laptopType_laptoptype_slug_2f5187fd" ON public."laptopType_laptoptype" USING btree (slug);
+
+
+--
+-- Name: laptopType_laptoptype_slug_2f5187fd_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "laptopType_laptoptype_slug_2f5187fd_like" ON public."laptopType_laptoptype" USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: laptop_image_gallery_id_79c0819f; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_image_gallery_id_79c0819f ON public.laptop_image USING btree (gallery_id);
+
+
+--
+-- Name: laptop_laptop_audio_id_40150e74; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_audio_id_40150e74 ON public.laptop_laptop USING btree (audio_id);
+
+
+--
+-- Name: laptop_laptop_brand_id_11a768bb; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_brand_id_11a768bb ON public.laptop_laptop USING btree (brand_id);
+
+
+--
+-- Name: laptop_laptop_graphics_card_id_ab8fae85; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_graphics_card_id_ab8fae85 ON public.laptop_laptop USING btree (graphics_card_id);
+
+
+--
+-- Name: laptop_laptop_laptop_type_id_67d69e98; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_laptop_type_id_67d69e98 ON public.laptop_laptop USING btree (laptop_type_id);
+
+
+--
+-- Name: laptop_laptop_main_storage_type_id_6b5bd4ea; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_main_storage_type_id_6b5bd4ea ON public.laptop_laptop USING btree (main_storage_type_id);
+
+
+--
+-- Name: laptop_laptop_perks_laptop_id_a1fe516b; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_perks_laptop_id_a1fe516b ON public.laptop_laptop_perks USING btree (laptop_id);
+
+
+--
+-- Name: laptop_laptop_perks_perks_id_32fc375e; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_perks_perks_id_32fc375e ON public.laptop_laptop_perks USING btree (perks_id);
+
+
+--
+-- Name: laptop_laptop_processor_id_adab9105; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_processor_id_adab9105 ON public.laptop_laptop USING btree (processor_id);
+
+
+--
+-- Name: laptop_laptop_ram_type_id_2f9b79e0; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_ram_type_id_2f9b79e0 ON public.laptop_laptop USING btree (ram_type_id);
+
+
+--
+-- Name: laptop_laptop_resolution_id_3d558250; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_resolution_id_3d558250 ON public.laptop_laptop USING btree (resolution_id);
+
+
+--
+-- Name: laptop_laptop_screen_size_id_8c0a4986; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_screen_size_id_8c0a4986 ON public.laptop_laptop USING btree (screen_size_id);
+
+
+--
+-- Name: laptop_laptop_secondary_storage_type_id_ec9c05d7; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_secondary_storage_type_id_ec9c05d7 ON public.laptop_laptop USING btree (secondary_storage_type_id);
+
+
+--
+-- Name: laptop_laptop_slug_969ea728; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_slug_969ea728 ON public.laptop_laptop USING btree (slug);
+
+
+--
+-- Name: laptop_laptop_slug_969ea728_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX laptop_laptop_slug_969ea728_like ON public.laptop_laptop USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: perks_perks_slug_97b7af4c; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX perks_perks_slug_97b7af4c ON public.perks_perks USING btree (slug);
+
+
+--
+-- Name: perks_perks_slug_97b7af4c_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX perks_perks_slug_97b7af4c_like ON public.perks_perks USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: processorBrand_processorbrand_slug_f13915e6; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "processorBrand_processorbrand_slug_f13915e6" ON public."processorBrand_processorbrand" USING btree (slug);
+
+
+--
+-- Name: processorBrand_processorbrand_slug_f13915e6_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX "processorBrand_processorbrand_slug_f13915e6_like" ON public."processorBrand_processorbrand" USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: processor_processor_brand_id_da126e8a; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX processor_processor_brand_id_da126e8a ON public.processor_processor USING btree (brand_id);
+
+
+--
+-- Name: processor_processor_slug_dd2c331a; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX processor_processor_slug_dd2c331a ON public.processor_processor USING btree (slug);
+
+
+--
+-- Name: processor_processor_slug_dd2c331a_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX processor_processor_slug_dd2c331a_like ON public.processor_processor USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: purchases_purchase_laptop_id_afeac2f5; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX purchases_purchase_laptop_id_afeac2f5 ON public.purchases_purchase USING btree (laptop_id);
+
+
+--
+-- Name: purchases_purchase_warehouse_id_78a36f8b; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX purchases_purchase_warehouse_id_78a36f8b ON public.purchases_purchase USING btree (warehouse_id);
+
+
+--
+-- Name: ram_ram_slug_594236e6; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX ram_ram_slug_594236e6 ON public.ram_ram USING btree (slug);
+
+
+--
+-- Name: ram_ram_slug_594236e6_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX ram_ram_slug_594236e6_like ON public.ram_ram USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: resolution_resolution_slug_b12eb267; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX resolution_resolution_slug_b12eb267 ON public.resolution_resolution USING btree (slug);
+
+
+--
+-- Name: resolution_resolution_slug_b12eb267_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX resolution_resolution_slug_b12eb267_like ON public.resolution_resolution USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: sales_sales_customer_id_3450b588; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX sales_sales_customer_id_3450b588 ON public.sales_sales USING btree (customer_id);
+
+
+--
+-- Name: sales_sales_laptop_id_e2374cdd; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX sales_sales_laptop_id_e2374cdd ON public.sales_sales USING btree (laptop_id);
+
+
+--
+-- Name: sales_sales_warehouse_id_45a20451; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX sales_sales_warehouse_id_45a20451 ON public.sales_sales USING btree (warehouse_id);
+
+
+--
+-- Name: stock_movements_stockmovements_from_warehouse_id_d47d5ad8; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX stock_movements_stockmovements_from_warehouse_id_d47d5ad8 ON public.stock_movements_stockmovements USING btree (from_warehouse_id);
+
+
+--
+-- Name: stock_movements_stockmovements_laptop_id_bd2d52e9; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX stock_movements_stockmovements_laptop_id_bd2d52e9 ON public.stock_movements_stockmovements USING btree (laptop_id);
+
+
+--
+-- Name: stock_movements_stockmovements_moved_by_id_bbf88357; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX stock_movements_stockmovements_moved_by_id_bbf88357 ON public.stock_movements_stockmovements USING btree (moved_by_id);
+
+
+--
+-- Name: stock_movements_stockmovements_to_warehouse_id_8888c3cc; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX stock_movements_stockmovements_to_warehouse_id_8888c3cc ON public.stock_movements_stockmovements USING btree (to_warehouse_id);
+
+
+--
+-- Name: storage_storage_slug_3118fe78; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX storage_storage_slug_3118fe78 ON public.storage_storage USING btree (slug);
+
+
+--
+-- Name: storage_storage_slug_3118fe78_like; Type: INDEX; Schema: public; Owner: ultrashop
+--
+
+CREATE INDEX storage_storage_slug_3118fe78_like ON public.storage_storage USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: customers_customer_laptop_id_faf1d735_fk_laptop_laptop_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.customers_customer
+    ADD CONSTRAINT customers_customer_laptop_id_faf1d735_fk_laptop_laptop_id FOREIGN KEY (laptop_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6_fk_accounts_user_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_accounts_user_id FOREIGN KEY (user_id) REFERENCES public.accounts_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: graphicsCard_graphic_brand_id_d4b79d2b_fk_graphicsC; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public."graphicsCard_graphicscard"
+    ADD CONSTRAINT "graphicsCard_graphic_brand_id_d4b79d2b_fk_graphicsC" FOREIGN KEY (brand_id) REFERENCES public."graphicsCardBrand_graphicscardbrand"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_laptop_id_523762fb_fk_laptop_laptop_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry
+    ADD CONSTRAINT inquiries_inquiry_laptop_id_523762fb_fk_laptop_laptop_id FOREIGN KEY (laptop_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_pr_inquiry_id_260e1f74_fk_inquiries; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_processor
+    ADD CONSTRAINT inquiries_inquiry_pr_inquiry_id_260e1f74_fk_inquiries FOREIGN KEY (inquiry_id) REFERENCES public.inquiries_inquiry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_pr_processorbrand_id_f5cf97f3_fk_processor; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_processor
+    ADD CONSTRAINT inquiries_inquiry_pr_processorbrand_id_f5cf97f3_fk_processor FOREIGN KEY (processorbrand_id) REFERENCES public."processorBrand_processorbrand"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_ra_inquiry_id_9ea84c0d_fk_inquiries; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_ram
+    ADD CONSTRAINT inquiries_inquiry_ra_inquiry_id_9ea84c0d_fk_inquiries FOREIGN KEY (inquiry_id) REFERENCES public.inquiries_inquiry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_ram_ram_id_d1ff187e_fk_ram_ram_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_ram
+    ADD CONSTRAINT inquiries_inquiry_ram_ram_id_d1ff187e_fk_ram_ram_id FOREIGN KEY (ram_id) REFERENCES public.ram_ram(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_re_inquiry_id_2281164b_fk_inquiries; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_resolution
+    ADD CONSTRAINT inquiries_inquiry_re_inquiry_id_2281164b_fk_inquiries FOREIGN KEY (inquiry_id) REFERENCES public.inquiries_inquiry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_re_resolution_id_accad831_fk_resolutio; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_resolution
+    ADD CONSTRAINT inquiries_inquiry_re_resolution_id_accad831_fk_resolutio FOREIGN KEY (resolution_id) REFERENCES public.resolution_resolution(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_si_displaysize_id_2e47f9c3_fk_displaySi; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_size
+    ADD CONSTRAINT "inquiries_inquiry_si_displaysize_id_2e47f9c3_fk_displaySi" FOREIGN KEY (displaysize_id) REFERENCES public."displaySize_displaysize"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_si_inquiry_id_c51d6b81_fk_inquiries; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_size
+    ADD CONSTRAINT inquiries_inquiry_si_inquiry_id_c51d6b81_fk_inquiries FOREIGN KEY (inquiry_id) REFERENCES public.inquiries_inquiry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_st_inquiry_id_41435906_fk_inquiries; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_storage
+    ADD CONSTRAINT inquiries_inquiry_st_inquiry_id_41435906_fk_inquiries FOREIGN KEY (inquiry_id) REFERENCES public.inquiries_inquiry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_st_storage_id_6030af50_fk_storage_s; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_storage
+    ADD CONSTRAINT inquiries_inquiry_st_storage_id_6030af50_fk_storage_s FOREIGN KEY (storage_id) REFERENCES public.storage_storage(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_ty_inquiry_id_a85fead1_fk_inquiries; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_type
+    ADD CONSTRAINT inquiries_inquiry_ty_inquiry_id_a85fead1_fk_inquiries FOREIGN KEY (inquiry_id) REFERENCES public.inquiries_inquiry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inquiries_inquiry_ty_laptoptype_id_19dcf4c4_fk_laptopTyp; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inquiries_inquiry_type
+    ADD CONSTRAINT "inquiries_inquiry_ty_laptoptype_id_19dcf4c4_fk_laptopTyp" FOREIGN KEY (laptoptype_id) REFERENCES public."laptopType_laptoptype"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inventory_inventory_laptop_id_c20e4900_fk_laptop_laptop_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inventory_inventory
+    ADD CONSTRAINT inventory_inventory_laptop_id_c20e4900_fk_laptop_laptop_id FOREIGN KEY (laptop_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: inventory_inventory_warehouse_id_fadd9d8c_fk_warehouse; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.inventory_inventory
+    ADD CONSTRAINT inventory_inventory_warehouse_id_fadd9d8c_fk_warehouse FOREIGN KEY (warehouse_id) REFERENCES public.warehouses_warehouse(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_image_gallery_id_79c0819f_fk_laptop_laptop_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_image
+    ADD CONSTRAINT laptop_image_gallery_id_79c0819f_fk_laptop_laptop_id FOREIGN KEY (gallery_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_audio_id_40150e74_fk_audio_audio_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_audio_id_40150e74_fk_audio_audio_id FOREIGN KEY (audio_id) REFERENCES public.audio_audio(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_brand_id_11a768bb_fk_brand_brand_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_brand_id_11a768bb_fk_brand_brand_id FOREIGN KEY (brand_id) REFERENCES public.brand_brand(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_graphics_card_id_ab8fae85_fk_graphicsC; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT "laptop_laptop_graphics_card_id_ab8fae85_fk_graphicsC" FOREIGN KEY (graphics_card_id) REFERENCES public."graphicsCard_graphicscard"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_laptop_type_id_67d69e98_fk_laptopTyp; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT "laptop_laptop_laptop_type_id_67d69e98_fk_laptopTyp" FOREIGN KEY (laptop_type_id) REFERENCES public."laptopType_laptoptype"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_main_storage_type_id_6b5bd4ea_fk_storage_s; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_main_storage_type_id_6b5bd4ea_fk_storage_s FOREIGN KEY (main_storage_type_id) REFERENCES public.storage_storage(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_perks_laptop_id_a1fe516b_fk_laptop_laptop_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop_perks
+    ADD CONSTRAINT laptop_laptop_perks_laptop_id_a1fe516b_fk_laptop_laptop_id FOREIGN KEY (laptop_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_perks_perks_id_32fc375e_fk_perks_perks_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop_perks
+    ADD CONSTRAINT laptop_laptop_perks_perks_id_32fc375e_fk_perks_perks_id FOREIGN KEY (perks_id) REFERENCES public.perks_perks(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_processor_id_adab9105_fk_processor_processor_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_processor_id_adab9105_fk_processor_processor_id FOREIGN KEY (processor_id) REFERENCES public.processor_processor(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_ram_type_id_2f9b79e0_fk_ram_ram_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_ram_type_id_2f9b79e0_fk_ram_ram_id FOREIGN KEY (ram_type_id) REFERENCES public.ram_ram(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_resolution_id_3d558250_fk_resolutio; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_resolution_id_3d558250_fk_resolutio FOREIGN KEY (resolution_id) REFERENCES public.resolution_resolution(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_screen_size_id_8c0a4986_fk_displaySi; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT "laptop_laptop_screen_size_id_8c0a4986_fk_displaySi" FOREIGN KEY (screen_size_id) REFERENCES public."displaySize_displaysize"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: laptop_laptop_secondary_storage_ty_ec9c05d7_fk_storage_s; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.laptop_laptop
+    ADD CONSTRAINT laptop_laptop_secondary_storage_ty_ec9c05d7_fk_storage_s FOREIGN KEY (secondary_storage_type_id) REFERENCES public.storage_storage(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: processor_processor_brand_id_da126e8a_fk_processor; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.processor_processor
+    ADD CONSTRAINT processor_processor_brand_id_da126e8a_fk_processor FOREIGN KEY (brand_id) REFERENCES public."processorBrand_processorbrand"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: purchases_purchase_laptop_id_afeac2f5_fk_laptop_laptop_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.purchases_purchase
+    ADD CONSTRAINT purchases_purchase_laptop_id_afeac2f5_fk_laptop_laptop_id FOREIGN KEY (laptop_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: purchases_purchase_warehouse_id_78a36f8b_fk_warehouse; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.purchases_purchase
+    ADD CONSTRAINT purchases_purchase_warehouse_id_78a36f8b_fk_warehouse FOREIGN KEY (warehouse_id) REFERENCES public.warehouses_warehouse(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: sales_sales_customer_id_3450b588_fk_customers_customer_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.sales_sales
+    ADD CONSTRAINT sales_sales_customer_id_3450b588_fk_customers_customer_id FOREIGN KEY (customer_id) REFERENCES public.customers_customer(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: sales_sales_laptop_id_e2374cdd_fk_laptop_laptop_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.sales_sales
+    ADD CONSTRAINT sales_sales_laptop_id_e2374cdd_fk_laptop_laptop_id FOREIGN KEY (laptop_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: sales_sales_warehouse_id_45a20451_fk_warehouses_warehouse_id; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.sales_sales
+    ADD CONSTRAINT sales_sales_warehouse_id_45a20451_fk_warehouses_warehouse_id FOREIGN KEY (warehouse_id) REFERENCES public.warehouses_warehouse(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: stock_movements_stoc_from_warehouse_id_d47d5ad8_fk_warehouse; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.stock_movements_stockmovements
+    ADD CONSTRAINT stock_movements_stoc_from_warehouse_id_d47d5ad8_fk_warehouse FOREIGN KEY (from_warehouse_id) REFERENCES public.warehouses_warehouse(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: stock_movements_stoc_laptop_id_bd2d52e9_fk_laptop_la; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.stock_movements_stockmovements
+    ADD CONSTRAINT stock_movements_stoc_laptop_id_bd2d52e9_fk_laptop_la FOREIGN KEY (laptop_id) REFERENCES public.laptop_laptop(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: stock_movements_stoc_moved_by_id_bbf88357_fk_accounts_; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.stock_movements_stockmovements
+    ADD CONSTRAINT stock_movements_stoc_moved_by_id_bbf88357_fk_accounts_ FOREIGN KEY (moved_by_id) REFERENCES public.accounts_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: stock_movements_stoc_to_warehouse_id_8888c3cc_fk_warehouse; Type: FK CONSTRAINT; Schema: public; Owner: ultrashop
+--
+
+ALTER TABLE ONLY public.stock_movements_stockmovements
+    ADD CONSTRAINT stock_movements_stoc_to_warehouse_id_8888c3cc_fk_warehouse FOREIGN KEY (to_warehouse_id) REFERENCES public.warehouses_warehouse(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

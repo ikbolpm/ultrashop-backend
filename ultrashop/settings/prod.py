@@ -16,6 +16,7 @@ STATIC_ROOT="static"
 
 CORS_ORIGIN_WHITELIST = (
 	'ultrashop.uz',
+	'www.ultrashop.uz',
 	'localhost:8080',
 	'127.0.0.1:8080'
 )
