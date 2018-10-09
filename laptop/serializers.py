@@ -56,5 +56,7 @@ class LaptopSerializer(serializers.ModelSerializer):
             'audio',
             'perks',
             'price',
-            'images'
+            'images',
+            'created',
+            'updated'
         ]

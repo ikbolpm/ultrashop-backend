@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.mail import send_mail
 from resolution.models import Resolution
 from ram.models import Ram
 from processorBrand.models import ProcessorBrand
@@ -36,4 +37,12 @@ class Inquiry(models.Model):
     def __str__(self):
         return self.name
 
-
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        send_mail(
+            'UltraShop.uz: Поступила новая заявка от ' + self.name,
+            'Пожалуйста позовните по номеру ' + self.phone + ' и поговорите с клиентом. Его/ее зовут ' + self.name,
+            'ikbolpm@gmail.com',
+            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', ],
+            fail_silently=False,
+        )

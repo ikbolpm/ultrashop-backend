@@ -157,3 +157,9 @@ REST_FRAMEWORK = {
 }
 
 # BASE_URL = 'http://localhost:8000'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ikbolpm'
+EMAIL_HOST_PASSWORD = 'UltraShop'
+EMAIL_USE_TLS = True

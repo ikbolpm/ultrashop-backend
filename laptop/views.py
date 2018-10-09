@@ -19,6 +19,7 @@ from .serializers import LaptopSerializer, ImageSerializer
 
 
 class LaptopFilter (FilterSet):
+    id_not = filters.NumberFilter(field_name='id',exclude=True)
     min_price = filters.CharFilter(method='filter_by_min_price')
     max_price = filters.CharFilter(method='filter_by_max_price')
     min_ram = filters.CharFilter(method='filter_by_min_ram')
@@ -52,6 +53,9 @@ class LaptopFilter (FilterSet):
             'id',
             'slug'
         )
+    def filter_by_id_not(self, queryset, name, value):
+        queryset = queryset.filter(id != value)
+        return queryset
 
     def filter_by_min_price(self, queryset, name, value):
         queryset = queryset.filter(price__gte=value)
@@ -144,6 +148,8 @@ class LaptopFilter (FilterSet):
 
 
 
+
+
 class LaptopListView(generics.ListAPIView):
     serializer_class = LaptopSerializer
     queryset = Laptop.objects.all()
@@ -164,7 +170,8 @@ class LaptopListView(generics.ListAPIView):
         'processor__cache',
         'graphics_card_memory',
         'price',
-        'screen_size'
+        'screen_size',
+        'updated'
     )
     search_fields = (
         'ram_type__slug',
