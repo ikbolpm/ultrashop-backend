@@ -1,5 +1,5 @@
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin, AbstractUser
 )
 from django.db import models
 
@@ -44,19 +44,26 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractUser):
     email = models.EmailField(verbose_name='email address',max_length=255,unique=True, default='ikbolpm@gmail.com')
     full_name = models.CharField(max_length=255, blank=True, null=True)
-    active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=True)  # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=True)  # a admin user; non super-user
+    is_admin = models.BooleanField(default=False) # a superuser
     created = models.DateTimeField(auto_now_add=True)
-
+    username = models.CharField(
+        'Username',
+        max_length=150,
+        unique=True,
+        help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.',
+        error_messages={
+            'unique': "A user with that username already exists.",
+        },
+        null=True
+    )
     USERNAME_FIELD = 'email'
 
     REQUIRED_FIELDS = ['full_name']
-
-    objects = UserManager()
 
     def __str__(self):
         return self.email
@@ -72,16 +79,3 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
-
-
-    @property
-    def is_staff(self):
-        return self.staff
-
-    @property
-    def is_admin(self):
-        return self.admin
-
-    @property
-    def is_active(self):
-        return self.active

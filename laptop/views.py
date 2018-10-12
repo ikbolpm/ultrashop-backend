@@ -51,7 +51,8 @@ class LaptopFilter (FilterSet):
         model = Laptop
         fields = (
             'id',
-            'slug'
+            'slug',
+
         )
     def filter_by_id_not(self, queryset, name, value):
         queryset = queryset.filter(id != value)
@@ -155,8 +156,8 @@ class LaptopListView(generics.ListAPIView):
     queryset = Laptop.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filter_class = LaptopFilter
-    # pagination_class = LaptopLimitOffsetPagination
-    pagination_class = LaptopPageNumberPagination
+    pagination_class = LaptopLimitOffsetPagination
+    # pagination_class = LaptopPageNumberPagination
 
 
     ordering_fields = (

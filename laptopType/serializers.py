@@ -10,5 +10,7 @@ class LaptopTypeSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'slug',
-            'name_singular'
+            'name_singular',
+            'logo',
+            'short_description'
         ]

@@ -1,13 +1,7 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, admin as user_admin
+from django.utils.translation import gettext_lazy as _
 
-User = get_user_model()
+from accounts.models import User
 
-class UserAdmin(admin.ModelAdmin):
-    search_fields = ['email']
-    list_display = ['email', 'is_staff', 'is_admin', 'last_login', 'created']
-
-    class Meta:
-        model = User
-
-admin.site.register(User, UserAdmin)
+admin.site.register(User, user_admin.UserAdmin)

@@ -18,7 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
+
+
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,7 +41,7 @@ urlpatterns = [
     path('api/inquiry/', include('inquiries.urls')),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refreh', TokenRefreshView.as_view()),
-    path('api/users/', include('accounts.urls')),
+    # path('api/users/', include('accounts.urls')),
     path('api/inquiries/', include('inquiries.urls'))
 ]
 urlpatterns += staticfiles_urlpatterns()
