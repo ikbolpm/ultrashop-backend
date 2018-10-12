@@ -26,4 +26,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
 
 # BASE_URL = 'http://ultrashop.uz:8000'
 
-DEBUG = False
+DEBUG = True
