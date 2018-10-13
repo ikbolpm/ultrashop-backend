@@ -35,7 +35,7 @@ class Laptop(models.Model):
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, )
     perks = models.ManyToManyField(Perks, help_text='Выберите все нужные опции нажатием кнопки CTRL', blank=True)
     price = models.IntegerField(help_text='Введите сумму в USD')
-    viewed = models.IntegerField(blank=True, null=True)
+    viewed = models.IntegerField(default=0,blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

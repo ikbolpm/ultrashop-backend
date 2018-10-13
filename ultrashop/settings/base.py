@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'purchases',
     'inventory',
     'sales',
-    'stock_movements'
+    'stock_movements',
+    'settings'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

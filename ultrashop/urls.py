@@ -42,7 +42,8 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refreh', TokenRefreshView.as_view()),
     # path('api/users/', include('accounts.urls')),
-    path('api/inquiries/', include('inquiries.urls'))
+    path('api/inquiries/', include('inquiries.urls')),
+    path('api/dollar', include('settings.urls'))
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
