@@ -162,5 +162,5 @@ REST_FRAMEWORK = {
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'ikbolpm'
-EMAIL_HOST_PASSWORD = 'UltraShop'
+EMAIL_HOST_PASSWORD = '$lh4mdulillah'
 EMAIL_USE_TLS = True
