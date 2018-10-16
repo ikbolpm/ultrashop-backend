@@ -20,6 +20,7 @@ STATIC_ROOT='static'
 CORS_ORIGIN_WHITELIST = (
 	'ultrashop.uz',
 	'www.ultrashop.uz',
+    'https://ultrashop.uz',
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
