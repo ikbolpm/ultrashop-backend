@@ -9,7 +9,6 @@ DATABASES = {
         'PASSWORD': '%ltra$op',
         'HOST': 'localhost',
         'PORT': '5432',
-
     }
 }
 
