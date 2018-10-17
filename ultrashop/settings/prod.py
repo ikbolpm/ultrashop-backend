@@ -9,7 +9,6 @@ DATABASES = {
         'PASSWORD': '%ltra$op',
         'HOST': 'localhost',
         'PORT': '5432',
-
     }
 }
 
@@ -20,10 +19,8 @@ STATIC_ROOT='static'
 CORS_ORIGIN_WHITELIST = (
 	'ultrashop.uz',
 	'www.ultrashop.uz',
+    'https://ultrashop.uz',
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
-
-# BASE_URL = 'http://ultrashop.uz:8000'
-
 DEBUG = True
