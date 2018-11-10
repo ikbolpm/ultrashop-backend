@@ -12,6 +12,7 @@ class Sales(models.Model):
     warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, default=1)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     quantity = models.IntegerField()
+    comments = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
