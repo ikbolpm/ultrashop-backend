@@ -8,6 +8,7 @@ from warehouses.models import Warehouse
 
 class Sales(models.Model):
     laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE)
+    serial_number = models.CharField(max_length=255)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, default=1)
     price = models.DecimalField(max_digits=7, decimal_places=2)

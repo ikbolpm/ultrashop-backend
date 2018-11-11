@@ -5,7 +5,7 @@ from .models import Sales
 
 
 class SalesAdmin(ModelAdmin):
-    list_display = ['laptop', 'customer', 'warehouse', 'price', 'quantity', 'created', 'updated']
+    list_display = ['laptop','serial_number', 'customer', 'warehouse', 'price', 'quantity', 'created', 'updated']
     list_display_links = ['laptop', ]
     list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
     search_fields = ['customer', 'laptop', 'price']
