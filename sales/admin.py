@@ -8,8 +8,8 @@ class SalesAdmin(ModelAdmin):
     list_display = ['laptop','serial_number', 'customer', 'warehouse', 'price', 'quantity', 'created', 'updated']
     list_display_links = ['laptop', ]
     list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
-    search_fields = ['customer', 'laptop', 'price']
-    list_filter = ['laptop', 'customer', 'warehouse']
+    search_fields = ['customer__name', 'laptop__name', 'price']
+    list_filter = ['warehouse']
 
 
 admin.site.register(Sales, SalesAdmin)
