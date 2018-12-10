@@ -9,6 +9,6 @@ class PurchaseAdmin(ModelAdmin):
     list_display_links = ['laptop', ]
     list_editable = ['warehouse', 'cost', 'quantity']
     list_filter = ['warehouse', 'laptop']
-
+    autocomplete_fields = ['laptop']
 
 admin.site.register(Purchase, PurchaseAdmin)

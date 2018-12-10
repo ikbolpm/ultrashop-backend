@@ -14,6 +14,7 @@ class InventoryAdmin(ModelAdmin):
         ('warehouse', admin.RelatedOnlyFieldListFilter),
         ('laptop', admin.RelatedOnlyFieldListFilter),
     )
+    autocomplete_fields = ['laptop']
 
 
 admin.site.register(Inventory, InventoryAdmin)

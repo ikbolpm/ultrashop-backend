@@ -15,7 +15,7 @@ class StockMovementsAdmin(ModelAdmin):
         ('from_warehouse', admin.RelatedOnlyFieldListFilter),
         ('to_warehouse', admin.RelatedOnlyFieldListFilter),
     )
-    # autocomplete_fields = ['laptop__name']
+    autocomplete_fields = ['laptop']
 
     def save_model(self, request, obj, form, change):
         obj.moved_by = request.user

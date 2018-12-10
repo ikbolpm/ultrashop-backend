@@ -10,6 +10,6 @@ class SalesAdmin(ModelAdmin):
     list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
     search_fields = ['customer__name', 'laptop__name', 'price']
     list_filter = ['warehouse']
-
+    autocomplete_fields = ['laptop']
 
 admin.site.register(Sales, SalesAdmin)
