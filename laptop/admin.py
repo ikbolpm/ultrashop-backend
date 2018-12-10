@@ -32,7 +32,14 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
                      'graphics_card', 'price']
     list_display_links = ['name', ]
-    list_filter = ['brand', 'screen_size', 'resolution', 'graphics_card']
+    # list_filter = ['brand', 'screen_size', 'resolution', 'graphics_card']
+    list_filter = (
+        ('brand', admin.RelatedOnlyFieldListFilter),
+        ('screen_size', admin.RelatedOnlyFieldListFilter),
+        ('resolution', admin.RelatedOnlyFieldListFilter),
+        ('processor', admin.RelatedOnlyFieldListFilter),
+        ('graphics_card', admin.RelatedOnlyFieldListFilter),
+    )
     search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name']
     prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]

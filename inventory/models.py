@@ -13,6 +13,7 @@ class Inventory(models.Model):
 
     class Meta:
         verbose_name_plural = 'Inventories'
+        unique_together = ['laptop', 'warehouse']
 
 
     def __str__(self):

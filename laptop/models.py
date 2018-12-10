@@ -39,13 +39,15 @@ class Laptop(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        if self.model:
-            return self.brand.name + ' ' + self.name + ' ' + self.model
-        else:
-            return self.brand.name + ' ' + self.name
     class Meta:
         ordering = ['-created']
+
+    def __str__(self):
+        if self.model:
+            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.model + ' / ' + self.processor.name + ' / ' + str(self.ram) + 'GB / ' + str(self.main_storage) + 'GB'
+        else:
+            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.processor.name + ' / ' + str(self.ram) + 'GB / ' + str(self.main_storage) + 'GB'
+        return full_name
 
 class Image(models.Model):
     file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')

@@ -10,7 +10,10 @@ class InventoryAdmin(ModelAdmin):
     search_fields = ['laptop__name', 'laptop__model']
     list_display_links = ['laptop', ]
     list_editable = ['warehouse', 'quantity', ]
-    list_filter = ['warehouse']
+    list_filter = (
+        ('warehouse', admin.RelatedOnlyFieldListFilter),
+        ('laptop', admin.RelatedOnlyFieldListFilter),
+    )
 
 
 admin.site.register(Inventory, InventoryAdmin)

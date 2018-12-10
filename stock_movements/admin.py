@@ -7,9 +7,15 @@ from .models import StockMovements
 class StockMovementsAdmin(ModelAdmin):
     list_display = ['laptop', 'from_warehouse', 'to_warehouse', 'quantity', 'moved_by', 'created', 'updated']
     list_display_links = ['laptop', ]
-    search_fields = ['laptop__name', 'laptop__model']
+    # search_fields = ['laptop__name', 'laptop__model']
     list_editable = ['from_warehouse', 'to_warehouse', 'quantity', 'moved_by']
     exclude = ['moved_by']
+    list_filter = (
+        ('moved_by', admin.RelatedOnlyFieldListFilter),
+        ('from_warehouse', admin.RelatedOnlyFieldListFilter),
+        ('to_warehouse', admin.RelatedOnlyFieldListFilter),
+    )
+    # autocomplete_fields = ['laptop__name']
 
     def save_model(self, request, obj, form, change):
         obj.moved_by = request.user

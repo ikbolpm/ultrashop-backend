@@ -12,6 +12,7 @@ class Customer(models.Model):
 
     class Meta:
         ordering = ['name']
+        unique_together = ['name', 'phone']
 
     def __str__(self):
         return self.name
