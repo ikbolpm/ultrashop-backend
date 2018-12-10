@@ -39,14 +39,13 @@ class Laptop(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        ordering = ['-created']
-
     def __str__(self):
         if self.model:
             return self.brand.name + ' ' + self.name + ' ' + self.model
         else:
             return self.brand.name + ' ' + self.name
+    class Meta:
+        ordering = ['-created']
 
 class Image(models.Model):
     file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')
