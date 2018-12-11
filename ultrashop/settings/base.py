@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'inventory',
     'sales',
     'stock_movements',
-    'settings'
+    'settings',
+    'crm'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
