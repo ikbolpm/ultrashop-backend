@@ -27,7 +27,7 @@ class GalleryMultiuploadMixing(object):
 
 
 class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
-    list_display = ['brand', 'name', 'price', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size',
+    list_display = ['brand', 'name', 'model', 'price', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size',
                     'resolution', 'graphics_card', 'created', ]
     list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
                      'graphics_card', 'price']
@@ -41,7 +41,7 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
         ('graphics_card', admin.RelatedOnlyFieldListFilter),
     )
     autocomplete_fields = ['processor']
-    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name']
+    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'model']
     prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
