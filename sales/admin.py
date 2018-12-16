@@ -7,7 +7,7 @@ from .models import Sales
 class SalesAdmin(ModelAdmin):
     list_display = ['laptop', 'customer', 'sold_by', 'warehouse', 'price', 'profit', 'quantity', 'created']
     list_display_links = ['laptop', ]
-    # list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
+    list_editable = ['profit']
     search_fields = ['customer__name', 'laptop__name', 'price']
     list_filter = ['warehouse', 'sold_by']
     autocomplete_fields = ['laptop']
