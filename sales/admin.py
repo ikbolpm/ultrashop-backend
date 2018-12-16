@@ -9,7 +9,7 @@ class SalesAdmin(ModelAdmin):
     list_display_links = ['laptop', ]
     # list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
     search_fields = ['customer__name', 'laptop__name', 'price']
-    list_filter = ['warehouse', 'sold_by']
+    list_filter = ['created', 'warehouse', 'sold_by']
     autocomplete_fields = ['laptop']
     exclude = ['sold_by']
 
