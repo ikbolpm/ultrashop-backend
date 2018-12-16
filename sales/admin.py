@@ -11,5 +11,6 @@ class SalesAdmin(ModelAdmin):
     search_fields = ['customer__name', 'laptop__name', 'price']
     list_filter = ['warehouse', 'sold_by']
     autocomplete_fields = ['laptop']
+    exclude = ['sold_by']
 
 admin.site.register(Sales, SalesAdmin)

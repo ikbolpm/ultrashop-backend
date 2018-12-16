@@ -8,14 +8,14 @@ from warehouses.models import Warehouse
 
 
 class Sales(models.Model):
-    laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE)
-    serial_number = models.CharField(max_length=255)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, default=1)
-    price = models.DecimalField(max_digits=7, decimal_places=2)
-    quantity = models.IntegerField()
-    profit = models.DecimalField(max_digits=7, decimal_places=2, default=0)
-    comments = models.TextField(blank=True, null=True)
+    laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, help_text='Выберите ноутбук')
+    serial_number = models.CharField(max_length=255, help_text='Введите серийный номер')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, help_text='Выберите клиента')
+    warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, help_text='Выберите магазин/склад')
+    price = models.DecimalField(max_digits=7, decimal_places=2, help_text='Цена за которую продали')
+    quantity = models.IntegerField(help_text='Количество')
+    profit = models.DecimalField(max_digits=7, decimal_places=2, help_text='Введите прибыль')
+    comments = models.TextField(blank=True, null=True, help_text='Дополнительные комментарии, что в комплекте продали и т.д.')
     sold_by = models.ForeignKey(User, on_delete=models.CASCADE, default=5)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
