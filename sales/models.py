@@ -1,5 +1,6 @@
 from django.db import models
 
+from accounts.models import User
 from customers.models import Customer
 from inventory.models import Inventory
 from laptop.models import Laptop
@@ -14,6 +15,7 @@ class Sales(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
     quantity = models.IntegerField()
     comments = models.TextField(blank=True, null=True)
+    sold_by = models.ForeignKey(User, on_delete=models.CASCADE, default=5)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

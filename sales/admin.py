@@ -5,11 +5,11 @@ from .models import Sales
 
 
 class SalesAdmin(ModelAdmin):
-    list_display = ['laptop','serial_number', 'customer', 'warehouse', 'price', 'quantity', 'created', 'updated']
+    list_display = ['laptop', 'customer', 'sold_by', 'warehouse', 'price', 'quantity', 'created']
     list_display_links = ['laptop', ]
-    list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
+    # list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
     search_fields = ['customer__name', 'laptop__name', 'price']
-    list_filter = ['warehouse']
+    list_filter = ['warehouse', 'sold_by']
     autocomplete_fields = ['laptop']
 
 admin.site.register(Sales, SalesAdmin)
