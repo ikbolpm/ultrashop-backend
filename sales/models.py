@@ -14,6 +14,7 @@ class Sales(models.Model):
     warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, default=1)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     quantity = models.IntegerField()
+    profit = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     comments = models.TextField(blank=True, null=True)
     sold_by = models.ForeignKey(User, on_delete=models.CASCADE, default=5)
     created = models.DateTimeField(auto_now_add=True)
