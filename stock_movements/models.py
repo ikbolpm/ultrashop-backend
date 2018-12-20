@@ -11,6 +11,8 @@ class StockMovements(models.Model):
     from_warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, related_name='from_warehouse')
     to_warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, related_name='to_warehouse')
     quantity = models.IntegerField()
+    comments = models.TextField(blank=True, null=True,
+                                help_text='Дополнительные комментарии. Например кому отдали, за сколько и т.д.')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     moved_by = models.ForeignKey(User, on_delete=models.CASCADE)
