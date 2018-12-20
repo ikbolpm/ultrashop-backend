@@ -16,7 +16,7 @@ class Sales(models.Model):
     quantity = models.IntegerField(help_text='Количество')
     profit = models.DecimalField(max_digits=7, decimal_places=2, help_text='Введите прибыль')
     comments = models.TextField(blank=True, null=True, help_text='Дополнительные комментарии, что в комплекте продали и т.д.')
-    sold_by = models.ForeignKey(User, on_delete=models.CASCADE, default=5)
+    sold_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
