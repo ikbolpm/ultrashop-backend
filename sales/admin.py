@@ -9,8 +9,16 @@ class SalesAdmin(ModelAdmin):
     list_display_links = ['laptop', ]
     # list_editable = ['customer', 'warehouse', 'price', 'quantity', ]
     search_fields = ['customer__name', 'laptop__name', 'price']
-    list_filter = ['created', 'warehouse', 'sold_by']
+    list_filter = (
+        ('created'),
+        ('warehouse', admin.RelatedOnlyFieldListFilter),
+        ('sold_by', admin.RelatedOnlyFieldListFilter),
+    )
     autocomplete_fields = ['laptop']
     exclude = ['sold_by']
+
+    def save_model(self, request, obj, form, change):
+        obj.sold_by = request.user
+        super().save_model(request, obj, form, change)
 
 admin.site.register(Sales, SalesAdmin)
