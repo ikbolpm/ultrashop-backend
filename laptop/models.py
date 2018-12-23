@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 
 from audio.models import Audio
 from brand.models import Brand
@@ -56,6 +55,7 @@ class Laptop(models.Model):
             else:
                 full_name = full_name + '/ Без Видеокарты'
         return full_name
+
 
 class Image(models.Model):
     file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')
