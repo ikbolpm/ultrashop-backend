@@ -14,7 +14,7 @@ class SalesAdmin(ModelAdmin):
         ('warehouse', admin.RelatedOnlyFieldListFilter),
         ('sold_by', admin.RelatedOnlyFieldListFilter),
     )
-    autocomplete_fields = ['laptop']
+    autocomplete_fields = ['laptop', 'customer']
     exclude = ['sold_by']
 
     def save_model(self, request, obj, form, change):
