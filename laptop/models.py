@@ -45,8 +45,16 @@ class Laptop(models.Model):
     def __str__(self):
         if self.model:
             full_name = self.brand.name + ' / ' + self.name + ' / ' + self.model + ' / ' + self.processor.name + ' / ' + str(self.ram) + ' / ' + str(self.main_storage)
+            if self.graphics_card:
+                full_name = full_name + ' / ' + self.graphics_card.name + ' / ' + str(self.graphics_card_memory) + ' GB'
+            else:
+                full_name = full_name + '/ Без Видеокарты'
         else:
-            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.processor.name + ' / ' + str(self.ram) + 'GB / ' + str(self.main_storage) + 'GB'
+            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.processor.name + ' / ' + str(self.ram) + ' / ' + str(self.main_storage)
+            if self.graphics_card:
+                full_name = full_name + ' / ' + self.graphics_card.name  + ' / ' + str(self.graphics_card_memory) + ' GB'
+            else:
+                full_name = full_name + '/ Без Видеокарты'
         return full_name
 
 class Image(models.Model):
