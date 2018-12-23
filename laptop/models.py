@@ -19,19 +19,19 @@ class Laptop(models.Model):
     name = models.CharField(max_length=255, help_text='К примеру: XPS 13')
     slug = models.SlugField(max_length=255)
     model = models.CharField(max_length=255, help_text='К примеру: 1470 80XA', null=True, blank=True)
+    processor = models.ForeignKey(Processor, on_delete=models.CASCADE, )
     ram = models.IntegerField()
     ram_type = models.ForeignKey(Ram, on_delete=models.CASCADE, related_name='ram_type')
-    processor = models.ForeignKey(Processor, on_delete=models.CASCADE, )
     main_storage = models.IntegerField()
     main_storage_type = models.ForeignKey(Storage, on_delete=models.CASCADE, related_name='main_storage', )
     secondary_storage = models.IntegerField(blank=True, null=True)
     secondary_storage_type = models.ForeignKey(Storage, on_delete=models.CASCADE, related_name='secondary_storage',
                                                blank=True, null=True)
+    graphics_card = models.ForeignKey(GraphicsCard, on_delete=models.CASCADE, blank=True, null=True)
+    graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
     screen_size = models.ForeignKey(DisplaySize, on_delete=models.CASCADE, )
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, )
     laptop_type = models.ForeignKey(LaptopType, on_delete=models.CASCADE, )
-    graphics_card = models.ForeignKey(GraphicsCard, on_delete=models.CASCADE, blank=True, null=True)
-    graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, )
     perks = models.ManyToManyField(Perks, help_text='Выберите все нужные опции нажатием кнопки CTRL', blank=True)
     price = models.IntegerField(help_text='Введите сумму в USD')
@@ -44,7 +44,7 @@ class Laptop(models.Model):
 
     def __str__(self):
         if self.model:
-            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.model + ' / ' + self.processor.name + ' / ' + str(self.ram) + 'GB / ' + str(self.main_storage) + 'GB'
+            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.model + ' / ' + self.processor.name + ' / ' + str(self.ram) + ' / ' + str(self.main_storage)
         else:
             full_name = self.brand.name + ' / ' + self.name + ' / ' + self.processor.name + ' / ' + str(self.ram) + 'GB / ' + str(self.main_storage) + 'GB'
         return full_name

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.mail import send_mail
 from accounts.models import User
 from customers.models import Customer
 from inventory.models import Inventory
@@ -35,7 +35,11 @@ class Sales(models.Model):
             defaults={'quantity': 0}
         )
         inventory.quantity = inventory.quantity - self.quantity
-        if inventory.quantity >= 0:
-            inventory.save()
-        else:
-            print("Вы не можете продать больше, чем имеете.")
+        inventory.save()
+        send_mail(
+            'UltraShop.uz: New Laptop Sold - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
+            ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage) + '\n Customer: ' + self.customer.name + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(self.quantity) + '\n Price: $' + str(self.price) + '\n Profit: $' + str(self.profit) + '\n Comments: ' + self.comments,
+            'ultrashopsales@gmail.com',
+            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', ],
+            fail_silently=False,
+        )
