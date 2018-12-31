@@ -12,7 +12,6 @@ from resolution.models import Resolution
 from storage.models import Storage
 
 
-
 class Laptop(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='brand')
     name = models.CharField(max_length=255, help_text='К примеру: XPS 13')
@@ -33,6 +32,7 @@ class Laptop(models.Model):
     laptop_type = models.ForeignKey(LaptopType, on_delete=models.CASCADE, )
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, )
     perks = models.ManyToManyField(Perks, help_text='Выберите все нужные опции нажатием кнопки CTRL', blank=True)
+    old_price = models.IntegerField(help_text='Старая цена. Оставьте 0 если не идет акция', default=0)
     price = models.IntegerField(help_text='Введите сумму в USD')
     viewed = models.IntegerField(default=0,blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)

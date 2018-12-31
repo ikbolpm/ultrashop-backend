@@ -9,6 +9,7 @@ from perks.serializers import PerksSerializer
 from processor.serializers import ProcessorSerializer
 from ram.serializers import RamSerializer
 from resolution.serializers import ResolutionSerializer
+from settings.models import DollarExchangeRate, TransactionCoefficient
 from storage.serializers import StorageSerializer
 from .models import Laptop, Image
 
@@ -33,6 +34,10 @@ class LaptopSerializer(serializers.ModelSerializer):
     audio = AudioSerializer()
     perks = PerksSerializer(many=True)
     images = ImageSerializer(many=True)
+
+    price_uzs = serializers.SerializerMethodField()
+    old_price_uzs = serializers.SerializerMethodField()
+
     class Meta:
         model = Laptop
         fields = [
@@ -56,7 +61,16 @@ class LaptopSerializer(serializers.ModelSerializer):
             'audio',
             'perks',
             'price',
+            'price_uzs',
+            'old_price',
+            'old_price_uzs',
             'images',
             'created',
             'updated'
         ]
+
+    def get_price_uzs(self, obj):
+        return round(obj.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)
+
+    def get_old_price_uzs(self, obj):
+        return round(obj.old_price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)

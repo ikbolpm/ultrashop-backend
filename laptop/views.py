@@ -44,6 +44,7 @@ class LaptopFilter (FilterSet):
     graphics = filters.CharFilter(method='filter_by_graphics')
     audio = filters.CharFilter(method='filter_by_audio')
     perks = filters.CharFilter(method='filter_by_perks')
+    old_price = filters.CharFilter(method='filter_by_old_price')
     # size = filters.CharFilter(method='filter_by_size')
 
 
@@ -56,6 +57,10 @@ class LaptopFilter (FilterSet):
         )
     def filter_by_id_not(self, queryset, name, value):
         queryset = queryset.filter(id != value)
+        return queryset
+
+    def filter_by_old_price(self, queryset, name, value):
+        queryset = queryset.filter(old_price__gt=value)
         return queryset
 
     def filter_by_min_price(self, queryset, name, value):
@@ -159,7 +164,6 @@ class LaptopListView(generics.ListAPIView):
     pagination_class = LaptopLimitOffsetPagination
     # pagination_class = LaptopPageNumberPagination
 
-
     ordering_fields = (
         'ram',
         'brand__slug',
@@ -174,6 +178,8 @@ class LaptopListView(generics.ListAPIView):
         'screen_size',
         'updated'
     )
+
+
     search_fields = (
         'ram_type__slug',
         'brand__slug',
