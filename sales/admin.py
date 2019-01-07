@@ -32,6 +32,10 @@ class SalesAdmin(ModelAdmin, ExportCsvMixin):
 
     list_filter = (
         ('created'),
+        ('laptop__brand', admin.RelatedOnlyFieldListFilter),
+        ('laptop__screen_size', admin.RelatedOnlyFieldListFilter),
+        ('laptop__graphics_card', admin.RelatedOnlyFieldListFilter),
+        ('laptop__processor', admin.RelatedOnlyFieldListFilter),
         ('warehouse', admin.RelatedOnlyFieldListFilter),
         ('sold_by', admin.RelatedOnlyFieldListFilter),
     )
