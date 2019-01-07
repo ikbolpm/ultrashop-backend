@@ -14,9 +14,8 @@ from processorBrand.models import ProcessorBrand
 from ram.models import Ram
 from resolution.models import Resolution
 from .models import Laptop, Image
-from .pagination import LaptopPageNumberPagination, LaptopLimitOffsetPagination
+from .pagination import LaptopLimitOffsetPagination
 from .serializers import LaptopSerializer, ImageSerializer
-
 
 class LaptopFilter (FilterSet):
     id_not = filters.NumberFilter(field_name='id',exclude=True)
@@ -45,6 +44,7 @@ class LaptopFilter (FilterSet):
     audio = filters.CharFilter(method='filter_by_audio')
     perks = filters.CharFilter(method='filter_by_perks')
     old_price = filters.CharFilter(method='filter_by_old_price')
+    # quantity = filters.CharFilter(method='filter_by_quantity')
     # size = filters.CharFilter(method='filter_by_size')
 
 
@@ -58,6 +58,10 @@ class LaptopFilter (FilterSet):
     def filter_by_id_not(self, queryset, name, value):
         queryset = queryset.filter(id != value)
         return queryset
+    #
+    # def filter_by_quantity(self, queryset, name, value):
+    #     queryset = Inventory.objects.all().values('laptop').annotate(quantity=Sum('quantity'))
+    #     return queryset
 
     def filter_by_old_price(self, queryset, name, value):
         queryset = queryset.filter(old_price__gt=value)

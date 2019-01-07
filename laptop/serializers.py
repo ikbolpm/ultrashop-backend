@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from rest_framework import serializers
 
 from audio.serializers import AudioSerializer
@@ -12,6 +13,7 @@ from resolution.serializers import ResolutionSerializer
 from settings.models import DollarExchangeRate, TransactionCoefficient
 from storage.serializers import StorageSerializer
 from .models import Laptop, Image
+from inventory.models import Inventory
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -37,11 +39,13 @@ class LaptopSerializer(serializers.ModelSerializer):
 
     price_uzs = serializers.SerializerMethodField()
     old_price_uzs = serializers.SerializerMethodField()
+    inventory_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Laptop
         fields = [
             'id',
+            'inventory_count',
             'name',
             'slug',
             'brand',
@@ -74,3 +78,7 @@ class LaptopSerializer(serializers.ModelSerializer):
 
     def get_old_price_uzs(self, obj):
         return round(obj.old_price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)
+
+    def get_inventory_count(self, obj):
+        return Inventory.objects.filter(laptop_id__exact=obj).values('laptop').annotate(quantity=Sum('quantity'))
+
