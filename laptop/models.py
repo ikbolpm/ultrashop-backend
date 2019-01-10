@@ -47,13 +47,13 @@ class Laptop(models.Model):
             if self.graphics_card:
                 full_name = full_name + ' / ' + self.graphics_card.name + ' / ' + str(self.graphics_card_memory) + ' GB'
             else:
-                full_name = full_name + '/ Без Видеокарты'
+                full_name = full_name + '/ No VGA'
         else:
             full_name = self.brand.name + ' / ' + self.name + ' / ' + self.processor.name + ' / ' + str(self.ram) + ' / ' + str(self.main_storage)
             if self.graphics_card:
                 full_name = full_name + ' / ' + self.graphics_card.name  + ' / ' + str(self.graphics_card_memory) + ' GB'
             else:
-                full_name = full_name + '/ Без Видеокарты'
+                full_name = full_name + '/ No VGA'
         return full_name
 
 
