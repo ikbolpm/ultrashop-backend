@@ -12,6 +12,7 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
     list_editable = ['warehouse', 'quantity', ]
     list_filter = (
         ('laptop__brand', admin.RelatedOnlyFieldListFilter),
+        ('laptop__laptop_type', admin.RelatedOnlyFieldListFilter),
         ('laptop__screen_size', admin.RelatedOnlyFieldListFilter),
         ('laptop__graphics_card', admin.RelatedOnlyFieldListFilter),
         ('laptop__processor', admin.RelatedOnlyFieldListFilter),
