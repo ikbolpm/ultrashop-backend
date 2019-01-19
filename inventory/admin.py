@@ -9,7 +9,6 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
     list_display = ['laptop', 'warehouse', 'quantity', 'created', 'updated']
     search_fields = ['laptop__name', 'laptop__model']
     list_display_links = ['laptop', ]
-    list_editable = ['warehouse', 'quantity', ]
     list_filter = (
         ('laptop__brand', admin.RelatedOnlyFieldListFilter),
         ('laptop__laptop_type', admin.RelatedOnlyFieldListFilter),
