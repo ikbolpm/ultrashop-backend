@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.http import HttpResponse
 
-from .models import Sales
+from .models import Sales, CustomerReturns
 
 class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
@@ -47,3 +47,28 @@ class SalesAdmin(ModelAdmin, ExportCsvMixin):
         super().save_model(request, obj, form, change)
 
 admin.site.register(Sales, SalesAdmin)
+
+
+class CustomerReturnsAdmin(ModelAdmin, ExportCsvMixin):
+    list_display = ['laptop', 'received_by', 'warehouse', 'reason', 'quantity', 'created']
+    list_display_links = ['laptop', ]
+    search_fields = ['laptop__name', 'reason', ]
+    actions = ["export_as_csv"]
+
+    list_filter = (
+        ('created'),
+        ('laptop__brand', admin.RelatedOnlyFieldListFilter),
+        ('laptop__screen_size', admin.RelatedOnlyFieldListFilter),
+        ('laptop__graphics_card', admin.RelatedOnlyFieldListFilter),
+        ('laptop__processor', admin.RelatedOnlyFieldListFilter),
+        ('warehouse', admin.RelatedOnlyFieldListFilter),
+        ('received_by', admin.RelatedOnlyFieldListFilter),
+    )
+    autocomplete_fields = ['laptop']
+    exclude = ['received_by']
+
+    def save_model(self, request, obj, form, change):
+        obj.received_by = request.user
+        super().save_model(request, obj, form, change)
+
+admin.site.register(CustomerReturns, CustomerReturnsAdmin)

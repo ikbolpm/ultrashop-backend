@@ -44,3 +44,41 @@ class Sales(models.Model):
             ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
             fail_silently=False,
         )
+
+
+class CustomerReturns(models.Model):
+    laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, help_text='Выберите ноутбук')
+    warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, help_text='Выберите магазин/склад')
+    quantity = models.IntegerField(help_text='Количество')
+    reason = models.TextField(help_text='Причина возврата')
+    received_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'Sales Returns'
+        verbose_name = 'Sales Return'
+
+    def __str__(self):
+        return self.laptop.name
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        inventory, created = Inventory.objects.get_or_create(
+            laptop=self.laptop,
+            warehouse=self.warehouse,
+            defaults={'quantity': 0}
+        )
+        inventory.quantity = self.quantity + inventory.quantity
+        inventory.save()
+        send_mail(
+            'UltraShop.uz: Laptop Returned - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(
+                self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
+            ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(
+                self.laptop.ram) + ' / ' + str(
+                self.laptop.main_storage) + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(
+                self.quantity) + '\n Reason: ' + self.reason,
+            'ultrashopsales@gmail.com',
+            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
+            fail_silently=False,
+        )
