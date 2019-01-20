@@ -41,6 +41,6 @@ class Sales(models.Model):
             'UltraShop.uz: New Laptop Sold - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
             ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage) + '\n Customer: ' + self.customer.name + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(self.quantity) + '\n Price: $' + str(self.price) + '\n Profit: $' + str(self.profit) + '\n Comments: ' + self.comments,
             'ultrashopsales@gmail.com',
-            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', ],
+            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
             fail_silently=False,
         )
