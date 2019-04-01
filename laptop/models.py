@@ -35,6 +35,7 @@ class Laptop(models.Model):
     old_price = models.IntegerField(help_text='Старая цена. Оставьте 0 если не идет акция', default=0)
     price = models.IntegerField(help_text='Введите сумму в USD')
     viewed = models.IntegerField(default=0,blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='laptop_thumbnails', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

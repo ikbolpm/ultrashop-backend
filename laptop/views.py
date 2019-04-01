@@ -1,5 +1,6 @@
 from django_filters import FilterSet
 from django_filters import rest_framework as filters
+from django.db.models import Sum
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -13,6 +14,7 @@ from processor.models import Processor
 from processorBrand.models import ProcessorBrand
 from ram.models import Ram
 from resolution.models import Resolution
+from inventory.models import Inventory
 from .models import Laptop, Image
 from .pagination import LaptopLimitOffsetPagination
 from .serializers import LaptopSerializer, ImageSerializer
@@ -44,8 +46,9 @@ class LaptopFilter (FilterSet):
     audio = filters.CharFilter(method='filter_by_audio')
     perks = filters.CharFilter(method='filter_by_perks')
     old_price = filters.CharFilter(method='filter_by_old_price')
-    # quantity = filters.CharFilter(method='filter_by_quantity')
+    quantity = filters.CharFilter(method='filter_by_quantity')
     # size = filters.CharFilter(method='filter_by_size')
+
 
 
     class Meta:
@@ -55,13 +58,18 @@ class LaptopFilter (FilterSet):
             'slug',
 
         )
+
     def filter_by_id_not(self, queryset, name, value):
         queryset = queryset.filter(id != value)
         return queryset
     #
-    # def filter_by_quantity(self, queryset, name, value):
-    #     queryset = Inventory.objects.all().values('laptop').annotate(quantity=Sum('quantity'))
-    #     return queryset
+    def filter_by_quantity(self, queryset, name, value):
+        inv_queryset = Inventory.objects.all()\
+            .values('laptop')\
+            .annotate(quantity=Sum('quantity'))\
+            .filter(quantity__gt=value)\
+            .values('laptop')
+        return queryset.filter(id__in=inv_queryset)
 
     def filter_by_old_price(self, queryset, name, value):
         queryset = queryset.filter(old_price__gt=value)
