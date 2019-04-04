@@ -1,5 +1,5 @@
 from django.db import models
-
+from PIL import Image, ImageDraw, ImageFont
 from audio.models import Audio
 from brand.models import Brand
 from displaySize.models import DisplaySize
