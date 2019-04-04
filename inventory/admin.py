@@ -15,6 +15,7 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
         ('laptop__brand', admin.RelatedOnlyFieldListFilter),
         ('laptop__laptop_type', admin.RelatedOnlyFieldListFilter),
         ('laptop__screen_size', admin.RelatedOnlyFieldListFilter),
+        ('laptop__resolution', admin.RelatedOnlyFieldListFilter),
         ('laptop__graphics_card', admin.RelatedOnlyFieldListFilter),
         ('laptop__processor', admin.RelatedOnlyFieldListFilter),
         ('warehouse', admin.RelatedOnlyFieldListFilter),
