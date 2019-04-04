@@ -1,5 +1,6 @@
 from django.db.models import Sum
 from rest_framework import serializers
+import math
 
 from audio.serializers import AudioSerializer
 from brand.serializers import BrandSerializer
@@ -75,10 +76,10 @@ class LaptopSerializer(serializers.ModelSerializer):
         ]
 
     def get_price_uzs(self, obj):
-        return round(obj.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)
+        return int(math.ceil(obj.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)/1000)*1000
 
     def get_old_price_uzs(self, obj):
-        return round(obj.old_price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)
+        return int(math.ceil(obj.old_price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)/1000)*1000
 
     def get_inventory_count(self, obj):
         return Inventory.objects.filter(laptop_id__exact=obj).values('laptop').annotate(quantity=Sum('quantity'))
