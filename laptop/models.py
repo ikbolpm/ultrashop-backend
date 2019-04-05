@@ -59,7 +59,7 @@ class Laptop(models.Model):
             graphics_card = ' / ' + str(self.graphics_card)
             graphics_memory = ' ' + str(self.graphics_card_memory) + ' GB'
         else:
-            graphics_card = ''
+            graphics_card = ' / No VGA'
             graphics_memory = ''
 
 
