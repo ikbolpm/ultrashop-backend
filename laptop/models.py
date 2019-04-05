@@ -43,20 +43,37 @@ class Laptop(models.Model):
         ordering = ['-created']
 
     def __str__(self):
-        if self.model:
-            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.model + ' / ' + self.processor.name + ' / ' + str(self.ram) + ' / ' + str(self.main_storage)
-            if self.graphics_card:
-                full_name = full_name + ' / ' + self.graphics_card.name + ' / ' + str(self.graphics_card_memory) + ' GB'
-            else:
-                full_name = full_name + '/ No VGA'
-        else:
-            full_name = self.brand.name + ' / ' + self.name + ' / ' + self.processor.name + ' / ' + str(self.ram) + ' / ' + str(self.main_storage)
-            if self.graphics_card:
-                full_name = full_name + ' / ' + self.graphics_card.name  + ' / ' + str(self.graphics_card_memory) + ' GB'
-            else:
-                full_name = full_name + '/ No VGA'
-        return full_name
+        main_storage = str(self.main_storage) + 'GB ' + str(self.main_storage_type)
 
+        if self.model:
+            model = ' / ' + str(self.model)
+        else:
+            model = ''
+
+        if self.secondary_storage:
+            secondary_storage = ' + ' + str(self.secondary_storage) + ' GB ' + str(self.secondary_storage_type)
+        else:
+            secondary_storage = ''
+
+        if self.graphics_card:
+            graphics_card = ' / ' + str(self.graphics_card)
+            graphics_memory = ' ' + str(self.graphics_card_memory) + ' GB'
+        else:
+            graphics_card = ''
+            graphics_memory = ''
+
+
+        full_name = str(self.brand.name) + ' / ' \
+                    + str(self.name) \
+                    + model + ' / ' \
+                    + str(self.screen_size) + '" ' + str(self.resolution) + ' / ' \
+                    + str(self.processor.name) + ' / ' \
+                    + main_storage \
+                    + secondary_storage \
+                    + graphics_card + graphics_memory
+
+        return full_name
+        # HP / Omen / 15 - ce008nq / i7 - 7700HQ / 8GB / 1000 HDD(7200об / мин) GB / GeForce GTX 1050 2 B
 
 class Image(models.Model):
     file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')
