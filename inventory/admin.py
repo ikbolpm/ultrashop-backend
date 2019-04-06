@@ -32,7 +32,4 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
         uzs_price = '{:,.0f}'.format(uzs_price) + ' сум'
         return uzs_price
 
-    # def get_price_uzs(self, obj):
-    #     return round(obj.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)
-
 admin.site.register(Inventory, InventoryAdmin)

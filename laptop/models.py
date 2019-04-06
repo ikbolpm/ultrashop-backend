@@ -68,6 +68,7 @@ class Laptop(models.Model):
                     + model + ' / ' \
                     + str(self.screen_size) + '" ' + str(self.resolution) + ' / ' \
                     + str(self.processor.name) + ' / ' \
+                    + str(self.ram) + 'GB ' + str(self.ram_type) + ' / ' \
                     + main_storage \
                     + secondary_storage \
                     + graphics_card + graphics_memory
