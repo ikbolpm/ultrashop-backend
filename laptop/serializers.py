@@ -71,6 +71,7 @@ class LaptopSerializer(serializers.ModelSerializer):
             'old_price_uzs',
             'thumbnail',
             'images',
+            'awaiting',
             'created',
             'updated'
         ]

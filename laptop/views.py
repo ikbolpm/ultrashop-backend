@@ -47,7 +47,7 @@ class LaptopFilter (FilterSet):
     perks = filters.CharFilter(method='filter_by_perks')
     old_price = filters.CharFilter(method='filter_by_old_price')
     quantity = filters.CharFilter(method='filter_by_quantity')
-    # size = filters.CharFilter(method='filter_by_size')
+    awaiting = filters.CharFilter(method='filter_by_awaiting')
 
 
 
@@ -62,7 +62,12 @@ class LaptopFilter (FilterSet):
     def filter_by_id_not(self, queryset, name, value):
         queryset = queryset.filter(id != value)
         return queryset
-    #
+
+
+    def filter_by_awaiting(self, queryset, name, value):
+        queryset = queryset.filter(awaiting = value)
+        return queryset
+
     def filter_by_quantity(self, queryset, name, value):
         inv_queryset = Inventory.objects.all()\
             .values('laptop')\

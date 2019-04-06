@@ -7,6 +7,7 @@ class Perks(models.Model):
     class Meta:
         verbose_name = 'Perks'
         verbose_name_plural = 'Perks'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
