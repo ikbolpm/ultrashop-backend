@@ -71,9 +71,7 @@ class Laptop(models.Model):
                     + main_storage \
                     + secondary_storage \
                     + graphics_card + graphics_memory
-
         return full_name
-        # HP / Omen / 15 - ce008nq / i7 - 7700HQ / 8GB / 1000 HDD(7200об / мин) GB / GeForce GTX 1050 2 B
 
 class Image(models.Model):
     file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')

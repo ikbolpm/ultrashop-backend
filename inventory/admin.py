@@ -19,6 +19,7 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
         ('laptop__resolution', admin.RelatedOnlyFieldListFilter),
         ('laptop__graphics_card', admin.RelatedOnlyFieldListFilter),
         ('laptop__processor', admin.RelatedOnlyFieldListFilter),
+        ('laptop__perks', admin.RelatedOnlyFieldListFilter),
         ('warehouse', admin.RelatedOnlyFieldListFilter),
         'created',
     )
