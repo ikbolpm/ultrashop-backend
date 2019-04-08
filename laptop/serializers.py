@@ -98,7 +98,7 @@ class LaptopSerializer(serializers.ModelSerializer):
                str(obj.ram) + '(' + str(ram) + ')/' +\
                storage + ', ' + \
                graphics_card + ', ' + \
-               str(obj.screen_size) + ' ' + str(obj.resolution)
+               str(obj.screen_size) + '" ' + str(obj.resolution)
 
     def get_price_uzs(self, obj):
         return int(math.ceil(obj.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)/1000)*1000
