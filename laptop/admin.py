@@ -27,7 +27,7 @@ class GalleryMultiuploadMixing(object):
 
 
 class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
-    list_display = ['brand', 'name', 'model', 'price', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size',
+    list_display = ['brand', 'name', 'model', 'vat', 'price', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size',
                     'resolution', 'graphics_card', 'created', ]
     # list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
     #                  'graphics_card', 'price']

@@ -37,7 +37,7 @@ class LaptopSerializer(serializers.ModelSerializer):
     audio = AudioSerializer()
     perks = PerksSerializer(many=True)
     images = ImageSerializer(many=True)
-
+    short_description = serializers.SerializerMethodField()
     price_uzs = serializers.SerializerMethodField()
     old_price_uzs = serializers.SerializerMethodField()
     inventory_count = serializers.SerializerMethodField()
@@ -72,9 +72,34 @@ class LaptopSerializer(serializers.ModelSerializer):
             'thumbnail',
             'images',
             'awaiting',
+            'vat',
+            'short_description',
             'created',
             'updated'
         ]
+
+    def get_short_description(self, obj):
+        if obj.ram_type.id == 1:
+            ram = 3
+        else:
+            ram = 4
+        if obj.secondary_storage:
+            storage = str(obj.main_storage) + str(obj.main_storage_type) + '+' + str(obj.secondary_storage) + str(obj.secondary_storage_type)
+        else:
+            storage = str(obj.main_storage) + str(obj.main_storage_type)
+
+        if obj.graphics_card:
+            graphics_card = str(obj.graphics_card) + str(obj.graphics_card_memory) + ' GB'
+        else:
+            graphics_card = str(obj.processor.integrated_graphics)
+        return obj.brand.name + ' ' + \
+               obj.name + '; '+ \
+               obj.processor.name + ', ' + str(obj.processor.min_frequency) + '-' + str(obj.processor.max_frequency) + 'GHz, ' + \
+               str(obj.ram) + '(' + str(ram) + ')/' +\
+               storage + ', ' + \
+               graphics_card + ', ' + \
+               str(obj.screen_size) + ' ' + str(obj.resolution)
+
     def get_price_uzs(self, obj):
         return int(math.ceil(obj.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)/1000)*1000
 
@@ -83,4 +108,3 @@ class LaptopSerializer(serializers.ModelSerializer):
 
     def get_inventory_count(self, obj):
         return Inventory.objects.filter(laptop_id__exact=obj).values('laptop').annotate(quantity=Sum('quantity'))
-

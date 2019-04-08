@@ -9,7 +9,8 @@ from .models import Inventory
 
 
 class InventoryAdmin(ModelAdmin, ExportCsvMixin):
-    list_display = ['laptop', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
+
+    list_display = ['laptop', 'vat', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
     search_fields = ['laptop__name', 'laptop__model']
     list_display_links = ['laptop', ]
     list_filter = (
@@ -31,5 +32,12 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
         uzs_price = int(math.ceil(uzs_price / 1000)) * 1000
         uzs_price = '{:,.0f}'.format(uzs_price) + ' сум'
         return uzs_price
+
+    def vat(self, obj):
+        if obj.laptop.vat:
+            vat = "НДС"
+        else:
+            vat = "Без НДС"
+        return vat
 
 admin.site.register(Inventory, InventoryAdmin)

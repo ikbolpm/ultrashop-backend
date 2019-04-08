@@ -37,6 +37,7 @@ class Laptop(models.Model):
     viewed = models.IntegerField(default=0,blank=True, null=True)
     thumbnail = models.ImageField(upload_to='laptop_thumbnails', blank=True, null=True)
     awaiting = models.BooleanField(default=False)
+    vat = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -73,6 +74,10 @@ class Laptop(models.Model):
                     + secondary_storage \
                     + graphics_card + graphics_memory
         return full_name
+
+    def _is_vat(self):
+        if self.vat == True:
+            return "NDS"
 
 class Image(models.Model):
     file = models.FileField(upload_to='laptop_images/%Y-%m-%d/')
