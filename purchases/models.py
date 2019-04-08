@@ -17,11 +17,15 @@ class Purchase(models.Model):
         return self.laptop.name
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_creation = False
+        if not self.id:
+            new_creation = True
         super().save(force_insert, force_update, using, update_fields)
-        inventory, created = Inventory.objects.get_or_create(
-            laptop=self.laptop,
-            warehouse=self.warehouse,
-            defaults={'quantity': 0}
-        )
-        inventory.quantity = self.quantity + inventory.quantity
-        inventory.save()
+        if new_creation:
+            inventory, created = Inventory.objects.get_or_create(
+                laptop=self.laptop,
+                warehouse=self.warehouse,
+                defaults={'quantity': 0}
+            )
+            inventory.quantity = self.quantity + inventory.quantity
+            inventory.save()

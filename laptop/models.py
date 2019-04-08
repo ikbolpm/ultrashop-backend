@@ -1,5 +1,5 @@
 from django.db import models
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 from audio.models import Audio
 from brand.models import Brand
 from displaySize.models import DisplaySize
@@ -62,7 +62,6 @@ class Laptop(models.Model):
         else:
             graphics_card = ' / No VGA'
             graphics_memory = ''
-
 
         full_name = str(self.brand.name) + ' / ' \
                     + str(self.name) \

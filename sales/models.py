@@ -29,21 +29,25 @@ class Sales(models.Model):
         return self.laptop.name
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_creation = False
+        if not self.id:
+            new_creation = True
         super().save(force_insert, force_update, using, update_fields)
-        inventory, created = Inventory.objects.get_or_create(
-            laptop=self.laptop,
-            warehouse=self.warehouse,
-            defaults={'quantity': 0}
-        )
-        inventory.quantity = inventory.quantity - self.quantity
-        inventory.save()
-        send_mail(
-            'UltraShop.uz: New Laptop Sold - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
-            ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage) + '\n Customer: ' + self.customer.name + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(self.quantity) + '\n Price: $' + str(self.price) + '\n Profit: $' + str(self.profit) + '\n Comments: ' + self.comments,
-            'ultrashopsales@gmail.com',
-            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
-            fail_silently=False,
-        )
+        if new_creation:
+            inventory, created = Inventory.objects.get_or_create(
+                laptop=self.laptop,
+                warehouse=self.warehouse,
+                defaults={'quantity': 0}
+            )
+            inventory.quantity = inventory.quantity - self.quantity
+            inventory.save()
+            send_mail(
+                'UltraShop.uz: New Laptop Sold - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
+                ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage) + '\n Customer: ' + self.customer.name + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(self.quantity) + '\n Price: $' + str(self.price) + '\n Profit: $' + str(self.profit) + '\n Comments: ' + self.comments,
+                'ultrashopsales@gmail.com',
+                ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
+                fail_silently=False,
+            )
 
 
 class CustomerReturns(models.Model):

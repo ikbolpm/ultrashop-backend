@@ -75,7 +75,6 @@ class LaptopSerializer(serializers.ModelSerializer):
             'created',
             'updated'
         ]
-
     def get_price_uzs(self, obj):
         return int(math.ceil(obj.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)/1000)*1000
 
