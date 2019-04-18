@@ -1,3 +1,7 @@
+import math
+
+import requests
+
 from django.db import models
 from django.core.mail import send_mail
 from resolution.models import Resolution
@@ -5,6 +9,7 @@ from ram.models import Ram
 from processorBrand.models import ProcessorBrand
 from laptopType.models import LaptopType
 from displaySize.models import DisplaySize
+from settings.models import DollarExchangeRate, TransactionCoefficient
 from storage.models import Storage
 from laptop.models import Laptop
 
@@ -39,10 +44,22 @@ class Inquiry(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         super().save(force_insert, force_update, using, update_fields)
-        send_mail(
-            'UltraShop.uz: Поступила новая заявка от ' + self.name,
-            'Пожалуйста позовните по номеру ' + self.phone + ' и поговорите с клиентом. Его/ее зовут ' + self.name,
-            'ikbolpm@gmail.com',
-            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', ],
-            fail_silently=False,
-        )
+        message = 'Поступила новая заявка! Срочно позвоните! \n\nИмя: ' + self.name + '\n\nТелефон: '  + self.phone + '\n\nИнтересует: ' + str(self.laptop)
+        def telegram_bot_sendtext(bot_message):
+            bot_token = '878082475:AAE8CiqE_-WGvLucDnEU13uJL0c4DsOry9k'
+            bot_chatID = '-376800274'
+            send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+
+            response = requests.get(send_text)
+
+            return response.json()
+
+        # send_mail(
+        #     'UltraShop.uz: Поступила новая заявка от ' + self.name,
+        #     message,
+        #     'ikbolpm@gmail.com',
+        #     ['ikbolpm@gmail.com',],
+        #     fail_silently=False,
+        # )
+
+        telegram_bot_sendtext(message)
