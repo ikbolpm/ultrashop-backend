@@ -1,5 +1,3 @@
-import math
-
 import requests
 
 from django.db import models

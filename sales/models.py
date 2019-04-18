@@ -1,3 +1,4 @@
+import requests
 from django.db import models
 from django.core.mail import send_mail
 
@@ -41,13 +42,23 @@ class Sales(models.Model):
             )
             inventory.quantity = inventory.quantity - self.quantity
             inventory.save()
-            send_mail(
-                'UltraShop.uz: New Laptop Sold - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
-                ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage) + '\n Customer: ' + self.customer.name + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(self.quantity) + '\n Price: $' + str(self.price) + '\n Profit: $' + str(self.profit) + '\n Comments: ' + self.comments,
-                'ultrashopsales@gmail.com',
-                ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
-                fail_silently=False,
-            )
+            message = 'Продали ноутбук! \n\nНоутбук: ' + str(self.laptop) + '\n\nКлиент: ' + self.customer.name + '\n\nМагазин: ' + self.warehouse.name + '\n\nКоличество: ' + str(self.quantity) + '\n\nЦена: $' + str(self.price) + '\n\nПрибыль: $' + str(self.profit) + '\n\nКомментарии: ' + self.comments
+            def telegram_bot_sendtext(bot_message):
+                bot_token = '876737347:AAGDgcS132vZemev47HC-8Evu8byJfHGoUg'
+                bot_chatID = '-257139211'
+                send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+
+                response = requests.get(send_text)
+                return response.json()
+
+            telegram_bot_sendtext(message)
+            # send_mail(
+            #     'UltraShop.uz: New Laptop Sold - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
+            #     ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(self.laptop.ram) + ' / ' + str(self.laptop.main_storage) + '\n Customer: ' + self.customer.name + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(self.quantity) + '\n Price: $' + str(self.price) + '\n Profit: $' + str(self.profit) + '\n Comments: ' + self.comments,
+            #     'ultrashopsales@gmail.com',
+            #     ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
+            #     fail_silently=False,
+            # )
 
 
 class CustomerReturns(models.Model):
