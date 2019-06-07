@@ -25,7 +25,7 @@ class ExportCsvMixin:
     export_as_csv.short_description = "Export Selected"
 
 class SalesAdmin(ModelAdmin, ExportCsvMixin):
-    list_display = ['laptop', 'customer', 'sold_by', 'warehouse', 'price', 'profit', 'quantity', 'created']
+    list_display = ['laptop', 'laptop__brand', 'laptop__processor', 'laptop__screen', 'laptop__graphics', 'customer', 'sold_by', 'warehouse', 'price', 'profit', 'quantity', 'created']
     list_display_links = ['laptop', ]
     search_fields = ['customer__name', 'laptop__name', 'price', ]
     actions = ["export_as_csv"]
@@ -41,6 +41,22 @@ class SalesAdmin(ModelAdmin, ExportCsvMixin):
     )
     autocomplete_fields = ['laptop', 'customer']
     exclude = ['sold_by']
+
+    def laptop__brand(self, obj):
+        laptop__brand = obj.laptop.brand.name
+        return laptop__brand
+
+    def laptop__processor(self, obj):
+        laptop__processor = obj.laptop.processor.name
+        return laptop__processor
+
+    def laptop__screen(self, obj):
+        laptop__screen = obj.laptop.screen_size
+        return laptop__screen
+
+    def laptop__graphics(self, obj):
+        laptop__graphics = obj.laptop.graphics_card
+        return laptop__graphics
 
     def save_model(self, request, obj, form, change):
         obj.sold_by = request.user
