@@ -50,7 +50,7 @@ class Laptop(models.Model):
         if self.model:
             model = ' / ' + str(self.model)
         else:
-            model = ''
+            model = ' / '
 
         if self.secondary_storage:
             secondary_storage = ' + ' + str(self.secondary_storage) + ' GB ' + str(self.secondary_storage_type)
