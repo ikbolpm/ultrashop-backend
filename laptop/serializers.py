@@ -89,7 +89,7 @@ class LaptopSerializer(serializers.ModelSerializer):
             storage = str(obj.main_storage) + str(obj.main_storage_type)
 
         if obj.graphics_card:
-            graphics_card = str(obj.graphics_card) + str(obj.graphics_card_memory) + ' GB'
+            graphics_card = str(obj.graphics_card) + ' [' + str(obj.graphics_card_memory) + ' GB]'
         else:
             graphics_card = str(obj.processor.integrated_graphics)
         return obj.brand.name + ' ' + \
