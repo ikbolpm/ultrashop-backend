@@ -67,7 +67,8 @@ class Laptop(models.Model):
         full_name = str(self.brand.name) + ' / ' \
                     + str(self.name) \
                     + model + ' / ' \
-                    + str(self.screen_size) + '" ' + str(self.resolution) + ' / ' \
+                    + str(self.screen_size) + ' / ' \
+                    + str(self.resolution) + ' / ' \
                     + str(self.processor.name) + ' / ' \
                     + str(self.ram) + 'GB ' + str(self.ram_type) + ' / ' \
                     + main_storage \
