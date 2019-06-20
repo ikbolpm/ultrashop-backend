@@ -20,8 +20,8 @@ class InventoryListView(generics.ListAPIView):
 
 
 
-    def get_queryset(self):
-        return Inventory.objects.filter(warehouse_id__lt= 8).values('laptop').annotate(quantity = Sum('quantity'))
-
     # def get_queryset(self):
-    #     return Inventory.objects.all().values('laptop').annotate(quantity = Sum('quantity'))
+    #     return Inventory.objects.filter(warehouse_id__lt= 8).values('laptop').annotate(quantity = Sum('quantity'))
+
+    def get_queryset(self):
+        return Inventory.objects.all().values('laptop').annotate(quantity = Sum('quantity'))
