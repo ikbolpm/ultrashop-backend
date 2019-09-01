@@ -41,7 +41,7 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
         ('graphics_card', admin.RelatedOnlyFieldListFilter),
     )
     autocomplete_fields = ['processor']
-    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'model']
+    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'model', 'upc']
     prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True

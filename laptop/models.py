@@ -1,5 +1,4 @@
 from django.db import models
-from PIL import Image
 from audio.models import Audio
 from brand.models import Brand
 from displaySize.models import DisplaySize
@@ -13,6 +12,7 @@ from storage.models import Storage
 
 
 class Laptop(models.Model):
+    upc   = models.CharField(max_length=12, help_text='Отсканируйте баркод')
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='brand')
     name = models.CharField(max_length=255, help_text='К примеру: XPS 13')
     slug = models.SlugField(max_length=255)
@@ -64,7 +64,8 @@ class Laptop(models.Model):
             graphics_card = ' / No VGA'
             graphics_memory = ''
 
-        full_name = str(self.brand.name) + ' / ' \
+        full_name = str(self.upc) + ' / '\
+                    + str(self.brand.name) + ' / ' \
                     + str(self.name) \
                     + model + ' / ' \
                     + str(self.screen_size) + ' / ' \
