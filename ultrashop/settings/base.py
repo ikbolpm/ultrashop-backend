@@ -51,8 +51,13 @@ INSTALLED_APPS = [
     'sales',
     'stock_movements',
     'settings',
-    'crm'
+    'crm',
+    'products',
+    'mptt',
+    'tinymce'
 ]
+
+MPTT_ADMIN_LEVEL_INDENT = 50
 
 AUTH_USER_MODEL = 'accounts.User'
 

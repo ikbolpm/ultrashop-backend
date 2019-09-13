@@ -26,6 +26,7 @@ admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/laptops', include('laptop.urls')),
+    path('api/products/', include('products.urls')),
     path('api/audio', include('audio.urls')),
     path('api/brand', include('brand.urls')),
     path('api/display', include('displaySize.urls')),
