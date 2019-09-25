@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'sales',
     'stock_movements',
     'settings',
-    'crm'
+    'crm',
+    'products',
+    'tinymce'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

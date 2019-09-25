@@ -1,9 +1,11 @@
 from django.db import models
 
+
 class Brand(models.Model):
     name = models.CharField(max_length=200, help_text='К примеру: Asus, Acer, HP и т.д.')
     slug = models.SlugField(max_length=200)
     logo = models.ImageField(upload_to='brands')
+    active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['name']

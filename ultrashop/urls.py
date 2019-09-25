@@ -44,7 +44,9 @@ urlpatterns = [
     # path('api/users/', include('accounts.urls')),
     path('api/inquiries/', include('inquiries.urls')),
     path('api/dollar', include('settings.urls')),
-    path('api/inventory', include('inventory.urls'))
+    path('api/inventory', include('inventory.urls')),
+    path('api/products/', include('products.ulrs')),
+    path('tinymce/', include('tinymce.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
