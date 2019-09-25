@@ -9,7 +9,7 @@ from .serializers import BrandSerializer
 class BrandFilter(FilterSet):
     class Meta:
         model = Brand
-        fields = ('name', 'slug')
+        fields = ('name', 'slug', 'active')
 
 class BrandListView(generics.ListAPIView):
     serializer_class = BrandSerializer

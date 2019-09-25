@@ -10,5 +10,6 @@ class BrandSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'slug',
-            'logo'
+            'logo',
+            'active'
         ]
