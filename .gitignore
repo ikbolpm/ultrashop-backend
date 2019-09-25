@@ -1,5 +1,6 @@
 venv
 .idea
 .vscode
-media/laptop_images
+media/
 /venv/
+/ultrashop/settings/static/
