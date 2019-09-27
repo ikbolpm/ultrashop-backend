@@ -49,8 +49,6 @@ class LaptopFilter (FilterSet):
     quantity = filters.CharFilter(method='filter_by_quantity')
     awaiting = filters.CharFilter(method='filter_by_awaiting')
 
-
-
     class Meta:
         model = Laptop
         fields = (

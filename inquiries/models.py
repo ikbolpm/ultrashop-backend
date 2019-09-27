@@ -44,8 +44,10 @@ class Inquiry(models.Model):
         super().save(force_insert, force_update, using, update_fields)
         message = 'Поступила новая заявка! Срочно позвоните! \n\nИмя: ' + self.name + '\n\nТелефон: '  + self.phone + '\n\nИнтересует: ' + str(self.laptop)
         def telegram_bot_sendtext(bot_message):
-            bot_token = '878082475:AAE8CiqE_-WGvLucDnEU13uJL0c4DsOry9k'
-            bot_chatID = '-376800274'
+            bot_token = '826322136:AAHRT7lDq3g3ykQ8Ms7CCXEpY8jD9qtUrro'
+            # bot_token = '878082475:AAE8CiqE_-WGvLucDnEU13uJL0c4DsOry9k'
+            bot_chatID = '-337321986'
+            # bot_chatID = '-376800274'
             send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
 
             response = requests.get(send_text)
