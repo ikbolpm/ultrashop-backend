@@ -49,7 +49,7 @@ django-templated-email==2.3.0
 django-tinymce==2.8.0
 django-versatileimagefield==1.10
 django-webpack-loader==0.6.0
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 djangorestframework-simplejwt==3.2.3
 docutils==0.15.2
 draftjs-sanitizer==1.0.0
