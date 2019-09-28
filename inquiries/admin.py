@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Inquiry
+from .models import Inquiry, ProductInquiry
 
 admin.site.site_header = ' UltraShop Admin Panel'
 
@@ -25,5 +25,19 @@ class InquiryAdmin(admin.ModelAdmin):
     list_filter = ['source']
 
 admin.site.register(Inquiry, InquiryAdmin)
+
+class ProductInquiryAdmin(admin.ModelAdmin):
+    list_display = [
+        'name',
+        'phone',
+        'product',
+        'source',
+        'status',
+        'description'
+    ]
+    list_display_links = ['product', 'status']
+    list_filter = ['source']
+
+admin.site.register(ProductInquiry, ProductInquiryAdmin)
 
 

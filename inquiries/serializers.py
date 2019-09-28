@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Inquiry
+from .models import Inquiry, ProductInquiry
 
 class InquiryCreateSerializer(ModelSerializer):
     class Meta:
@@ -26,4 +26,15 @@ class InquiryCreateSerializer(ModelSerializer):
             'max_storage',
             'min_ram',
             'max_ram',
+        ]
+
+
+class ProductInquiryCreateSerializer(ModelSerializer):
+    class Meta:
+        model = ProductInquiry
+        fields = [
+            'name',
+            'phone',
+            'source',
+            'product',
         ]
