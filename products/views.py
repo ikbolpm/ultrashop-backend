@@ -56,7 +56,7 @@ class ProductFilter (FilterSet):
         return queryset
     def filter_by_brand(self, queryset, name, value):
         brand = value.strip().split(',')
-        brands = Brand.objects.filter(id__in=brand)
+        brands = Brand.objects.filter(slug__in=brand)
         return queryset.filter(brand__in=brands)
     def filter_by_category(self, queryset, name, value):
         category = value.strip().split(',')
