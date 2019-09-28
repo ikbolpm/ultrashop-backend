@@ -81,6 +81,7 @@ class ProductInquiry(models.Model):
     )
     description = models.TextField(default='Empty')
     status = models.CharField(choices=STATUS_CHOICES, default='NOT_CONTACTED', max_length=30)
+    # sold = models.ForeignKey(Product, blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Product Inquiries'
