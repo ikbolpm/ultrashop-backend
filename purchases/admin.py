@@ -28,7 +28,7 @@ class PurchaseAdmin(ModelAdmin, ExportCsvMixin):
     list_display = ['laptop', 'warehouse', 'cost', 'quantity', 'created', 'updated']
     list_display_links = ['laptop', ]
     list_editable = ['warehouse', 'cost', 'quantity']
-    search_fields = ['laptop__name']
+    search_fields = ['laptop__name', 'laptop__upc']
     list_filter = (
         ('laptop__brand', admin.RelatedOnlyFieldListFilter),
         ('laptop__screen_size', admin.RelatedOnlyFieldListFilter),
@@ -39,5 +39,4 @@ class PurchaseAdmin(ModelAdmin, ExportCsvMixin):
     )
     autocomplete_fields = ['laptop']
     actions = ["export_as_csv"]
-
 admin.site.register(Purchase, PurchaseAdmin)

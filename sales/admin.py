@@ -27,7 +27,7 @@ class ExportCsvMixin:
 class SalesAdmin(ModelAdmin, ExportCsvMixin):
     list_display = ['laptop', 'customer', 'sold_by', 'warehouse', 'price', 'profit', 'quantity', 'created']
     list_display_links = ['laptop', ]
-    search_fields = ['customer__name', 'laptop__name', 'price', ]
+    search_fields = ['customer__name', 'laptop__name', 'price', 'laptop__upc']
     actions = ["export_as_csv"]
 
     list_filter = (

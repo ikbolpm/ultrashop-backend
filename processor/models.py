@@ -1,5 +1,4 @@
 from django.db import models
-
 from processorBrand.models import ProcessorBrand
 
 
@@ -15,7 +14,7 @@ class Processor(models.Model):
     integrated_graphics = models.CharField(max_length=255, help_text='К примеру: Intel® HD Graphics 630', null=True, blank=True)
  
     class Meta:
-        ordering=['name']
+        ordering = ['name',]
 
     def __str__(self):
         return self.name

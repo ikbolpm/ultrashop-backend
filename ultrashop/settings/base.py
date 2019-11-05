@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'settings',
     'crm',
     'products',
-    'tinymce'
+    'tinymce',
+    'testing'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

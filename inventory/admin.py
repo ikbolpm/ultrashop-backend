@@ -11,7 +11,7 @@ from .models import Inventory
 class InventoryAdmin(ModelAdmin, ExportCsvMixin):
 
     list_display = ['laptop', 'vat', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
-    search_fields = ['laptop__name', 'laptop__model']
+    search_fields = ['laptop__name', 'laptop__model', 'laptop__upc']
     list_display_links = ['laptop', ]
     list_filter = (
         ('laptop__brand', admin.RelatedOnlyFieldListFilter),
