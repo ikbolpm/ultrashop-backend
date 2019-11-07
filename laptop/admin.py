@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from custom_multiupload.admin import MultiUploadAdmin
 from django.conf import settings
 
+from sales.admin import ExportCsvMixin
 from .models import Laptop, Image
 
 
@@ -26,7 +27,7 @@ class GalleryMultiuploadMixing(object):
 
 
 
-class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
+class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin, ExportCsvMixin):
     list_display = ['brand', 'name', 'model', 'vat', 'price', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size',
                     'resolution', 'graphics_card', 'created', ]
     # list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
@@ -46,6 +47,7 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
+    actions = ["export_as_csv"]
 
     def delete_file(self, pk, request):
         '''
