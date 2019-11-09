@@ -35,7 +35,8 @@ class GalleryMultiuploadMixing(object):
 
 
 class ProductAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
-    list_display = ['brand', 'category', 'name', 'model', 'vat', 'price', 'created', ]
+    list_display = ['brand', 'category', 'name', 'model', 'vat', 'price', 'old_price', 'created', ]
+    list_editable = ['old_price', 'price']
     list_display_links = ['name', ]
     list_filter = (
         ('brand', admin.RelatedOnlyFieldListFilter),
