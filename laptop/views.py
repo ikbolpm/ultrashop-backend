@@ -48,6 +48,7 @@ class LaptopFilter (FilterSet):
     old_price = filters.CharFilter(method='filter_by_old_price')
     quantity = filters.CharFilter(method='filter_by_quantity')
     awaiting = filters.CharFilter(method='filter_by_awaiting')
+    isLaptop = filters.CharFilter(method='filter_isLaptop')
 
     class Meta:
         model = Laptop
@@ -151,6 +152,10 @@ class LaptopFilter (FilterSet):
         laptop_type = value.strip().split(',')
         laptop_types = LaptopType.objects.filter(id__in=laptop_type)
         return queryset.filter(laptop_type__in=laptop_types)
+
+    def filter_isLaptop(self, queryset, name, value):
+        queryset = queryset.filter(laptop_type_id__lt=value)
+        return queryset
 
     def filter_by_graphics(self, queryset, name, value):
         graphics_card = value.strip().split(',')
