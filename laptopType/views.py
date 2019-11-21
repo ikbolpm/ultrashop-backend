@@ -8,7 +8,7 @@ from .serializers import LaptopTypeSerializer
 class LaptopTypeFilter(FilterSet):
     class Meta:
         model = LaptopType
-        fields = ('name', 'slug', 'id',)
+        fields = ('name', 'slug', 'id', 'isLaptop')
 
 class LaptopTypeListView(generics.ListAPIView):
     serializer_class = LaptopTypeSerializer
