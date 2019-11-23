@@ -212,7 +212,7 @@ class LaptopListView(generics.ListAPIView):
         'laptop_type__slug',
         'graphics_card__slug',
         'audio__slug',
-        'perks',
+        'perks__slug',
         'screen_size__size',
         'name',
         'model',
