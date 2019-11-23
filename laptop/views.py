@@ -214,7 +214,8 @@ class LaptopListView(generics.ListAPIView):
         'audio__slug',
         'perks__slug',
         'screen_size__size',
-        'name'
+        'name',
+        'model',
     )
 
 class LaptopImagesView(generics.ListAPIView):
