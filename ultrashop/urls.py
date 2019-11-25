@@ -13,6 +13,7 @@ urlpatterns = [
     path('api/laptops', include('laptop.urls')),
     path('api/audio', include('audio.urls')),
     path('api/brand', include('brand.urls')),
+    path('api/deal', include('deals.urls')),
     path('api/display', include('displaySize.urls')),
     path('api/graphics', include('graphicsCard.urls')),
     path('api/graphics-brands', include('graphicsCardBrand.urls')),
@@ -25,13 +26,14 @@ urlpatterns = [
     path('api/storages', include('storage.urls')),
     path('api/inquiry/', include('inquiries.urls')),
     path('api/token/', TokenObtainPairView.as_view()),
-    path('api/token/refreh', TokenRefreshView.as_view()),
-    # path('api/users/', include('accounts.urls')),
+    path('api/token/refresh', TokenRefreshView.as_view()),
+    path('api/users/', include('accounts.urls')),
     path('api/inquiries/', include('inquiries.urls')),
     path('api/dollar', include('settings.urls')),
     path('api/inventory', include('inventory.urls')),
     path('api/products/', include('products.ulrs')),
     path('tinymce/', include('tinymce.urls')),
+    path('', include('shop.urls', namespace='shop')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

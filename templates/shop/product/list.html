@@ -1,0 +1,987 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block meta_description %}
+{% endblock %}
+{% block title %}
+{% endblock %}
+{% block content %}
+    <section class="slice slice-xl bg-cover bg-size--cover" data-offset-top="#header-main">
+        {#    <section class="slice slice-xl bg-cover bg-size--cover" data-offset-top="#header-main" style="background-image: url('{% static "assets/img/backgrounds/img-15.jpg" %}'); background-position: center center;">#}
+        <span class="mask bg-warning opacity-7"></span>
+        <div class="container py-5 pt-lg-7 position-relative zindex-100">
+            <div class="container swiper-js-container">
+                <div class="swiper-container" data-swiper-items="1" data-swiper-sm-items="2" data-swiper-xl-items="3"
+                     data-swiper-space-between="20" data-swiper-sm-space-between="20" data-swiper-xl-space-between="20"
+                     data-swiper-initial-slide="2" data-swiper-effect="coverflow">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="hover-scale-110">
+                                    <img alt="Image placeholder"
+                                         src='{% static "assets/img/theme/light/categories2.png" %}'
+                                         class="img-fluid img-center">
+                                </div>
+                            </a>
+                            <div class="text-center mt-3">
+                                <a href="#" class="h6 font-weight-bolder">Персональные Комьютеры</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="hover-scale-110">
+                                    <img alt="Image placeholder"
+                                         src='{% static "assets/img/theme/light/categories2.png" %}'
+                                         class="img-fluid img-center">
+                                </div>
+                            </a>
+                            <div class="text-center mt-3">
+                                <a href="#" class="h6 font-weight-bolder">Моноблоки</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="hover-scale-110">
+                                    <img alt="Image placeholder"
+                                         src='{% static "assets/img/theme/light/categories2.png" %}'
+                                         class="img-fluid img-center">
+                                </div>
+                            </a>
+                            <div class="text-center mt-3">
+                                <a href="#" class="h6 font-weight-bolder">Ноутбуки</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="hover-scale-110">
+                                    <img alt="Image placeholder"
+                                         src='{% static "assets/img/theme/light/categories2.png" %}'
+                                         class="img-fluid img-center">
+                                </div>
+                            </a>
+                            <div class="text-center mt-3">
+                                <a href="#" class="h6 font-weight-bolder">Принтеры</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="hover-scale-110">
+                                    <img alt="Image placeholder"
+                                         src='{% static "assets/img/theme/light/categories2.png" %}'
+                                         class="img-fluid img-center">
+                                </div>
+                            </a>
+                            <div class="text-center mt-3">
+                                <a href="#" class="h6 font-weight-bolder">Планшеты</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="hover-scale-110">
+                                    <img alt="Image placeholder"
+                                         src='{% static "assets/img/theme/light/categories2.png" %}'
+                                         class="img-fluid img-center">
+                                </div>
+                            </a>
+                            <div class="text-center mt-3">
+                                <a href="#" class="h6 font-weight-bolder">Аксессуары</a>
+                            </div>
+                        </div>
+{#                        <div class="swiper-slide">#}
+{#                            <svg class="bd-placeholder-img card-img-top" width="600" height="600"#}
+{#                                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"#}
+{#                                 focusable="false" role="img" aria-label="Placeholder: 600x600"><title>#}
+{#                                Placeholder</title>#}
+{#                                <rect fill="" width="100%" height="100%"/>#}
+{#                                <text fill="" dy=".3em" x="50%" y="50%">600x600</text>#}
+{#                            </svg>#}
+{#                        </div>#}
+{#                        <div class="swiper-slide">#}
+{#                            <svg class="bd-placeholder-img card-img-top" width="600" height="600"#}
+{#                                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"#}
+{#                                 focusable="false" role="img" aria-label="Placeholder: 600x600"><title>#}
+{#                                Placeholder</title>#}
+{#                                <rect fill="" width="100%" height="100%"/>#}
+{#                                <text fill="" dy=".3em" x="50%" y="50%">600x600</text>#}
+{#                            </svg>#}
+{#                        </div>#}
+{#                        <div class="swiper-slide">#}
+{#                            <svg class="bd-placeholder-img card-img-top" width="600" height="600"#}
+{#                                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"#}
+{#                                 focusable="false" role="img" aria-label="Placeholder: 600x600"><title>#}
+{#                                Placeholder</title>#}
+{#                                <rect fill="" width="100%" height="100%"/>#}
+{#                                <text fill="" dy=".3em" x="50%" y="50%">600x600</text>#}
+{#                            </svg>#}
+{#                        </div>#}
+{#                        <div class="swiper-slide">#}
+{#                            <svg class="bd-placeholder-img card-img-top" width="600" height="600"#}
+{#                                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"#}
+{#                                 focusable="false" role="img" aria-label="Placeholder: 600x600"><title>#}
+{#                                Placeholder</title>#}
+{#                                <rect fill="" width="100%" height="100%"/>#}
+{#                                <text fill="" dy=".3em" x="50%" y="50%">600x600</text>#}
+{#                            </svg>#}
+{#                        </div>#}
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                {#                <div class="row align-items-center">#}
+                {#                    <div class="col-lg-12">#}
+                {#                        <div class="swiper-container" data-swiper-items="2" data-swiper-space-between="20"#}
+                {#                             data-swiper-sm-items="4" data-swiper-sm-space-between="20" data-swiper-lg-items="6"#}
+                {#                             data-swiper-lg-space-between="20">#}
+                {#                            <div class="swiper-wrapper">#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/categories2.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Homes Base</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-2.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Home Controller</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-3.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Adapts Earphones</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-4.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Smart Pixel 3</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-5.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">TV Chromecast</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-6.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Ears Buds</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-7.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Fitness leggings</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-4.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Long sleeved shirt</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-8.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Fitness shirt</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/categories2.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Running hat</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-7.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Fitness leggings</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                                <div class="swiper-slide p-3">#}
+                {#                                    <a href="#">#}
+                {#                                        <div class="hover-scale-110">#}
+                {#                                            <img alt="Image placeholder"#}
+                {#                                                 src='{% static "assets/img/theme/light/product-3.png" %}'#}
+                {#                                                 class="img-fluid img-center">#}
+                {#                                        </div>#}
+                {#                                    </a>#}
+                {#                                    <div class="text-center mt-3">#}
+                {#                                        <a href="#" class="h6 font-weight-bolder">Long sleeved shirt</a>#}
+                {#                                    </div>#}
+                {#                                </div>#}
+                {#                            </div>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+            </div>
+            <div class="row row-grid mt-6 d-none d-lg-flex">
+                <div class="col-lg-4">
+                    <div class="card bg-dark border-0 hover-shadow-lg hover-translate-y-n10">
+                        <div class="card-body py-4">
+                            <div class="d-flex align-items-start">
+                                <div class="icon bg-gradient-primary text-white rounded-circle icon-shape">
+                                    <i class="fas fa-shipping-fast"></i>
+                                </div>
+                                <div class="icon-text pl-4">
+                                    <h5 class="ma-0  text-white">Быстрая Доставка</h5>
+                                    <p class="mb-0 text-muted">Где бы вы не находились в Узбекистане, мы сделаем
+                                        доставку в течение одного дня.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card bg-dark border-0 hover-shadow-lg hover-translate-y-n10">
+                        <div class="card-body py-4">
+                            <div class="d-flex align-items-start">
+                                <div class="icon bg-gradient-primary text-white rounded-circle icon-shape">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="icon-text pl-4">
+                                    <h5 class="ma-0  text-white">Защита от Переплат</h5>
+                                    <p class="mb-0 text-muted">Если вы нашли наш товар дешевле, мы вам вернем разницу.
+                                        Никаких вопросов и проблем.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card bg-dark border-0 hover-shadow-lg hover-translate-y-n10">
+                        <div class="card-body py-4">
+                            <div class="d-flex align-items-start">
+                                <div class="icon bg-gradient-primary text-white rounded-circle icon-shape">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <div class="icon-text pl-4">
+                                    <h5 class="ma-0  text-white">Удобная Связь</h5>
+                                    <p class="mb-0 text-muted">Вы можете с нами связаться в любое время. Номер нашего
+                                        телефона и Telegram: +998 98 128 5872.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shape-container" data-shape-position="bottom">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 1000 300"
+                 style="enable-background:new 0 0 1000 300;" xml:space="preserve"
+                 class="ie-shape-wave-1 fill-section-secondary">
+          <path d="M 0 246.131 C 0 246.131 31.631 250.035 47.487 249.429 C 65.149 248.755 82.784 245.945 99.944 241.732 C 184.214 221.045 222.601 171.885 309.221 166.413 C 369.892 162.581 514.918 201.709 573.164 201.709 C 714.375 201.709 772.023 48.574 910.547 21.276 C 939.811 15.509 1000 24.025 1000 24.025 L 1000 300.559 L -0.002 300.559 L 0 246.131 Z"/>
+        </svg>
+        </div>
+    </section>
+    <section class="slice pt-lg-0 bg-section-secondary">
+
+    </section>
+    <section class="slice slice-lg delimiter-top" id="sct-products">
+        <div class="container">
+            <!-- Title -->
+            <div class="mb-5 text-center">
+                <h3 class="h6">Latest products<i class="fas fa-angle-down text-xs ml-3"></i></h3>
+            </div>
+            <!-- Products -->
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/categories2.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Home Base</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$129 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-2.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Home Controller</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$49 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-3.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Adapt Earphones</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$65 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-4.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Smart Pixel 3</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$299 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-5.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">TV Chromecast</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$39 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-6.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Ear Buds</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$150 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-7.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Fitness leggings</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$70 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-4.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Long sleeved shirt</a></h6>
+                            <p class="text-sm">
+                                Customize your home experience with this product.
+                            </p>
+                            <span class="card-price">$65 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Load more -->
+            <div class="mt-4 text-center">
+                <a href="shop-products.html" class="btn btn-sm btn-white rounded-pill shadow hover-translate-y-n3">See
+                    all products</a>
+            </div>
+        </div>
+    </section>
+    <section class="slice slice-xl bg-cover bg-size--cover"
+             style="background-image: url('{% static "assets/img/backgrounds/img-15.jpg" %}'); background-position: center center;">
+        <span class="mask bg-primary opacity-9"></span>
+        <div class="container py-6">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-xl-7 text-center">
+                    <div class="mb-5">
+                        <h1 class="text-white">Try a new experience</h1>
+                        <p class="lead text-white mt-2">You get all Bootstrap components fully customized. Besides, you
+                            receive another numerous plugins out of the box and ready to use.</p>
+                    </div>
+                    <a href="#" class="btn btn-white btn-icon rounded-pill shadow hover-shadow-lg hover-translate-y-n3">
+                        <span class="btn-inner--text">Get started</span>
+                        <span class="btn-inner--icon"><i class="fas fa-angle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slice slice-lg delimiter-bottom">
+        <div class="container">
+            <!-- Title -->
+            <div class="mb-5 text-center">
+                <h3 class="h6">Recently seen<i class="fas fa-angle-down text-xs ml-3"></i></h3>
+            </div>
+            <!-- Products -->
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/categories2.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Home Base</a></h6>
+                            <span class="card-price">$129 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-2.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Home Controller</a></h6>
+                            <span class="card-price">$49 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-3.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Adapt Earphones</a></h6>
+                            <span class="card-price">$65 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card card-product">
+                        <div class="card-image">
+                            <a href="#">
+                                <img alt="Image placeholder" src='{% static "assets/img/theme/light/product-4.png" %}'
+                                     class="img-center img-fluid">
+                            </a>
+                        </div>
+                        <div class="card-body text-center pt-0">
+                            <h6><a href="#">Smart Pixel 3</a></h6>
+                            <span class="card-price">$299 USD</span>
+                            <div class="product-colors mt-3">
+                                <a href="#" style="background-color: #59ad46;" data-toggle="tooltip"
+                                   data-original-title="Green"></a>
+                                <a href="#" style="background-color: #04050a;" data-toggle="tooltip"
+                                   data-original-title="Black"></a>
+                                <a href="#" style="background-color: #62aedd;" data-toggle="tooltip"
+                                   data-original-title="Blueish"></a>
+                                <a href="#" style="background-color: #e84385;" data-toggle="tooltip"
+                                   data-original-title="Pink"></a>
+                            </div>
+                        </div>
+                        <div class="actions card-product-actions" data-animation-in="slideInLeft"
+                             data-animation-out="slideOutLeft">
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Add to cart">
+                                <i class="fas fa-shopping-bag"></i>
+                            </button>
+                            <button type="button" class="action-item" data-toggle="tooltip"
+                                    data-original-title="Wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials (v6) -->
+    <section class="slice slice-lg bg-section-secondary">
+        <div class="container">
+            <div class="mb-5 text-center">
+                <h3 class=" mt-4">Working with companies wolrdwide</h3>
+                <div class="fluid-paragraph mt-3">
+                    <p class="lead lh-180">Start building fast, beautiful and modern looking websites in no time using
+                        our theme.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card" data-animate-hover="1">
+                        <div class="animate-this">
+                            <img alt="Image placeholder" src='{% static "assets/img/theme/light/img-6-800x600.jpg" %}'
+                                 class="card-img-top">
+                            <a href="https://www.youtube.com/watch?v=mqpwDJpI3Rc"
+                               class="btn btn-lg btn-white btn-icon-only rounded-circle shadow-sm position-absolute right-4 top-4 hover-scale-110"
+                               data-fancybox>
+                  <span class="btn-inner--icon">
+                    <i class="fas fa-play"></i>
+                  </span>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote">
+                                <span class="quote"></span>
+                                <div class="quote-text">
+                                    <p class="font-italic lh-170">Amazing template! All-in-one, clean code, beautiful
+                                        design, and really not hard to work with.Highly recommended for any kind on
+                                        website.</p>
+                                    <footer class="blockquote-footer">
+                                        Someone famous in <cite title="Source Title">Heather Wrights</cite>
+                                    </footer>
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card" data-animate-hover="1">
+                        <div class="animate-this">
+                            <img alt="Image placeholder" src='{% static "assets/img/theme/light/img-7-800x600.jpg" %}'
+                                 class="card-img-top">
+                            <a href="https://www.youtube.com/watch?v=mqpwDJpI3Rc"
+                               class="btn btn-lg btn-white btn-icon-only rounded-circle shadow-sm position-absolute right-4 top-4 hover-scale-110"
+                               data-fancybox>
+                  <span class="btn-inner--icon">
+                    <i class="fas fa-play"></i>
+                  </span>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote">
+                                <span class="quote"></span>
+                                <div class="quote-text">
+                                    <p class="font-italic lh-170">Amazing template! All-in-one, clean code, beautiful
+                                        design, and really not hard to work with.Highly recommended for any kind on
+                                        website.</p>
+                                    <footer class="blockquote-footer">
+                                        Someone famous in <cite title="Source Title">Michael Wright</cite>
+                                    </footer>
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 text-center">
+                <a href="#" class="btn btn-sm btn-primary rounded-pill btn-icon">
+                    <span class="btn-inner--icon"><i class="fas fa-angle-right"></i></span>
+                    <span class="btn-inner--text">See all stories</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="slice slice-xl bg-cover bg-size--cover"
+             style="background-image: url('{% static "assets/img/backgrounds/img-17.jpg" %}'); background-position: center center;">
+        <span class="mask bg-dark opacity-2"></span>
+        <div class="container py-6">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-xl-6 text-center">
+                    <div class="mb-5">
+                        <h1 class="text-white">Always on time</h1>
+                        <p class="lead text-white mt-2">You get all Bootstrap components fully customized. Besides, you
+                            receive another numerous plugins out of the box and ready to use.</p>
+                    </div>
+                    <form>
+                        <div class="form-group mb-0">
+                            <div class="input-group input-group-lg input-group-merge rounded-pill bg-white">
+                                <input type="email" class="form-control form-control-flush" name="email"
+                                       placeholder="Enter your email address" aria-label="Enter your email address">
+                                <div class="input-group-append">
+                                    <button class="btn btn-white text-dark" type="button">
+                                        <span class="far fa-paper-plane"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slice-sm bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="px-4 py-3 text-lg-center">
+                        <h6 class="text-sm text-white text-uppercase ls-1">Free shipping in 48/72H</h6>
+                        <p class="text-white opacity-7">
+                            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="px-4 py-3 text-lg-center">
+                        <h6 class="text-sm text-white text-uppercase ls-1">Free returns</h6>
+                        <p class="text-white opacity-7">
+                            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="px-4 py-3 text-lg-center">
+                        <h6 class="text-sm text-white text-uppercase ls-1">Secure payment</h6>
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">
+                                <img alt="Image placeholder" src='{% static "assets/img/icons/cards/visa.png" %}'
+                                     width="30">
+                            </li>
+                            <li class="list-inline-item">
+                                <img alt="Image placeholder" src='{% static "assets/img/icons/cards/mastercard.png" %}'
+                                     width="30">
+                            </li>
+                            <li class="list-inline-item">
+                                <img alt="Image placeholder" src='{% static "assets/img/icons/cards/maestro.png" %}'
+                                     width="30">
+                            </li>
+                            <li class="list-inline-item">
+                                <img alt="Image placeholder" src='{% static "assets/img/icons/cards/paypal.png" %}'
+                                     width="30">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
