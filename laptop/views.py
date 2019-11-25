@@ -55,6 +55,7 @@ class LaptopFilter (FilterSet):
         fields = (
             'id',
             'slug',
+            'on_sale'
 
         )
 

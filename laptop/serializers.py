@@ -74,6 +74,7 @@ class LaptopSerializer(serializers.ModelSerializer):
             'awaiting',
             'vat',
             'short_description',
+            'on_sale',
             'created',
             'updated'
         ]

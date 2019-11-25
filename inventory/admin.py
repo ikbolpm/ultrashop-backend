@@ -1,12 +1,33 @@
+import csv
+
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from sales.admin import ExportCsvMixin
+from django.http import HttpResponse
+
 from settings.models import DollarExchangeRate, TransactionCoefficient
 import math
 
 
 from .models import Inventory
 
+class ExportCsvMixin:
+    def export_as_csv(self, request, queryset):
+
+        meta = self.model._meta
+        field_names = [field.name for field in meta.fields]
+        field_names = field_names.append('laptop.price')
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+
+        writer.writerow(field_names)
+        for obj in queryset:
+            row = writer.writerow([getattr(obj, field) for field in field_names])
+
+        return response
+
+    export_as_csv.short_description = "Export Selected"
 
 class InventoryAdmin(ModelAdmin, ExportCsvMixin):
 

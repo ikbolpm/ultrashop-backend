@@ -38,6 +38,7 @@ class Laptop(models.Model):
     thumbnail = models.ImageField(upload_to='laptop_thumbnails', blank=True, null=True)
     awaiting = models.BooleanField(default=False)
     vat = models.BooleanField(default=False)
+    on_sale = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
