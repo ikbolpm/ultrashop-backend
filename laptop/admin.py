@@ -48,6 +48,7 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin, ExportCsvMixin):
     multiupload_form = True
     multiupload_list = False
     actions = ["export_as_csv"]
+    save_as = True
 
     def delete_file(self, pk, request):
         '''
