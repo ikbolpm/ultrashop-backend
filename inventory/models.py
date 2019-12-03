@@ -32,7 +32,7 @@ class Inventory(models.Model):
     @property
     def vat(self):
         if self.laptop.vat:
-            vat = "НДС"
+            vat = "Yes"
         else:
-            vat = "Без НДС"
+            vat = "No"
         return vat
