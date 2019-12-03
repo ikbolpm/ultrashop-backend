@@ -14,7 +14,8 @@ class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
 
         meta = self.model._meta
-        field_names = [field.name for field in meta.fields]
+        # field_names = [field.name for field in meta.fields]
+        field_names = ['laptop', 'vat', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
         # field_names = field_names.append('laptop.price')
 
         response = HttpResponse(content_type='text/csv')
@@ -48,17 +49,17 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
     autocomplete_fields = ['laptop']
     actions = ["export_as_csv"]
 
-    def laptop__price(self, obj):
-        uzs_price = (obj.laptop.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)
-        uzs_price = int(math.ceil(uzs_price / 1000)) * 1000
-        uzs_price = '{:,.0f}'.format(uzs_price) + ' сум'
-        return uzs_price
-
-    def vat(self, obj):
-        if obj.laptop.vat:
-            vat = "НДС"
-        else:
-            vat = "Без НДС"
-        return vat
+    # def laptop__price(self, obj):
+    #     uzs_price = (obj.laptop.price * DollarExchangeRate.objects.filter().first().exchange_rate / TransactionCoefficient.objects.filter().first().coefficient)
+    #     uzs_price = int(math.ceil(uzs_price / 1000)) * 1000
+    #     uzs_price = '{:,.0f}'.format(uzs_price) + ' сум'
+    #     return uzs_price
+    #
+    # def vat(self, obj):
+    #     if obj.laptop.vat:
+    #         vat = "НДС"
+    #     else:
+    #         vat = "Без НДС"
+    #     return vat
 
 admin.site.register(Inventory, InventoryAdmin)
