@@ -30,6 +30,10 @@ class ExportCsvMixin:
 
     export_as_csv.short_description = "Export Selected"
 
+# class AvailableInventoryFilter(admin.SimpleListFilter):
+#     title = 'Available'
+#     parameter_name = 'quantity'
+
 class InventoryAdmin(ModelAdmin, ExportCsvMixin):
 
     list_display = ['laptop', 'vat', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
