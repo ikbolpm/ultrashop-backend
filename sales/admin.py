@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.http import HttpResponse
 
-from .models import Sales, CustomerReturns
+from .models import Sales, CustomerReturns, PriceList
 
 class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
@@ -88,3 +88,7 @@ class CustomerReturnsAdmin(ModelAdmin, ExportCsvMixin):
         super().save_model(request, obj, form, change)
 
 admin.site.register(CustomerReturns, CustomerReturnsAdmin)
+
+@admin.register(PriceList)
+class PriceListAdmin(admin.ModelAdmin):
+    pass

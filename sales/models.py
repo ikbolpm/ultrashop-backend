@@ -97,3 +97,6 @@ class CustomerReturns(models.Model):
             ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
             fail_silently=False,
         )
+
+class PriceList(models.Model):
+    pricelist = models.FileField(upload_to='pricelist')
