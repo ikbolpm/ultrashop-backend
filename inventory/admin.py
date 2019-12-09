@@ -30,22 +30,23 @@ class ExportCsvMixin:
 
     export_as_csv.short_description = "Export Selected"
 
-# class AvailableInventoryFilter(admin.SimpleListFilter):
-#     title = 'Available'
-#     parameter_name = 'quantity'
-#
-#     def lookups(self, request, model_admin):
-#         return (
-#             ('Yes', 'Yes'),
-#             ('No', 'No'),
-#         )
-#
-#     def queryset(self, request, queryset):
-#         value = self.value()
-#         if value == 'Yes':
-#             return queryset.filter(quantity__gt=0)
-#         else:
-#             return queryset.filter(quantity__lt=1)
+class AvailableInventoryFilter(admin.SimpleListFilter):
+    title = 'Available'
+    parameter_name = 'squantity'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('Yes', 'Yes'),
+            ('No', 'No'),
+        )
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value == 'Yes':
+            return queryset.filter(quantity__gte=1)
+        elif value == 'No':
+            return queryset.filter(quantity__lte=0)
+        return queryset
 
 class InventoryAdmin(ModelAdmin, ExportCsvMixin):
 
@@ -53,7 +54,7 @@ class InventoryAdmin(ModelAdmin, ExportCsvMixin):
     search_fields = ['laptop__name', 'laptop__model', 'laptop__upc']
     list_display_links = ['laptop', ]
     list_filter = (
-        # (AvailableInventoryFilter),
+        AvailableInventoryFilter,
         ('laptop__brand', admin.RelatedOnlyFieldListFilter),
         ('laptop__laptop_type', admin.RelatedOnlyFieldListFilter),
         ('laptop__screen_size', admin.RelatedOnlyFieldListFilter),
