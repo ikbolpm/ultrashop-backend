@@ -16,7 +16,7 @@ class Sales(models.Model):
     warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, help_text='Выберите магазин/склад')
     price = models.DecimalField(max_digits=7, decimal_places=2, help_text='Цена за которую продали')
     quantity = models.IntegerField(help_text='Количество')
-    profit = models.DecimalField(max_digits=7, decimal_places=2, help_text='Введите прибыль')
+    # profit = models.DecimalField(max_digits=7, decimal_places=2, help_text='Введите прибыль')
     comments = models.TextField(blank=True, null=True, help_text='Дополнительные комментарии, что в комплекте продали и т.д.')
     sold_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
@@ -42,7 +42,8 @@ class Sales(models.Model):
             )
             inventory.quantity = inventory.quantity - self.quantity
             inventory.save()
-            message = 'Продали ноутбук! \n\nНоутбук: ' + str(self.laptop) + '\n\nКлиент: ' + self.customer.name + '\n\nМагазин: ' + self.warehouse.name + '\n\nКоличество: ' + str(self.quantity) + '\n\nЦена: $' + str(self.price) + '\n\nПрибыль: $' + str(self.profit) + '\n\nКомментарии: ' + self.comments
+            message = 'Продали ноутбук! \n\nНоутбук: ' + str(self.laptop) + '\n\nКлиент: ' + self.customer.name + '\n\nМагазин: ' + self.warehouse.name + '\n\nКоличество: ' + str(self.quantity) + '\n\nЦена: $' + str(self.price)  + '\n\nКомментарии: ' + self.comments
+            # message = 'Продали ноутбук! \n\nНоутбук: ' + str(self.laptop) + '\n\nКлиент: ' + self.customer.name + '\n\nМагазин: ' + self.warehouse.name + '\n\nКоличество: ' + str(self.quantity) + '\n\nЦена: $' + str(self.price) + '\n\nПрибыль: $' + str(self.profit) + '\n\nКомментарии: ' + self.comments
             def telegram_bot_sendtext(bot_message):
                 bot_token = '876737347:AAGDgcS132vZemev47HC-8Evu8byJfHGoUg'
                 bot_chatID = '-257139211'
