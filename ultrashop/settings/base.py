@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'tinymce',
     'testing',
     'shop',
-    'deals'
+    'deals',
+    'stock',
+    'sitesettings'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

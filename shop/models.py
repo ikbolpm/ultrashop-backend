@@ -92,3 +92,18 @@ class Laptop(Product):
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='laptop_resolution')
     # screen_perks = models.ManyToManyField(ScreenPerk, related_name='laptop_screen_perks')
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, related_name='laptop_audio')
+
+
+class AllInOne(Product):
+    processor = models.ForeignKey(Processor, on_delete=models.CASCADE, related_name='aio_processor')
+    ram = models.IntegerField()
+    ram_type = models.ForeignKey(Ram, on_delete=models.CASCADE, related_name='aio_ram_type')
+    ssd = models.IntegerField(blank=True, null=True)
+    hdd = models.IntegerField(blank=True, null=True)
+    graphics_card = models.ForeignKey(GraphicsCard, on_delete=models.CASCADE, blank=True, null=True,
+                                      related_name='aio_graphics_card')
+    graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
+    screen_size = models.ForeignKey(DisplaySize, on_delete=models.CASCADE, related_name='aio_screen_size')
+    resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='aio_resolution')
+    # screen_perks = models.ManyToManyField(ScreenPerk, related_name='laptop_screen_perks')
+    audio = models.ForeignKey(Audio, on_delete=models.CASCADE, related_name='aio_audio')

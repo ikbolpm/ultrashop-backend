@@ -212,12 +212,14 @@ class LaptopListView(generics.ListAPIView):
         'resolution__slug',
         'laptop_type__slug',
         'graphics_card__slug',
+        'graphics_card__brand__name',
         'audio__slug',
         'perks__slug',
         'screen_size__size',
         'name',
         'model',
         'upc',
+
     )
 
 class LaptopImagesView(generics.ListAPIView):
