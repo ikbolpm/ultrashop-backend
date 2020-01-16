@@ -4,11 +4,11 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.http import HttpResponse
 
-from .models import Purchase
+from .models import Purchase, Country
+
 
 class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
-
         meta = self.model._meta
         field_names = [field.name for field in meta.fields]
 
@@ -24,8 +24,9 @@ class ExportCsvMixin:
 
     export_as_csv.short_description = "Export Selected"
 
+
 class PurchaseAdmin(ModelAdmin, ExportCsvMixin):
-    list_display = ['laptop', 'warehouse', 'cost', 'quantity', 'created', 'updated']
+    list_display = ['laptop', 'vat', 'country', 'cost', 'quantity', 'created', 'updated', 'warehouse']
     list_display_links = ['laptop', ]
     list_editable = ['warehouse', 'cost', 'quantity']
     search_fields = ['laptop__name', 'laptop__upc', 'laptop__model']
@@ -39,4 +40,15 @@ class PurchaseAdmin(ModelAdmin, ExportCsvMixin):
     )
     autocomplete_fields = ['laptop']
     actions = ["export_as_csv"]
+
+
 admin.site.register(Purchase, PurchaseAdmin)
+
+
+class CountryAdmin(ModelAdmin):
+    list_display = ['name']
+
+
+admin.site.register(Country, CountryAdmin)
+
+

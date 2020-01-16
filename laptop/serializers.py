@@ -93,6 +93,7 @@ class LaptopSerializer(serializers.ModelSerializer):
             graphics_card = str(obj.graphics_card) + ' [' + str(obj.graphics_card_memory) + ' GB]'
         else:
             graphics_card = str(obj.processor.integrated_graphics)
+
         return obj.brand.name + ' ' + \
                obj.name + '; '+ \
                obj.processor.name + ', ' + str(obj.processor.min_frequency) + '-' + str(obj.processor.max_frequency) + 'GHz, ' + \
