@@ -1,6 +1,7 @@
 from django_filters import FilterSet
 from django_filters import rest_framework as filters
 from django.db.models import Sum
+from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter, SearchFilter
