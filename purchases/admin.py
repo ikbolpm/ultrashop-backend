@@ -28,7 +28,7 @@ class ExportCsvMixin:
 class PurchaseAdmin(ModelAdmin, ExportCsvMixin):
     list_display = ['laptop', 'vat', 'country', 'quantity', 'created', 'updated', 'warehouse']
     list_display_links = ['laptop', ]
-    list_editable = ['warehouse', 'cost', 'quantity']
+    list_editable = ['country', 'vat']
     search_fields = ['laptop__name', 'laptop__upc', 'laptop__model']
     list_filter = (
         ('laptop__brand', admin.RelatedOnlyFieldListFilter),
