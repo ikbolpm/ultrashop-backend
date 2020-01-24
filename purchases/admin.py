@@ -36,7 +36,7 @@ class PurchaseAdmin(ModelAdmin, ExportCsvMixin):
         ('laptop__graphics_card', admin.RelatedOnlyFieldListFilter),
         ('laptop__processor', admin.RelatedOnlyFieldListFilter),
         ('warehouse', admin.RelatedOnlyFieldListFilter),
-        ('created'),
+        'created',
     )
     autocomplete_fields = ['laptop']
     actions = ["export_as_csv"]
