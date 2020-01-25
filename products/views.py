@@ -42,7 +42,7 @@ class ProductFilter (FilterSet):
         fields = (
             'id',
             'slug',
-
+            'available'
         )
 
     def filter_by_id_not(self, queryset, name, value):
