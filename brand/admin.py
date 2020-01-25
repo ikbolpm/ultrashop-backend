@@ -6,5 +6,6 @@ from .models import Brand
 class BrandAdmin(ModelAdmin):
     list_display = ['name']
     prepopulated_fields = {'slug': ('name',), }
+    search_fields = ['name', 'slug']
 
 admin.site.register(Brand, BrandAdmin)

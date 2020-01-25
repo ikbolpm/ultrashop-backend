@@ -38,11 +38,12 @@ class Product(models.Model):
     # model = models.CharField(max_length=255, help_text='К примеру: 1470 80XA')
     part_number = models.CharField(max_length=30, help_text='К примеру: 81XVS440S', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    old_price = models.IntegerField(help_text='Старая цена. Оставьте 0 если не идет акция', default=0)
+    old_price = models.IntegerField(help_text='Старая цена. Оставьте 0 если не идет акция', blank=True, null=True)
     price = models.IntegerField(help_text='Введите сумму в USD')
+    warranty = models.IntegerField(help_text='Введите срок гарантии в месяцах', default=12)
     viewed = models.IntegerField(default=0)
     thumbnail = models.ImageField(upload_to='images/products/thumbnails', blank=True, null=True)
-    awaiting = models.BooleanField(default=False)
+    # awaiting = models.BooleanField(default=False)
     vat = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -85,12 +86,12 @@ class Laptop(Product):
     ram_type = models.ForeignKey(Ram, on_delete=models.CASCADE, related_name='laptop_ram_type')
     ssd = models.IntegerField(blank=True, null=True)
     hdd = models.IntegerField(blank=True, null=True)
+    optane = models.IntegerField(blank=True, null=True)
     graphics_card = models.ForeignKey(GraphicsCard, on_delete=models.CASCADE, blank=True, null=True,
                                       related_name='laptop_graphics_card')
     graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
     screen_size = models.ForeignKey(DisplaySize, on_delete=models.CASCADE, related_name='laptop_screen_size')
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='laptop_resolution')
-    # screen_perks = models.ManyToManyField(ScreenPerk, related_name='laptop_screen_perks')
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, related_name='laptop_audio')
 
 
@@ -100,10 +101,26 @@ class AllInOne(Product):
     ram_type = models.ForeignKey(Ram, on_delete=models.CASCADE, related_name='aio_ram_type')
     ssd = models.IntegerField(blank=True, null=True)
     hdd = models.IntegerField(blank=True, null=True)
+    optane = models.IntegerField(blank=True, null=True)
+    models.IntegerField(blank=True, null=True)
     graphics_card = models.ForeignKey(GraphicsCard, on_delete=models.CASCADE, blank=True, null=True,
                                       related_name='aio_graphics_card')
     graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
     screen_size = models.ForeignKey(DisplaySize, on_delete=models.CASCADE, related_name='aio_screen_size')
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='aio_resolution')
-    # screen_perks = models.ManyToManyField(ScreenPerk, related_name='laptop_screen_perks')
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, related_name='aio_audio')
+
+
+class Desktop(Product):
+    processor = models.ForeignKey(Processor, on_delete=models.CASCADE, related_name='desktop_processor')
+    ram = models.IntegerField()
+    ram_type = models.ForeignKey(Ram, on_delete=models.CASCADE, related_name='desktop_ram_type')
+    ssd = models.IntegerField(blank=True, null=True)
+    hdd = models.IntegerField(blank=True, null=True)
+    optane = models.IntegerField(blank=True, null=True)
+    models.IntegerField(blank=True, null=True)
+    graphics_card = models.ForeignKey(GraphicsCard, on_delete=models.CASCADE, blank=True, null=True,
+                                      related_name='desktop_graphics_card')
+    graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
+    screen_size = models.ForeignKey(DisplaySize, on_delete=models.CASCADE, related_name='desktop_screen_size', null=True, blank=True)
+    resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='desktop_resolution', null=True, blank=True)

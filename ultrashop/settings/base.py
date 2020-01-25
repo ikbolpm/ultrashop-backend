@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'shop',
     'deals',
     'stock',
-    'sitesettings'
+    'sitesettings',
+    'orders'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
