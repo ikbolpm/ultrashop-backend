@@ -43,7 +43,7 @@ class ProductAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
         ('category', admin.RelatedOnlyFieldListFilter),
     )
     # autocomplete_fields = ['processor']
-    # search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'model', 'upc']
+    search_fields = ['brand__name', 'name', 'category__name', 'model', ]
     prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
