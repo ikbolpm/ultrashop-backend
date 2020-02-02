@@ -14,9 +14,6 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name', 'part_number', 'upc']
-    def get_model_perms(self, request):
-        # Hide from Admin panel, still allowing to use from inline
-        return {}
 
 class ImageInlineAdmin(admin.TabularInline):
     model = Image
@@ -38,10 +35,7 @@ class GalleryMultiuploadMixing(object):
 class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     list_display = ['brand', 'name', 'vat', 'price', 'ram', 'processor', 'ssd', 'hdd', 'screen_size',
                     'resolution', 'graphics_card', 'created', ]
-    # list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
-    #                  'graphics_card', 'price']
     list_display_links = ['name', ]
-    # list_filter = ['brand', 'screen_size', 'resolution', 'graphics_card']
     list_filter = (
         ('brand', admin.RelatedOnlyFieldListFilter),
         ('screen_size', admin.RelatedOnlyFieldListFilter),
@@ -52,11 +46,10 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     save_as = True
     autocomplete_fields = ['processor', 'graphics_card', 'brand', 'category']
     search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'upc', 'part_number']
-    prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
-    exclude = ['type', 'viewed', 'updated', 'created', 'description', ]
+    exclude = ['type', 'slug', 'viewed', 'updated', 'created', 'description', ]
 
     def delete_file(self, pk, request):
         '''
@@ -92,7 +85,7 @@ class AllInOneAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
-    exclude = ['type', 'viewed', 'updated', 'created', 'description', ]
+    exclude = ['type', 'slug', 'viewed', 'updated', 'created', 'description', ]
 
     def delete_file(self, pk, request):
         '''
@@ -129,7 +122,7 @@ class DesktopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
-    exclude = ['type', 'viewed', 'updated', 'created', 'description', ]
+    exclude = ['type', 'slug', 'viewed', 'updated', 'created', 'description', ]
 
     def delete_file(self, pk, request):
         '''

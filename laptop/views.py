@@ -201,7 +201,6 @@ class LaptopListView(generics.ListAPIView):
         'updated'
     )
 
-
     search_fields = (
         'ram_type__generation',
         'brand__name',

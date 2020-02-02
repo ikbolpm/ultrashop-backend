@@ -33,7 +33,8 @@ urlpatterns = [
     path('api/inventory', include('inventory.urls')),
     path('api/products/', include('products.ulrs')),
     path('tinymce/', include('tinymce.urls')),
-    path('', include('shop.urls', namespace='shop')),
+    path('api/product/', include('shop.urls'))
+    # path('', include('shop.urls', namespace='shop')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

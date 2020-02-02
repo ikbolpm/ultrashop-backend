@@ -11,6 +11,7 @@ class BrandFilter(FilterSet):
         model = Brand
         fields = ('name', 'slug', 'active')
 
+
 class BrandListView(generics.ListAPIView):
     serializer_class = BrandSerializer
     queryset = Brand.objects.all()

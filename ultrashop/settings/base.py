@@ -54,12 +54,12 @@ INSTALLED_APPS = [
     'crm',
     'products',
     'tinymce',
-    'testing',
     'shop',
     'deals',
     'stock',
     'sitesettings',
-    'orders'
+    'orders',
+    'productconfig',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -95,10 +95,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ultrashop.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -110,9 +106,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -129,9 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -155,6 +145,7 @@ CORS_ORIGIN_WHITELIST = [
     'localhost:8080',
     'localhost:5000',
     '192.168.0.191:8080',
+    'localhost:3000',
     ]
 
 MEDIA_URL = '/media/'

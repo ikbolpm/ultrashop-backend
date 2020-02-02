@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.utils.text import slugify
 
 from audio.models import Audio
 from brand.models import Brand
@@ -23,27 +23,21 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse('shop:product_list_by_category',
-                       args=[self.slug])
-
 
 class Product(models.Model):
     upc = models.CharField(max_length=12, help_text='Отсканируйте баркод',unique=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products_brand')
     name = models.CharField(max_length=255, help_text='К примеру: XPS 13')
-    slug = models.SlugField(max_length=255)
+    slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
     type = models.CharField(max_length=100)
-    # model = models.CharField(max_length=255, help_text='К примеру: 1470 80XA')
-    part_number = models.CharField(max_length=30, help_text='К примеру: 81XVS440S', blank=True, null=True)
+    part_number = models.CharField(max_length=30, help_text='К примеру: 81XVS440S', blank=True, null=True, unique=True)
     description = models.TextField(blank=True, null=True)
     old_price = models.IntegerField(help_text='Старая цена. Оставьте 0 если не идет акция', blank=True, null=True)
     price = models.IntegerField(help_text='Введите сумму в USD')
     warranty = models.IntegerField(help_text='Введите срок гарантии в месяцах', default=12)
     viewed = models.IntegerField(default=0)
     thumbnail = models.ImageField(upload_to='images/products/thumbnails', blank=True, null=True)
-    # awaiting = models.BooleanField(default=False)
     vat = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -59,9 +53,6 @@ class Product(models.Model):
     def __str__(self):
         return "{} / {}".format(self.type, self.name)
 
-    def get_absolute_url(self):
-        return reverse('shop:product_detail',
-                       args=[self.id, self.slug])
 
 class Image(models.Model):
     file = models.FileField(upload_to='images/products/productimages/%Y-%m-%d/')
@@ -94,6 +85,47 @@ class Laptop(Product):
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='laptop_resolution')
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, related_name='laptop_audio')
 
+    def save_base(self, raw=False, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_entry = False
+        if not self.id:
+            new_entry = True
+        if new_entry:
+            if self.part_number:
+                part_number = str(self.part_number) + ' / '
+            else:
+                part_number = ''
+
+            if self.ssd:
+                ssd = str(self.ssd) + 'GB SSD / '
+            else:
+                ssd = ''
+            if self.hdd:
+                hdd = str(self.hdd) + 'GB HDD / '
+            else:
+                hdd = ''
+            if self.optane:
+                optane = str(self.optane) + 'GB Optane / '
+            else:
+                optane = ''
+            if self.graphics_card:
+                graphics_card = str(self.graphics_card)
+                graphics_memory = ' ' + str(self.graphics_card_memory) + ' GB'
+            else:
+                graphics_card = str(self.processor.integrated_graphics)
+                graphics_memory = ''
+
+            self.name = self.brand.name + ' / ' \
+                        + self.name + ' / ' \
+                        + part_number \
+                        + str(self.screen_size) + ' / '\
+                        + str(self.resolution) + ' / '\
+                        + self.processor.name + ' / '\
+                        + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
+                        + ssd + hdd + optane \
+                        + graphics_card + graphics_memory
+            self.slug = slugify(self.name)
+        super().save_base(raw, force_insert, force_update, using, update_fields)
+
 
 class AllInOne(Product):
     processor = models.ForeignKey(Processor, on_delete=models.CASCADE, related_name='aio_processor')
@@ -110,6 +142,47 @@ class AllInOne(Product):
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='aio_resolution')
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE, related_name='aio_audio')
 
+    def save_base(self, raw=False, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_entry = False
+        if not self.id:
+            new_entry = True
+        if new_entry:
+            if self.part_number:
+                part_number = str(self.part_number) + ' / '
+            else:
+                part_number = ''
+
+            if self.ssd:
+                ssd = str(self.ssd) + 'GB SSD / '
+            else:
+                ssd = ''
+            if self.hdd:
+                hdd = str(self.hdd) + 'GB HDD / '
+            else:
+                hdd = ''
+            if self.optane:
+                optane = str(self.optane) + 'GB Optane / '
+            else:
+                optane = ''
+            if self.graphics_card:
+                graphics_card = str(self.graphics_card)
+                graphics_memory = ' ' + str(self.graphics_card_memory) + ' GB'
+            else:
+                graphics_card = str(self.processor.integrated_graphics)
+                graphics_memory = ''
+
+            self.name = self.brand.name + ' / ' \
+                        + self.name + ' / ' \
+                        + part_number \
+                        + str(self.screen_size) + ' / '\
+                        + str(self.resolution) + ' / '\
+                        + self.processor.name + ' / '\
+                        + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
+                        + ssd + hdd + optane \
+                        + graphics_card + graphics_memory
+
+        super().save_base(raw, force_insert, force_update, using, update_fields)
+
 
 class Desktop(Product):
     processor = models.ForeignKey(Processor, on_delete=models.CASCADE, related_name='desktop_processor')
@@ -124,3 +197,51 @@ class Desktop(Product):
     graphics_card_memory = models.IntegerField(help_text='В ГГБ. К примеру 2 или 4', blank=True, null=True)
     screen_size = models.ForeignKey(DisplaySize, on_delete=models.CASCADE, related_name='desktop_screen_size', null=True, blank=True)
     resolution = models.ForeignKey(Resolution, on_delete=models.CASCADE, related_name='desktop_resolution', null=True, blank=True)
+
+    def save_base(self, raw=False, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_entry = False
+        if not self.id:
+            new_entry = True
+        if new_entry:
+            if self.part_number:
+                part_number = str(self.part_number) + ' / '
+            else:
+                part_number = ''
+
+            if self.ssd:
+                ssd = str(self.ssd) + 'GB SSD / '
+            else:
+                ssd = ''
+            if self.hdd:
+                hdd = str(self.hdd) + 'GB HDD / '
+            else:
+                hdd = ''
+            if self.optane:
+                optane = str(self.optane) + 'GB Optane / '
+            else:
+                optane = ''
+            if self.graphics_card:
+                graphics_card = str(self.graphics_card)
+                graphics_memory = ' ' + str(self.graphics_card_memory) + ' GB'
+            else:
+                graphics_card = str(self.processor.integrated_graphics)
+                graphics_memory = ''
+            if self.screen_size:
+                screen_size = str(self.screen_size) + '" / '
+            else:
+                screen_size = ' NO LCD / '
+            if self.resolution:
+                resolution = str(self.screen_size) + '" / '
+            else:
+                resolution = ''
+
+            self.name = self.brand.name + ' / ' \
+                        + self.name + ' / ' \
+                        + part_number \
+                        + screen_size + resolution \
+                        + self.processor.name + ' / '\
+                        + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
+                        + ssd + hdd + optane \
+                        + graphics_card + graphics_memory
+
+        super().save_base(raw, force_insert, force_update, using, update_fields)
