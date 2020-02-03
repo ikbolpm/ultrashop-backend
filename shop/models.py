@@ -37,7 +37,7 @@ class Product(models.Model):
     price = models.IntegerField(help_text='Введите сумму в USD')
     warranty = models.IntegerField(help_text='Введите срок гарантии в месяцах', default=12)
     viewed = models.IntegerField(default=0)
-    thumbnail = models.ImageField(upload_to='images/products/thumbnails', blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='images/products/thumbnails')
     vat = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
