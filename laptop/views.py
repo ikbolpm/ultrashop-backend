@@ -198,7 +198,8 @@ class LaptopListView(generics.ListAPIView):
         'graphics_card_memory',
         'price',
         'screen_size',
-        'updated'
+        'updated',
+        'created'
     )
 
     search_fields = (
