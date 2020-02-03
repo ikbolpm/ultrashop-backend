@@ -46,6 +46,7 @@ class LaptopSerializer(serializers.ModelSerializer):
         model = Laptop
         fields = [
             'id',
+            'upc',
             'inventory_count',
             'name',
             'slug',

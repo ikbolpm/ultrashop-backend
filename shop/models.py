@@ -180,7 +180,7 @@ class AllInOne(Product):
                         + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
                         + ssd + hdd + optane \
                         + graphics_card + graphics_memory
-
+            self.slug = slugify(self.name)
         super().save_base(raw, force_insert, force_update, using, update_fields)
 
 
@@ -243,5 +243,5 @@ class Desktop(Product):
                         + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
                         + ssd + hdd + optane \
                         + graphics_card + graphics_memory
-
+            self.slug = slugify(self.name)
         super().save_base(raw, force_insert, force_update, using, update_fields)

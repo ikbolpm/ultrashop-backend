@@ -81,7 +81,7 @@ class AllInOneAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     save_as = True
     autocomplete_fields = ['processor', 'graphics_card','brand', 'category']
     search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'upc', 'part_number']
-    prepopulated_fields = {'slug': ('name',),}
+    # prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
@@ -118,7 +118,7 @@ class DesktopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     save_as = True
     autocomplete_fields = ['processor', 'graphics_card','brand', 'category']
     search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'upc', 'part_number']
-    prepopulated_fields = {'slug': ('name',),}
+    # prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False

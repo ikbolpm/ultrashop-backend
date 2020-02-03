@@ -3,14 +3,22 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter, SearchFilter
 
-from .models import Product, Image, Category
+from .models import Product, Image, Category, Laptop
 from .pagination import ProductLimitOffsetPagination
-from .serializers import ImageSerializer, CategorySerializer, ProductSerializer
+from .serializers import ImageSerializer, CategorySerializer, ProductSerializer, LaptopSerializer
+
+
+class ImageFilter(FilterSet):
+    class Meta:
+        model = Image
+        fields = ('gallery__slug',)
 
 
 class ImageListApiView(generics.ListAPIView):
     serializer_class = ImageSerializer
     queryset = Image.objects.all()
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filter_class = ImageFilter
 
 
 class CategoryFilter(FilterSet):
@@ -41,6 +49,32 @@ class ProductListApiView(generics.ListAPIView):
     queryset = Product.objects.all()
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filter_class = ProductFilter
+    pagination_class = ProductLimitOffsetPagination
+    ordering_fields = (
+        'id',
+        'name',
+        'price',
+    )
+    search_fields = (
+        'upc',
+        'name',
+        'part_number',
+        'slug',
+        'description',
+    )
+
+
+class LaptopFilter(FilterSet):
+    class Meta:
+        model = Laptop
+        fields = ('category__slug', 'brand', 'vat')
+
+
+class LaptopListApiView(generics.ListAPIView):
+    serializer_class = LaptopSerializer
+    queryset = Laptop.objects.all()
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filter_class = LaptopFilter
     pagination_class = ProductLimitOffsetPagination
     ordering_fields = (
         'id',
