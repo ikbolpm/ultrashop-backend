@@ -100,11 +100,15 @@ class LaptopSerializer(serializers.ModelSerializer):
             'ram_type',
             'screen_size',
             'graphics_card',
+            'graphics_card_memory',
             'resolution',
             'ssd',
             'hdd',
             'optane',
             'audio',
+            'warranty',
+            'vat',
+            'part_number'
         ]
 
     def get_price_uzs(self, obj):

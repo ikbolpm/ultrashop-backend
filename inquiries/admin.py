@@ -27,7 +27,9 @@ class InquiryAdmin(admin.ModelAdmin):
     # list_filter = ['source']
     autocomplete_fields = ['laptop']
 
+
 admin.site.register(Inquiry, InquiryAdmin)
+
 
 class ProductInquiryAdmin(admin.ModelAdmin):
     list_display = [

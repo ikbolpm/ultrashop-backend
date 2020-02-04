@@ -1,8 +1,11 @@
+from django.db.models import Sum
 from django_filters import FilterSet
+from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter, SearchFilter
 
+from stock.models import Inventory
 from .models import Product, Image, Category, Laptop
 from .pagination import ProductLimitOffsetPagination
 from .serializers import ImageSerializer, CategorySerializer, ProductSerializer, LaptopSerializer
@@ -39,9 +42,24 @@ class CategoryListApiView(generics.ListAPIView):
 
 
 class ProductFilter(FilterSet):
+    slug_not = filters.CharFilter(field_name='slug', exclude=True)
+    quantity = filters.CharFilter(method='filter_by_quantity')
+
     class Meta:
         model = Product
-        fields = ('category__slug', 'brand', 'vat')
+        fields = ('category__slug', 'brand', 'vat',)
+
+    def filter_by_slug_not(self, queryset, name, value):
+        queryset = queryset.filter(self.slug != value)
+        return queryset
+
+    def filter_by_quantity(self, queryset, name, value):
+        inv_queryset = Inventory.objects.all()\
+            .values('product')\
+            .annotate(quantity=Sum('quantity'))\
+            .filter(quantity__gt=value)\
+            .values('product')
+        return queryset.filter(id__in=inv_queryset)
 
 
 class ProductListApiView(generics.ListAPIView):
@@ -67,7 +85,7 @@ class ProductListApiView(generics.ListAPIView):
 class LaptopFilter(FilterSet):
     class Meta:
         model = Laptop
-        fields = ('category__slug', 'brand', 'vat')
+        fields = ('slug', 'category__slug', 'brand', 'vat',)
 
 
 class LaptopListApiView(generics.ListAPIView):

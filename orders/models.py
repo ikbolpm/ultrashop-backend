@@ -28,6 +28,12 @@ class OrderItem(models.Model):
     def __str__(self):
         return '{} '.format(self.id)
 
+    @classmethod
+    def telegram_bot_sendtext(cls, bot_message, bot_token, bot_chatID):
+        send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+        response = requests.get(send_text)
+        return response.json()
+
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         new_creation = False
         if not self.id:
@@ -44,13 +50,42 @@ class OrderItem(models.Model):
             message = 'Новая продажа! (Номер заказа: ' + str(self.order.id) +') \n\nПродукт: ' + str(
                 self.product) + '\n\nКлиент: ' + self.order.customer.name + '\n\nМагазин: ' + self.order.warehouse.name + '\n\nКоличество: ' + str(
                 self.quantity) + '\n\nЦена: $' + str(self.order.price) + '\n\nКомментарии: ' + self.order.comments
+            bot_token = '876737347:AAGDgcS132vZemev47HC-8Evu8byJfHGoUg'
+            bot_chatID = '-294089365'
+            self.telegram_bot_sendtext(message, bot_token, bot_chatID)
 
-            def telegram_bot_sendtext(bot_message):
-                bot_token = '876737347:AAGDgcS132vZemev47HC-8Evu8byJfHGoUg'
-                bot_chatID = '-294089365'
-                send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
 
-                response = requests.get(send_text)
-                return response.json()
+class Inquiry(models.Model):
+    name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=50)
+    inquired_product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='inquired_product')
+    STATUS_CHOICES = (
+        ('NOT_CONTACTED', 'Not Contacted'),
+        ('ATTEMPTED_TO_CONTACT', 'Attempted to Contact'),
+        ('ASKED_TO_CALL_LATER', 'Asked to Call Later'),
+        ('DECISION_MAKING', 'Decision Making'),
+        ('CLOSED_WON', 'Closed Won'),
+        ('CLOSED LOST', 'Closed Lost')
+    )
+    description = models.TextField(default='Empty')
+    status = models.CharField(choices=STATUS_CHOICES, default='NOT_CONTACTED', max_length=50)
+    sold_product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='sold_product', blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
-            telegram_bot_sendtext(message)
+    class Meta:
+        verbose_name_plural = 'Inquiries'
+
+    def __str__(self):
+        return self.name
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_creation = False
+        if not self.id:
+            new_creation = True
+        super().save(force_insert, force_update, using, update_fields)
+        message = 'Поступила новая заявка! Срочно позвоните! \n\nИмя: ' + self.name + '\n\nТелефон: '  + self.phone + '\n\nИнтересует: ' + str(self.inquired_product) + '\n\nМинимальная цена: $' + str(self.inquired_product.price)
+        bot_token = '876737347:AAGDgcS132vZemev47HC-8Evu8byJfHGoUg'
+        bot_chatID = '-294089365'
+        if new_creation:
+            OrderItem.telegram_bot_sendtext(message, bot_token, bot_chatID)

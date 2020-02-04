@@ -3,6 +3,6 @@ from .views import ImageListApiView, ProductListApiView, CategoryListApiView, La
 urlpatterns = [
     path('category', CategoryListApiView.as_view(), name='product-category-list'),
     path('images', ImageListApiView.as_view(), name='product-image-list'),
-    path('laptop', LaptopListApiView.as_view(), name='laptop-list'),
+    path('noutbuki', LaptopListApiView.as_view(), name='laptop-list'),
     path('', ProductListApiView.as_view(), name='product-list'),
 ]
