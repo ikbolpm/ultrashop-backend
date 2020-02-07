@@ -39,9 +39,9 @@ class GalleryMultiuploadMixing(object):
         }
 
 class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
-    list_display = ['brand', 'name', 'vat', 'price', 'ram', 'processor', 'ssd', 'hdd', 'screen_size',
+    list_display = ['brand', 'title', 'vat', 'price', 'ram', 'processor', 'ssd', 'hdd', 'screen_size',
                     'resolution', 'graphics_card', 'created', ]
-    list_display_links = ['name', ]
+    list_display_links = ['title', ]
     list_filter = (
         ('brand', admin.RelatedOnlyFieldListFilter),
         ('screen_size', admin.RelatedOnlyFieldListFilter),
@@ -51,7 +51,7 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     )
     save_as = True
     autocomplete_fields = ['processor', 'graphics_card', 'brand', 'category']
-    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'upc', 'part_number']
+    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'title', 'upc', 'part_number']
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
@@ -71,12 +71,9 @@ class LaptopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
 admin.site.register(Laptop, LaptopAdmin)
 
 class AllInOneAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
-    list_display = ['brand', 'name', 'vat', 'price', 'ram', 'processor', 'ssd', 'hdd', 'screen_size',
+    list_display = ['brand', 'title', 'vat', 'price', 'ram', 'processor', 'ssd', 'hdd', 'screen_size',
                     'resolution', 'graphics_card', 'created', ]
-    # list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
-    #                  'graphics_card', 'price']
-    list_display_links = ['name', ]
-    # list_filter = ['brand', 'screen_size', 'resolution', 'graphics_card']
+    list_display_links = ['title', ]
     list_filter = (
         ('brand', admin.RelatedOnlyFieldListFilter),
         ('screen_size', admin.RelatedOnlyFieldListFilter),
@@ -86,8 +83,7 @@ class AllInOneAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     )
     save_as = True
     autocomplete_fields = ['processor', 'graphics_card','brand', 'category']
-    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'upc', 'part_number']
-    # prepopulated_fields = {'slug': ('name',),}
+    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'title', 'upc', 'part_number']
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
@@ -108,12 +104,9 @@ admin.site.register(AllInOne, AllInOneAdmin)
 
 
 class DesktopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
-    list_display = ['brand', 'name', 'vat', 'price', 'ram', 'processor', 'ssd', 'hdd', 'screen_size',
+    list_display = ['brand', 'title', 'vat', 'price', 'ram', 'processor', 'ssd', 'hdd', 'screen_size',
                     'resolution', 'graphics_card', 'created', ]
-    # list_editable = ['brand', 'ram', 'processor', 'main_storage', 'secondary_storage', 'screen_size', 'resolution',
-    #                  'graphics_card', 'price']
-    list_display_links = ['name', ]
-    # list_filter = ['brand', 'screen_size', 'resolution', 'graphics_card']
+    list_display_links = ['title', ]
     list_filter = (
         ('brand', admin.RelatedOnlyFieldListFilter),
         ('screen_size', admin.RelatedOnlyFieldListFilter),
@@ -123,7 +116,7 @@ class DesktopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     )
     save_as = True
     autocomplete_fields = ['processor', 'graphics_card','brand', 'category']
-    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'name', 'upc', 'part_number']
+    search_fields = ['brand__name', 'graphics_card__name', 'resolution__name', 'processor__name', 'title', 'upc', 'part_number']
     # prepopulated_fields = {'slug': ('name',),}
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
