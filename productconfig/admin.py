@@ -7,11 +7,6 @@ from .models import LaptopType, ComputerPerk, AllInOneType, DesktopType, Printer
 class LaptopTypeAdmin (ModelAdmin):
     list_display = ['name']
     prepopulated_fields = {'slug': ('name',), }
-    def get_model_perms(self, request):
-        """
-        Return empty perms dict thus hiding the model from admin index.
-        """
-        return {}
 
 
 admin.site.register(LaptopType, LaptopTypeAdmin)
@@ -46,11 +41,6 @@ admin.site.register(DesktopType, DesktopTypeAdmin)
 class ComputerPerkAdmin(ModelAdmin):
     list_display = ['name']
     prepopulated_fields = {'slug': ('name',), }
-    def get_model_perms(self, request):
-        """
-        Return empty perms dict thus hiding the model from admin index.
-        """
-        return {}
 
 
 admin.site.register(ComputerPerk, ComputerPerkAdmin)
