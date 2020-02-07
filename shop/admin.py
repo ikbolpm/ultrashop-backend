@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 
 from .models import Category, Product
 from custom_multiupload.admin import MultiUploadAdmin
-from .models import Image, Laptop, AllInOne, Desktop
+from .models import Image, Laptop, AllInOne, Desktop, Printer
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -14,6 +14,12 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name', 'part_number', 'upc']
+
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
 
 class ImageInlineAdmin(admin.TabularInline):
     model = Image
@@ -136,6 +142,37 @@ class DesktopAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     def screen_size (self, instance):
         return instance.screen_size.name
 admin.site.register(Desktop, DesktopAdmin)
+
+
+class PrinterAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
+    list_display = ['title', 'speed', 'vat', 'price', 'created', ]
+    list_display_links = ['title', ]
+    list_filter = (
+        'vat',
+        ('brand', admin.RelatedOnlyFieldListFilter),
+        ('formats', admin.RelatedOnlyFieldListFilter),
+        ('technology', admin.RelatedOnlyFieldListFilter),
+    )
+    save_as = True
+    search_fields = ['brand__name', 'color__name', 'title', 'name', 'upc', 'part_number']
+    inlines = [ImageInlineAdmin, ]
+    multiupload_form = True
+    multiupload_list = False
+    exclude = ['type', 'title', 'slug', 'viewed', 'updated', 'created',]
+
+    def delete_file(self, pk, request):
+        '''
+        Delete an image.
+        '''
+        obj = get_object_or_404(Image, pk=pk)
+        return obj.delete()
+    def brand (self, instance):
+        return instance.brand.name
+
+    # def screen_size (self, instance):
+    #     return instance.screen_size.name
+admin.site.register(Printer, PrinterAdmin)
+
 
 class ImageAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     multiupload_form = False

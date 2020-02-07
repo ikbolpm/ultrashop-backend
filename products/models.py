@@ -29,7 +29,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255)
     model = models.CharField(max_length=255, help_text='К примеру: 1470 80XA', null=True, blank=True)
     description = HTMLField(blank=True, null=True)
-    perks = models.ManyToManyField('Perks', help_text='Выберите все нужные опции нажатием кнопки CTRL', blank=True, null=True)
+    perks = models.ManyToManyField('Perks', help_text='Выберите все нужные опции нажатием кнопки CTRL')
     old_price = models.IntegerField(help_text='Старая цена. Оставьте 0 если не идет акция', default=0)
     price = models.IntegerField(help_text='Введите сумму в USD')
     viewed = models.IntegerField(default=0, blank=True, null=True)
@@ -67,6 +67,7 @@ class Image(models.Model):
         return self.file.url
 
 from django.db import models
+
 
 class Perks(models.Model):
     name = models.CharField(max_length=200, help_text='К примеру: Сенсорный экран')

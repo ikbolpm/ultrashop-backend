@@ -26,6 +26,11 @@ class InquiryAdmin(admin.ModelAdmin):
     list_display_links = ['laptop', ]
     # list_filter = ['source']
     autocomplete_fields = ['laptop']
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
 
 
 admin.site.register(Inquiry, InquiryAdmin)
@@ -42,6 +47,11 @@ class ProductInquiryAdmin(admin.ModelAdmin):
     ]
     list_display_links = ['product', 'status']
     list_filter = ['source']
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
 
 admin.site.register(ProductInquiry, ProductInquiryAdmin)
 

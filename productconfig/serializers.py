@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import LaptopType, LaptopPerks
+from .models import LaptopType, ComputerPerk
 
 
 class LaptopTypeSerializer(serializers.ModelSerializer):
@@ -17,7 +17,7 @@ class LaptopTypeSerializer(serializers.ModelSerializer):
 
 class LaptopPerksSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LaptopPerks
+        model = ComputerPerk
         fields = [
             'id',
             'name',
