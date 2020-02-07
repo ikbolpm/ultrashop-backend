@@ -91,6 +91,7 @@ class Laptop(Product):
     perks = models.ManyToManyField(ComputerPerk)
 
     def save_base(self, raw=False, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_creation = False
         if self.part_number:
             part_number = str(self.part_number) + ' / '
         else:
@@ -124,12 +125,15 @@ class Laptop(Product):
                     + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
                     + ssd + hdd + optane \
                     + graphics_card + graphics_memory
-        self.slug = slugify(self.name)
+        if not self.id:
+            new_creation = True
+        if new_creation:
+            self.slug = slugify(self.title)
         super().save_base(raw, force_insert, force_update, using, update_fields)
 
 
 class AllInOne(Product):
-    desktop_type = models.ManyToManyField(AllInOneType)
+    all_in_one_type = models.ManyToManyField(AllInOneType)
     processor = models.ForeignKey(Processor, on_delete=models.CASCADE, related_name='aio_processor')
     ram = models.IntegerField()
     ram_type = models.ForeignKey(Ram, on_delete=models.CASCADE, related_name='aio_ram_type')
@@ -146,6 +150,7 @@ class AllInOne(Product):
     perks = models.ManyToManyField(ComputerPerk)
 
     def save_base(self, raw=False, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_creation = True
         if self.part_number:
             part_number = str(self.part_number) + ' / '
         else:
@@ -179,7 +184,10 @@ class AllInOne(Product):
                     + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
                     + ssd + hdd + optane \
                     + graphics_card + graphics_memory
-        self.slug = slugify(self.name)
+        if not self.id:
+            new_creation = True
+        if new_creation:
+            self.slug = slugify(self.title)
         super().save_base(raw, force_insert, force_update, using, update_fields)
 
 
@@ -200,6 +208,7 @@ class Desktop(Product):
     perks = models.ManyToManyField(ComputerPerk)
 
     def save_base(self, raw=False, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_creation = False
         if self.part_number:
             part_number = str(self.part_number) + ' / '
         else:
@@ -240,7 +249,10 @@ class Desktop(Product):
                     + str(self.ram) + 'GB ' + str(self.ram_type) + ' / '\
                     + ssd + hdd + optane \
                     + graphics_card + graphics_memory
-        self.slug = slugify(self.name)
+        if not self.id:
+            new_creation = True
+        if new_creation:
+            self.slug = slugify(self.title)
         super().save_base(raw, force_insert, force_update, using, update_fields)
 
 
@@ -254,6 +266,7 @@ class Printer(Product):
     description = HTMLField(blank=True, null=True)
 
     def save_base(self, raw=False, force_insert=False, force_update=False, using=None, update_fields=None):
+        new_creation = False
         if self.part_number:
             part_number = str(self.part_number) + ' / '
         else:
@@ -275,5 +288,8 @@ class Printer(Product):
                     + formats + ' / ' \
                     + str(self.speed) + ' стр в мин /'\
                     + str(self.warranty) + ' месяцев гарантии'
-        self.slug = slugify(self.name)
+        if not self.id:
+            new_creation = True
+        if new_creation:
+            self.slug = slugify(self.title)
         super().save_base(raw, force_insert, force_update, using, update_fields)
