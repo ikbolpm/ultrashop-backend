@@ -3,6 +3,7 @@ import csv
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.http import HttpResponse
+from django.utils.safestring import mark_safe
 
 from settings.models import DollarExchangeRate, TransactionCoefficient
 import math
@@ -51,7 +52,11 @@ class AvailableInventoryFilter(admin.SimpleListFilter):
 
 class InventoryAdmin(ModelAdmin, ExportCsvMixin):
 
-    list_display = ['laptop', 'vat', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
+    list_display = ['laptop', 'display_storefront_url', 'vat', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
+
+    def display_storefront_url(self, obj):
+        return mark_safe('<a href="%s%s/%s/%s">%s</a>' % ('https://ultrashop.uz/', obj.laptop.brand.slug , obj.laptop.slug, obj.laptop.id, 'Link'))
+    display_storefront_url.short_description = 'Link'
     search_fields = ['laptop__name', 'laptop__model', 'laptop__upc']
     list_display_links = ['laptop', ]
     list_filter = (
