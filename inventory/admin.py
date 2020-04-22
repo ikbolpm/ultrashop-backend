@@ -16,7 +16,7 @@ class ExportCsvMixin:
 
         meta = self.model._meta
         # field_names = [field.name for field in meta.fields]
-        field_names = ['laptop', 'vat', 'warehouse', 'quantity', 'laptop__price', 'display_storefront_url', 'created', 'updated']
+        field_names = ['laptop', 'vat', 'warehouse', 'quantity', 'laptop__price', 'created', 'updated']
         # field_names = field_names.append('laptop.price')
 
         response = HttpResponse(content_type='text/csv')
