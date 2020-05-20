@@ -87,17 +87,17 @@ class CustomerReturns(models.Model):
         )
         inventory.quantity = self.quantity + inventory.quantity
         inventory.save()
-        send_mail(
-            'UltraShop.uz: Laptop Returned - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(
-                self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
-            ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(
-                self.laptop.ram) + ' / ' + str(
-                self.laptop.main_storage) + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(
-                self.quantity) + '\n Reason: ' + self.reason,
-            'ultrashopsales@gmail.com',
-            ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
-            fail_silently=False,
-        )
+        # send_mail(
+        #     'UltraShop.uz: Laptop Returned - ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(
+        #         self.laptop.ram) + ' / ' + str(self.laptop.main_storage),
+        #     ' Laptop: ' + self.laptop.brand.name + ' ' + self.laptop.name + ' / ' + self.laptop.processor.name + ' / ' + str(
+        #         self.laptop.ram) + ' / ' + str(
+        #         self.laptop.main_storage) + '\n Warehouse: ' + self.warehouse.name + '\n Quantity: ' + str(
+        #         self.quantity) + '\n Reason: ' + self.reason,
+        #     'ultrashopsales@gmail.com',
+        #     ['ikbolpm@gmail.com', 'mmamadjanov@gmail.com', 'mahkamov.farhodjon@gmail.com'],
+        #     fail_silently=False,
+        # )
 
 class PriceList(models.Model):
     pricelist = models.FileField(upload_to='pricelist')
