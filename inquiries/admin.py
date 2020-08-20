@@ -24,6 +24,7 @@ class InquiryAdmin(admin.ModelAdmin):
         # 'description'
     ]
     list_display_links = ['laptop', ]
+    list_editable = ['status']
     # list_filter = ['source']
     autocomplete_fields = ['laptop']
     # def get_model_perms(self, request):
@@ -47,6 +48,7 @@ class ProductInquiryAdmin(admin.ModelAdmin):
     ]
     list_display_links = ['product', 'status']
     list_filter = ['source']
+    list_editable = ['status']
     # def get_model_perms(self, request):
     #     """
     #     Return empty perms dict thus hiding the model from admin index.
