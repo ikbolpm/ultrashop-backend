@@ -25,7 +25,7 @@ class InquiryAdmin(admin.ModelAdmin):
     ]
     list_display_links = ['laptop', ]
     list_editable = ['status']
-    # list_filter = ['source']
+    list_filter = ['status']
     autocomplete_fields = ['laptop']
     # def get_model_perms(self, request):
     #     """
@@ -47,7 +47,7 @@ class ProductInquiryAdmin(admin.ModelAdmin):
         'description'
     ]
     list_display_links = ['product', 'status']
-    list_filter = ['source']
+    list_filter = ['status']
     list_editable = ['status']
     # def get_model_perms(self, request):
     #     """
