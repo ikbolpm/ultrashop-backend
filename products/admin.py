@@ -3,6 +3,8 @@ from django.contrib.admin import ModelAdmin
 from django.shortcuts import get_object_or_404
 from custom_multiupload.admin import MultiUploadAdmin
 from django.conf import settings
+from sales.admin import ExportCsvMixin
+
 
 
 from .models import Category, Image, Product, Perks
@@ -34,7 +36,7 @@ class GalleryMultiuploadMixing(object):
         }
 
 
-class ProductAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
+class ProductAdmin(GalleryMultiuploadMixing, MultiUploadAdmin, ExportCsvMixin):
     list_display = ['brand', 'category', 'name', 'model', 'vat', 'price', 'old_price', 'created', ]
     list_editable = ['old_price', 'price']
     list_display_links = ['name', ]
@@ -48,6 +50,7 @@ class ProductAdmin(GalleryMultiuploadMixing, MultiUploadAdmin):
     inlines = [ImageInlineAdmin, ]
     multiupload_form = True
     multiupload_list = False
+    actions = ["export_as_csv"]
     save_as = True
 
     def delete_file(self, pk, request):
