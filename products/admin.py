@@ -39,7 +39,7 @@ class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
 
         meta = self.model._meta
-        field_names = ['brand', 'category', 'name', 'model', 'old_price', 'price']
+        field_names = ['brand__name', 'category__name', 'name', 'model', 'old_price', 'price']
 
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
